@@ -15,7 +15,8 @@ import { UserComponent } from './layout/user/user.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { HrComponent } from './layout/hr/hr.component';
 import { RaportsComponent } from './layout/raports/raports.component';
-import { NotFoundComponent } from './layout/error-page/not-found/not-found.component'
+import { NotFoundComponent } from './layout/error-page/not-found/not-found.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NotFoundComponent } from './layout/error-page/not-found/not-found.compo
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
