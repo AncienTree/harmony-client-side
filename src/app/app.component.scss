@@ -1,0 +1,38 @@
+// SideNav
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav, mat-sidenav-content {
+  padding: 16px;
+}
+
+mat-sidenav {
+  background-color: azure;
+  width: 200px;
+}
+
+.navbar {
+  justify-content: space-between;
+}
+.navbar-right {
+  font-size: medium;
+}
+
+span {
+  padding-right: 1rem;
+}
+
+.all-wrap {
+  min-height: 100vh;
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}

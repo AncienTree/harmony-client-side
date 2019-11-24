@@ -1,17 +1,34 @@
-<div class="container-fluid h-100">
-	<div class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<app-navigator></app-navigator>
-	</div>
-	<div class="row container">
-		<div class="col-md-2 navbar navbar-light" style="background-color: #e3f2fd;">
-			<app-menu></app-menu>
-		</div>
-		<div class="col-md-10">
-			<router-outlet></router-outlet>
-		</div>
-	</div>
+<mat-sidenav-container class="all-wrap">
+  <!-- Zawartość sidenav-->
+  <mat-sidenav opened mode="side" #sidenav>
+    Panel
+    <mat-nav-list>
+      <a mat-list-item href="#">Dashboard</a>
+      <a mat-list-item href="#">Pracownik</a>
+      <a mat-list-item href="#">Kierownik</a>
+      <a mat-list-item href="#">HR</a>
+      <a mat-list-item href="#">Raporty</a>
+      <a mat-list-item href="#">Admin</a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-	<div class="page-footer">
-		<app-footer></app-footer>
-	</div>
-</div>
+  <!-- Main -->
+  <mat-sidenav-content class="page-wrap">
+    <!-- Header -->
+    <mat-toolbar color="primary" class="navbar">
+      <div>
+        <button mat-icon-button>
+          <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+        Harmony
+      </div>
+      <div class="navbar-right">
+        <span>Witaj XXX</span>
+        <span>Ustawienia</span>
+        <span>Wyloguj</span>
+      </div>
+    </mat-toolbar>
+    <!-- Content -->
+    Zawartość
+  </mat-sidenav-content>
+</mat-sidenav-container>
