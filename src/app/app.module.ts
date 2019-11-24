@@ -17,6 +17,7 @@ import { HrComponent } from './layout/hr/hr.component';
 import { RaportsComponent } from './layout/raports/raports.component';
 import { NotFoundComponent } from './layout/error-page/not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [TesthttpService],
   bootstrap: [AppComponent]
