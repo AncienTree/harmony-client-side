@@ -8,7 +8,12 @@
       <a mat-list-item href="#">Kierownik</a>
       <a mat-list-item href="#">HR</a>
       <a mat-list-item href="#">Raporty</a>
-      <a mat-list-item href="#">Admin</a>
+      <!-- Tree list in sidenav. Przykład -->
+      <button mat-button (click)="showFiller = !showFiller">Admin</button>
+      <mat-list *ngIf="showFiller">
+        <a mat-list-item href="#">Users</a>
+        <a mat-list-item href="#">Serwer</a>
+      </mat-list>
     </mat-nav-list>
   </mat-sidenav>
 
