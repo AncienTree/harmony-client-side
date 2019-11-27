@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Users } from './model/users';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +9,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(private httpUsers: UsersService) {}
+
+  // test
+  users: Observable<Array<Users>>;
+
   showEmpl = false;
   showManager = false;
   showHR = false;
@@ -30,5 +39,10 @@ export class AppComponent {
 
   toggleAdmin() {
     this.showAdmin = !this.showAdmin;
+  }
+
+  getUser() {
+    this.httpUsers.read(1).subscribe(user =>
+      console.log(user));
   }
 }
