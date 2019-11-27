@@ -12,7 +12,7 @@ export class UsersService extends HttpService<Users> {
   constructor(http: HttpClient) {
     super(
     http,
-    'user',
+    'users',
     new UsersSerializer());
    }
 }

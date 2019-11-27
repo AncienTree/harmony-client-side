@@ -45,4 +45,12 @@ export class AppComponent {
     this.httpUsers.read(1).subscribe(user =>
       console.log(user));
   }
+  getUser2() {
+    this.httpUsers.getPost(1).subscribe(user =>
+      console.log(user));
+  }
+
+  getUser3() {
+    this.users = this.httpUsers.obj$;
+  }
 }

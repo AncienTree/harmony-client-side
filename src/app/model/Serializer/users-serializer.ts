@@ -1,6 +1,7 @@
 import { Users } from '../users';
+import { Serializer } from './serializer';
 
-export class UsersSerializer {
+export class UsersSerializer implements Serializer {
   fromJson(json: any): Users {
     const users = new Users();
     users.id = json.id;
