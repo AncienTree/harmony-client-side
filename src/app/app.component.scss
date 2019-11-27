@@ -8,7 +8,13 @@ mat-sidenav, mat-sidenav-content {
 }
 
 mat-sidenav {
-  width: 200px;
+  width: 220px;
+  background-color: #efefef;
+}
+
+.sub-menu a {
+  font-size: small;
+  padding-left: 10px;
 }
 
 .navbar {

@@ -6,5 +6,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  showFiller = false;
+  showEmpl = true;
+  showManager = false;
+  showHR = false;
+  showRaports = true;
+  showAdmin = false;
+
+  toggleEmpl() {
+    this.showEmpl = !this.showEmpl;
+  }
+
+  toggleManager() {
+    this.showManager = !this.showManager;
+  }
+
+  toggleHR() {
+    this.showHR = !this.showHR;
+  }
+
+  toggleRaports() {
+    this.showRaports = !this.showRaports;
+  }
+
+  toggleAdmin() {
+    this.showAdmin = !this.showAdmin;
+  }
 }
