@@ -27,6 +27,9 @@ import { FteComponent } from './components/raports/fte/fte.component';
 import { UsersListComponent } from './components/admin/users-list/users-list.component';
 import { ConfigComponent } from './components/admin/config/config.component';
 import { ServerComponent } from './components/admin/server/server.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ManagerComponent } from './components/manager/manager/manager.component';
+import { HrComponent } from './components/hr/hr/hr.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { ServerComponent } from './components/admin/server/server.component';
     UsersListComponent,
     ConfigComponent,
     ServerComponent,
+    NotFoundComponent,
+    ManagerComponent,
+    HrComponent,
   ],
   imports: [
     BrowserModule,

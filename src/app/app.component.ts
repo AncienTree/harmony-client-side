@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  showEmpl = true;
+  showEmpl = false;
   showManager = false;
   showHR = false;
-  showRaports = true;
+  showRaports = false;
   showAdmin = false;
 
   toggleEmpl() {
