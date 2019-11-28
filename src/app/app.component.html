@@ -70,10 +70,8 @@
       </div>
     </mat-toolbar>
     <!-- Zawartość strony -->
-    <button mat-button (click)="getUser()">Pobierz </button>
-    <div *ngFor="let u of users | async">
-      {{u.id}}, {{u.login}}
-    </div>
+    <button (click)="getUsers()">Test</button>
+    Zawartość
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

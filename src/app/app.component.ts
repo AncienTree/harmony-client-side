@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Users } from './model/users';
-import { UsersService } from './services/users.service';
+import { UsersService } from './services/http/users.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,6 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
 
   constructor(private httpUsers: UsersService) {}
-
-  // test
-  users: Observable<Array<Users>>;
 
   showEmpl = false;
   showManager = false;
@@ -42,15 +39,16 @@ export class AppComponent {
   }
 
   getUser() {
-    this.httpUsers.read(1).subscribe(user =>
-      console.log(user));
-  }
-  getUser2() {
-    this.httpUsers.getPost(1).subscribe(user =>
-      console.log(user));
+    this.httpUsers.read(1).subscribe(
+      (user) => { console.log(user); },
+      (error) => { console.log('Wystąpił błąd ', error); }
+      );
   }
 
-  getUser3() {
-    this.users = this.httpUsers.obj$;
+  getUsers() {
+    this.httpUsers.showAll().subscribe(
+      (user) => { console.log(user); },
+      (error) => { console.log('Wystąpił błąd ', error); }
+      );
   }
 }
