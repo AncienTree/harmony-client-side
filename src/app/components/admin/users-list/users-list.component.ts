@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { UsersService } from 'src/app/services/http/users.service';
-import { MatTableDataSource, MatSort, MatPaginator, MatSortable } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-users-list',
@@ -10,7 +10,7 @@ import { MatTableDataSource, MatSort, MatPaginator, MatSortable } from '@angular
 export class UsersListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['pozycja', 'login', 'status', 'role', 'aktywuj', 'edytuj'];
-  dataSource: MatTableDataSource<any>;
+  dataSource = new MatTableDataSource();
   isLoading = true;
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -19,18 +19,13 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   constructor(private userHttp: UsersService) { }
 
   ngOnInit() {
-
+    return this.userHttp.showAll().subscribe( result => {
+      this.dataSource.data = result;
+      this.isLoading = false;
+    });
    }
 
    ngAfterViewInit() {
-    this.userHttp.showAll().subscribe(
-      (result) => {
-      this.isLoading = false;
-      this.dataSource = new MatTableDataSource(result);
-      console.log(result);
-    });
-
-    this.sort.sort(({id: 'login', start: 'asc'}) as MatSortable);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
