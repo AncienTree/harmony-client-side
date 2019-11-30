@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { UsersService } from 'src/app/services/http/users.service';
-import { MatTableDataSource, MatSort } from '@angular/material';
-import { Users } from 'src/app/model/users';
+import { MatTableDataSource, MatSort, MatPaginator, MatSortable } from '@angular/material';
 
 @Component({
   selector: 'app-users-list',
@@ -10,25 +9,30 @@ import { Users } from 'src/app/model/users';
 })
 export class UsersListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['pozycja', 'login', 'status', 'rola', 'aktywuj', 'edytuj'];
+  displayedColumns: string[] = ['pozycja', 'login', 'status', 'role', 'aktywuj', 'edytuj'];
   dataSource: MatTableDataSource<any>;
   isLoading = true;
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator,  {static: false}) paginator: MatPaginator;
 
   constructor(private userHttp: UsersService) { }
 
   ngOnInit() {
+
+   }
+
+   ngAfterViewInit() {
     this.userHttp.showAll().subscribe(
       (result) => {
       this.isLoading = false;
       this.dataSource = new MatTableDataSource(result);
       console.log(result);
     });
-   }
 
-   ngAfterViewInit() {
+    this.sort.sort(({id: 'login', start: 'asc'}) as MatSortable);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
    applyFilter(filter: string){
