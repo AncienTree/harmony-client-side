@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class HttpService<T extends Resource> {
   private obs = new BehaviorSubject<Array<T>>([]);
   obj$ = this.obs.asObservable();
-  private url = 'http://localhost:8080/api';
+  private url = 'http://localhost:8080/harmony/api';
 
   constructor(
     private httpClient: HttpClient,
