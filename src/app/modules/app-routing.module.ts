@@ -32,6 +32,7 @@ const routes: Routes = [
   {
     path: 'main', component: MainComponent,
     children: [
+      { path: '', component: DashboardComponent},
       // Routing Pracownik
       { path: 'empl', component: WorkTimeComponent },
       { path: 'empl/urlop', component: LeaveComponent },
@@ -57,11 +58,11 @@ const routes: Routes = [
       // Routing Admin
       { path: 'admin/users', component: UsersListComponent },
       { path: 'admin/config', component: ConfigComponent },
-      { path: 'admin/server', component: ServerComponent }
-    ]
-  },
+      { path: 'admin/server', component: ServerComponent },
 
-  { path: '**', component: NotFoundComponent },
+      { path: '**', component: NotFoundComponent },
+    ]},
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

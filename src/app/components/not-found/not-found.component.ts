@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
+  href: string = '';
+  time = new Date();
   constructor() { }
 
   ngOnInit() {
+    this.href = window.location.href;
   }
 
 }
