@@ -16,7 +16,7 @@ export class LoginComponent {
   public loginToApp() {
     if (this.login === 'test' && this.password === 'abc123') {
       console.log('Udane logowanie');
-      this.route.navigate(['dashboard']);
+      this.route.navigate(['main']);
     } else {
       console.log('Nieudane logowanie');
     }
