@@ -23,44 +23,50 @@ import { FteComponent } from '../components/raports/fte/fte.component';
 import { UsersListComponent } from '../components/admin/users-list/users-list.component';
 import { ConfigComponent } from '../components/admin/config/config.component';
 import { ServerComponent } from '../components/admin/server/server.component';
+import { LoginComponent } from '../components/login/login.component';
+import { MainComponent } from '../main/main.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-  { path: 'dashboard', component: DashboardComponent },
-
-  // Routing Pracownik
-  { path: 'empl', component: WorkTimeComponent },
-  { path: 'empl/urlop', component: LeaveComponent },
-  { path: 'empl/nieobecnosc', component: AbsenceComponent },
-  { path: 'empl/dyspozycyjnosc', component: AvailabilityComponent },
-  // Routing Kierownika
-  { path: 'manager', component: ManagerComponent },
-  { path: 'manager/grupy', component: ScheduleGroupComponent },
-  { path: 'manager/pracownik', component: ScheduleEmployeeComponent },
-  { path: 'manager/urlopy', component: CheckAbsenceComponent },
-  { path: 'manager/dyspozycyjnosc', component: CheckAvailabilityComponent },
-  // Routing HR
-  { path: 'hr', component: HrComponent },
-  { path: 'hr/harmonogram', component: ScheduleComponent },
-  { path: 'hr/stan-osobowy', component: PersonalDataComponent },
-  { path: 'hr/zatrudnij', component: HireComponent },
-  { path: 'hr/wnioski', component: ApplicationComponent },
-  // Routing Raporty
-  { path: 'raport/lista', component: EmployeeListComponent },
-  { path: 'raport/urlopy', component: LeaveListComponent },
-  { path: 'raport/nieobecnosci', component: AbsenceListComponent },
-  { path: 'raport/fte', component: FteComponent },
-  // Routing Admin
-  { path: 'admin/users', component: UsersListComponent },
-  { path: 'admin/config', component: ConfigComponent },
-  { path: 'admin/server', component: ServerComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'main', component: MainComponent,
+    children: [
+      // Routing Pracownik
+      { path: 'empl', component: WorkTimeComponent },
+      { path: 'empl/urlop', component: LeaveComponent },
+      { path: 'empl/nieobecnosc', component: AbsenceComponent },
+      { path: 'empl/dyspozycyjnosc', component: AvailabilityComponent },
+      // Routing Kierownika
+      { path: 'manager', component: ManagerComponent },
+      { path: 'manager/grupy', component: ScheduleGroupComponent },
+      { path: 'manager/pracownik', component: ScheduleEmployeeComponent },
+      { path: 'manager/urlopy', component: CheckAbsenceComponent },
+      { path: 'manager/dyspozycyjnosc', component: CheckAvailabilityComponent },
+      // Routing HR
+      { path: 'hr', component: HrComponent },
+      { path: 'hr/harmonogram', component: ScheduleComponent },
+      { path: 'hr/stan-osobowy', component: PersonalDataComponent },
+      { path: 'hr/zatrudnij', component: HireComponent },
+      { path: 'hr/wnioski', component: ApplicationComponent },
+      // Routing Raporty
+      { path: 'raport/lista', component: EmployeeListComponent },
+      { path: 'raport/urlopy', component: LeaveListComponent },
+      { path: 'raport/nieobecnosci', component: AbsenceListComponent },
+      { path: 'raport/fte', component: FteComponent },
+      // Routing Admin
+      { path: 'admin/users', component: UsersListComponent },
+      { path: 'admin/config', component: ConfigComponent },
+      { path: 'admin/server', component: ServerComponent }
+    ]
+  },
 
   { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   // HashLocationStrategy
-  imports: [RouterModule.forRoot(routes, {useHash: true}) ],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
