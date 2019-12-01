@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  href: string = '';
+  href = '';
   time = new Date();
   constructor() { }
 
