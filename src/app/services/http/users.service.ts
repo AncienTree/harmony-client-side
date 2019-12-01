@@ -15,4 +15,5 @@ export class UsersService extends HttpService<Users> {
     'users',
     new UsersSerializer());
    }
+
 }

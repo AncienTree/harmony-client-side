@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Serializer } from '../../model/Serializer/serializer';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Resource } from '../../model/resource';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { Serializer } from 'src/app/model/Serializer/serializer';
+import { Users } from 'src/app/model/users';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -61,4 +63,32 @@ export class HttpService<T extends Resource> {
   // TODO
   // PATCHE methode
 
+  public updateStatus(id: number, status: boolean): Observable<any> {
+    let user = new Users();
+    user.id = id;
+    user.login = '';
+    user.status = !status;
+    user.role  = '';
+
+    console.log(user);
+    console.log(JSON.stringify({'id':id, 'login': '', 'status': !status, 'role': ''}));
+    return this.httpClient
+      .patch(`${this.url}/${this.endpoint}/${id}`, JSON.stringify({'id':id, 'login': '', 'status': !status, 'role': ''}))
+      .pipe(
+        map(this.extractData),
+        catchError(this.handleError)
+      );
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+}
+
+private handleError(error: any) {
+    let errMsg = (error.message) ? error.message :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+}
 }

@@ -30,6 +30,9 @@ import { ServerComponent } from './components/admin/server/server.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ManagerComponent } from './components/manager/manager/manager.component';
 import { HrComponent } from './components/hr/hr/hr.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ActiveBooleanPipe } from './pipe/active-boolean.pipe';
+import { RolesPipe } from './pipe/roles.pipe';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,8 @@ import { HrComponent } from './components/hr/hr/hr.component';
     NotFoundComponent,
     ManagerComponent,
     HrComponent,
+    ActiveBooleanPipe,
+    RolesPipe,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +70,7 @@ import { HrComponent } from './components/hr/hr/hr.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

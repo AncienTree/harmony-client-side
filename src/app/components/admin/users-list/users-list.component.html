@@ -1,43 +1,42 @@
 <h2>Lista użytkownikow</h2>
 <br>
 <div>
-<mat-slide-toggle checked>Aktywni</mat-slide-toggle>
-<br>
-<mat-form-field>
+<mat-slide-toggle [checked]="isActivated">Aktywni</mat-slide-toggle>
+<mat-form-field fxLayoutAlign="center center">
   <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Szukaj">
 </mat-form-field>
-
+<br>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- Kolumna pozycja -->
     <ng-container matColumnDef="pozycja" class="id">
-      <th mat-header-cell *matHeaderCellDef>Lp.</th>
-      <td mat-cell *matCellDef="let element let i = index"> {{i+1}} </td>
+      <th mat-header-cell *matHeaderCellDef fxFlex="5%">Lp.</th>
+      <td mat-cell *matCellDef="let element let i = index" fxFlex="5%"> {{i+1}} </td>
     </ng-container>
 
     <!-- Kolumna login -->
     <ng-container matColumnDef="login">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Login</th>
-      <td mat-cell *matCellDef="let element"> {{element.login}} </td>
-    </ng-container>
-
-    <!-- Kolumna status-->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="30%">Login</th>
+      <td mat-cell *matCellDef="let element" fxFlex="30%"> {{element.login}} </td>
     </ng-container>
 
     <!-- Kolumna rola-->
     <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef>Rola</th>
-      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+      <th mat-header-cell *matHeaderCellDef fxFlex="30%">Rola</th>
+      <td mat-cell *matCellDef="let element" fxFlex="30%"> {{element.role | roles}} </td>
+    </ng-container>
+
+    <!-- Kolumna status-->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef fxFlex="20%">Status</th>
+      <td mat-cell *matCellDef="let element" fxFlex="20%"> {{element.status | activeBoolean}} </td>
     </ng-container>
 
     <!-- Kolumna akcji aktywuj -->
     <ng-container matColumnDef="aktywuj">
-      <th mat-header-cell *matHeaderCellDef>Aktywacja</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="warn">
+      <th mat-header-cell *matHeaderCellDef fxFlex="5%">Aktywacja</th>
+      <td mat-cell *matCellDef="let element" fxFlex="5%">
+        <button mat-icon-button>
           <mat-icon class="mat-18">check_circle</mat-icon>
         </button>
       </td>
@@ -45,8 +44,8 @@
 
     <!-- Kolumna akcji edytuj-->
     <ng-container matColumnDef="edytuj">
-      <th mat-header-cell *matHeaderCellDef>Edytuj</th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef fxFlex="5%">Edytuj</th>
+      <td mat-cell *matCellDef="let element" fxFlex="5%">
         <button mat-icon-button color="primary">
           <mat-icon class="mat-18">system_update</mat-icon>
         </button>
