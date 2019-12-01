@@ -1,0 +1,75 @@
+<mat-sidenav-container class="all-wrap">
+  <!-- Zawartość sidenav-->
+  <mat-sidenav opened mode="side" #sidenav>
+    Panel
+    <mat-nav-list>
+      <a mat-list-item class="nav-link" href="/#/main">Dashboard</a>
+
+      <!-- Menu dla pracownika -->
+      <a mat-list-item (click)="toggleEmpl()">Pracownik</a>
+      <mat-list *ngIf="showEmpl" class="sub-menu">
+        <a mat-list-item class="nav-link" href="/#/main/empl">Czas pracy</a>
+        <a mat-list-item class="nav-link" href="/#/main/empl/urlop">Urlopy</a>
+        <a mat-list-item class="nav-link" href="/#/main/empl/nieobecnosc">Zgłoś nieobecność</a>
+        <a mat-list-item class="nav-link" href="/#/main/empl/dyspozycyjnosc">Zgłoś dyspozycyjność</a>
+      </mat-list>
+
+      <!-- Menu dla kierownika -->
+      <a mat-list-item (click)="toggleManager()">Kierownik</a>
+      <mat-list *ngIf="showManager" class="sub-menu">
+        <a mat-list-item class="nav-link" href="/#/main/manager">Panel kierownika</a>
+        <a mat-list-item class="nav-link" href="/#/main/manager/grupy">Harmonogram grupy</a>
+        <a mat-list-item class="nav-link" href="/#/main/manager/pracownik">Harmonogram konsultanta</a>
+        <a mat-list-item class="nav-link" href="/#/main/manager/urlopy">Akceptacja nieobecność</a>
+        <a mat-list-item class="nav-link" href="/#/main/manager/dyspozycyjnosc">Sprawdź dyspozycyjność</a>
+      </mat-list>
+
+      <!-- Menu dla działu HR -->
+      <a mat-list-item (click)="toggleHR()">HR</a>
+      <mat-list *ngIf="showHR" class="sub-menu">
+        <a mat-list-item class="nav-link" href="/#/main/hr">Dział HR</a>
+        <a mat-list-item class="nav-link" href="/#/main/hr/harmonogram">Harmonogram</a>
+        <a mat-list-item class="nav-link" href="/#/main/hr/stan-osobowy">Stan osobowy</a>
+        <a mat-list-item class="nav-link" href="/#/main/hr/zatrudnij">Zatrudnij</a>
+        <a mat-list-item class="nav-link" href="/#/main/hr/wnioski">Wnioski</a>
+      </mat-list>
+
+      <!-- Menu dla raportów -->
+      <a mat-list-item (click)="toggleRaports()">Raporty</a>
+      <mat-list *ngIf="showRaports" class="sub-menu">
+        <a mat-list-item class="nav-link" href="/#/main/raport/lista">Stan osobowy</a>
+        <a mat-list-item class="nav-link" href="/#/main/raport/urlopy">Stan urlopowy</a>
+        <a mat-list-item class="nav-link" href="/#/main/raport/nieobecnosci">Stan nieobecności</a>
+        <a mat-list-item class="nav-link" href="/#/main/raport/fte">FTE</a>
+      </mat-list>
+
+      <!-- Menu dla paneulu administracyjnego -->
+      <a mat-list-item (click)="toggleAdmin()">Admin</a>
+      <mat-list *ngIf="showAdmin" class="sub-menu">
+        <a mat-list-item class="nav-link" href="/#/main/admin/users">Użytkownicy</a>
+        <a mat-list-item class="nav-link" href="/#/main/admin/config">Konfiguracja</a>
+        <a mat-list-item class="nav-link" href="/#/main/admin/server">Serwer</a>
+      </mat-list>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main -->
+  <mat-sidenav-content class="page-wrap">
+    <!-- Header toolbar-->
+    <mat-toolbar color="primary" class="navbar">
+      <div>
+        <button mat-icon-button>
+          <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+        Harmony
+      </div>
+      <div class="navbar-right">
+        <span>Witaj XXX</span>
+        <span>Ustawienia</span>
+        <span>Wyloguj</span>
+      </div>
+    </mat-toolbar>
+    <!-- Zawartość strony -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

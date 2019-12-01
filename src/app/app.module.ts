@@ -33,6 +33,8 @@ import { HrComponent } from './components/hr/hr/hr.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ActiveBooleanPipe } from './pipe/active-boolean.pipe';
 import { RolesPipe } from './pipe/roles.pipe';
+import { MainComponent } from './main/main.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { RolesPipe } from './pipe/roles.pipe';
     HrComponent,
     ActiveBooleanPipe,
     RolesPipe,
+    MainComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
