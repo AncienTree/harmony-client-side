@@ -47,7 +47,11 @@ mat-toolbar {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  width: 98%;
+  font-size: small;
+  height: 40px;
+  background-color: #6e6e6e;
+  color: white;
+  width: 87%;
 }

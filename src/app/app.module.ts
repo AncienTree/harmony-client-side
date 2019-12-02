@@ -35,7 +35,6 @@ import { ActiveBooleanPipe } from './pipe/active-boolean.pipe';
 import { RolesPipe } from './pipe/roles.pipe';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './components/login/login.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +66,6 @@ import { FooterComponent } from './components/footer/footer.component';
     RolesPipe,
     MainComponent,
     LoginComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,

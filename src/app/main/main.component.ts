@@ -16,6 +16,9 @@ export class MainComponent {
   showRaports = false;
   showAdmin = false;
 
+  date = new Date();
+  version = '0.0.1 Alpha';
+
   toggleEmpl() {
     this.showEmpl = !this.showEmpl;
   }
