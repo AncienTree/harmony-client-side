@@ -41,3 +41,13 @@ span {
 .content {
   flex: 1;
 }
+
+mat-toolbar {
+  border-radius: 5px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 98%;
+}

@@ -6,6 +6,7 @@
       <a mat-list-item class="nav-link" href="/#/main">Dashboard</a>
 
       <!-- Menu dla pracownika -->
+      <mat-divider></mat-divider>
       <a mat-list-item (click)="toggleEmpl()">Pracownik</a>
       <mat-list *ngIf="showEmpl" class="sub-menu">
         <a mat-list-item class="nav-link" href="/#/main/empl">Czas pracy</a>
@@ -15,6 +16,7 @@
       </mat-list>
 
       <!-- Menu dla kierownika -->
+      <mat-divider></mat-divider>
       <a mat-list-item (click)="toggleManager()">Kierownik</a>
       <mat-list *ngIf="showManager" class="sub-menu">
         <a mat-list-item class="nav-link" href="/#/main/manager">Panel kierownika</a>
@@ -25,6 +27,7 @@
       </mat-list>
 
       <!-- Menu dla działu HR -->
+      <mat-divider></mat-divider>
       <a mat-list-item (click)="toggleHR()">HR</a>
       <mat-list *ngIf="showHR" class="sub-menu">
         <a mat-list-item class="nav-link" href="/#/main/hr">Dział HR</a>
@@ -35,6 +38,7 @@
       </mat-list>
 
       <!-- Menu dla raportów -->
+      <mat-divider></mat-divider>
       <a mat-list-item (click)="toggleRaports()">Raporty</a>
       <mat-list *ngIf="showRaports" class="sub-menu">
         <a mat-list-item class="nav-link" href="/#/main/raport/lista">Stan osobowy</a>
@@ -44,6 +48,7 @@
       </mat-list>
 
       <!-- Menu dla paneulu administracyjnego -->
+      <mat-divider></mat-divider>
       <a mat-list-item (click)="toggleAdmin()">Admin</a>
       <mat-list *ngIf="showAdmin" class="sub-menu">
         <a mat-list-item class="nav-link" href="/#/main/admin/users">Użytkownicy</a>
@@ -69,7 +74,12 @@
         <span>Wyloguj</span>
       </div>
     </mat-toolbar>
+
     <!-- Zawartość strony -->
     <router-outlet></router-outlet>
+
+    <div class="footer" fxFlexOffset="auto">
+      <app-footer></app-footer>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
