@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,13 @@ export class LoginComponent {
   login: string;
   password: string;
 
-  constructor(private route: Router) { }
+  constructor(
+    private route: Router,
+    private auth: AuthenticationService
+    ) { }
 
   public loginToApp() {
-    if (this.login === 'test' && this.password === 'abc123') {
+    if (this.auth.authenticate(this.login, this.password)) {
       console.log('Udane logowanie');
       this.route.navigate(['main']);
     } else {
