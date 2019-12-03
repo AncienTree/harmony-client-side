@@ -20,4 +20,8 @@ export class AuthenticationService {
     const user = sessionStorage.getItem('authenticaterUser');
     return !(user === null);
   }
+
+  logout() {
+    sessionStorage.removeItem('authenticaterUser');
+  }
 }

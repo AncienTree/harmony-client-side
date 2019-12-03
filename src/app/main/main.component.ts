@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/http/users.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
-
-  constructor(private httpUsers: UsersService) {}
-
+export class MainComponent implements OnInit{
   showEmpl = false;
   showManager = false;
   showHR = false;
@@ -18,6 +16,12 @@ export class MainComponent {
 
   date = new Date();
   version = '0.0.1 Alpha';
+
+  constructor(private httpUsers: UsersService,
+              private auth: AuthenticationService) {}
+
+  ngOnInit() {
+  }
 
   toggleEmpl() {
     this.showEmpl = !this.showEmpl;

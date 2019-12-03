@@ -25,12 +25,13 @@ import { ConfigComponent } from '../components/admin/config/config.component';
 import { ServerComponent } from '../components/admin/server/server.component';
 import { LoginComponent } from '../components/login/login.component';
 import { MainComponent } from '../main/main.component';
+import { RouteGuardService } from '../services/route-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'main', component: MainComponent,
+    path: 'main', component: MainComponent, canActivateChild: [RouteGuardService],
     children: [
       { path: '', component: DashboardComponent},
       // Routing Pracownik
@@ -39,7 +40,7 @@ const routes: Routes = [
       { path: 'empl/nieobecnosc', component: AbsenceComponent },
       { path: 'empl/dyspozycyjnosc', component: AvailabilityComponent },
       // Routing Kierownika
-      { path: 'manager', component: ManagerComponent },
+      { path: 'manager', component: ManagerComponent, },
       { path: 'manager/grupy', component: ScheduleGroupComponent },
       { path: 'manager/pracownik', component: ScheduleEmployeeComponent },
       { path: 'manager/urlopy', component: CheckAbsenceComponent },
