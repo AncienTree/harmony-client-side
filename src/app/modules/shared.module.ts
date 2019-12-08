@@ -5,7 +5,6 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ActiveBooleanPipe } from '../pipe/active-boolean.pipe';
 import { RolesPipe } from '../pipe/roles.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -20,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
   ],
   exports: [
     CommonModule,
@@ -28,7 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule,
     ActiveBooleanPipe,
     RolesPipe,
   ]

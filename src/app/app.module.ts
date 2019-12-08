@@ -6,9 +6,6 @@ import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './components/login/login.component';
 import { RaportModule } from './components/raports/raport.module';
@@ -17,26 +14,29 @@ import { HrModule } from './components/hr/hr.module';
 import { EmplModule } from './components/employee/empl.module';
 import { AdminModule } from './components/admin/admin.module';
 import { SharedModule } from './modules/shared.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { NotFoundModule } from './components/not-found/not-found.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    NotFoundComponent,
     MainComponent,
     LoginComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    DashboardModule,
     RaportModule,
     ManagerModule,
     HrModule,
     EmplModule,
     AdminModule,
+    NotFoundModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

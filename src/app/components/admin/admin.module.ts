@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ConfigComponent, ServerComponent, UsersListComponent } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
+import { AdminRoutingModule } from './admin.routing.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { SharedModule } from 'src/app/modules/shared.module';
     UsersListComponent,
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    AdminRoutingModule
   ]
 })
 

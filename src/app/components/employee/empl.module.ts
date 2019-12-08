@@ -6,16 +6,18 @@ import {
   WorkTimeComponent
  } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
+import { EmplRoutingModule } from './empl.routing.module';
 
 @NgModule({
   declarations: [
     AbsenceComponent,
     AvailabilityComponent,
     LeaveComponent,
-    WorkTimeComponent
+    WorkTimeComponent,
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    EmplRoutingModule
   ]
 })
 

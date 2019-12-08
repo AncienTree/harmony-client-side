@@ -7,6 +7,7 @@ import {
   ScheduleComponent
  } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
+import { HrRoutingModule } from './hr.routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SharedModule } from 'src/app/modules/shared.module';
     ScheduleComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    HrRoutingModule
   ]
 })
 

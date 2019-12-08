@@ -5,6 +5,7 @@ import { CheckAbsenceComponent,
   ScheduleEmployeeComponent,
   ScheduleGroupComponent } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
+import { ManagerRoutingModule } from './manager.routing.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/modules/shared.module';
     ScheduleGroupComponent,
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    ManagerRoutingModule
   ]
 })
 
