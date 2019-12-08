@@ -16,45 +16,57 @@
       </mat-list>
 
       <!-- Menu dla kierownika -->
-      <mat-divider></mat-divider>
-      <a mat-list-item (click)="toggleManager()">Kierownik</a>
-      <mat-list *ngIf="showManager" class="sub-menu">
-        <a mat-list-item class="nav-link" routerLink="/main/manager">Panel kierownika</a>
-        <a mat-list-item class="nav-link" routerLink="/main/manager/grupy">Harmonogram grupy</a>
-        <a mat-list-item class="nav-link" routerLink="/main/manager/pracownik">Harmonogram konsultanta</a>
-        <a mat-list-item class="nav-link" routerLink="/main/manager/urlopy">Akceptacja nieobecność</a>
-        <a mat-list-item class="nav-link" routerLink="/main/manager/dyspozycyjnosc">Sprawdź dyspozycyjność</a>
-      </mat-list>
+      <div>
+        <!-- NgIf dla roli -->
+        <mat-divider></mat-divider>
+        <a mat-list-item (click)="toggleManager()">Kierownik</a>
+        <mat-list *ngIf="showManager" class="sub-menu">
+          <a mat-list-item class="nav-link" routerLink="/main/manager">Panel kierownika</a>
+          <a mat-list-item class="nav-link" routerLink="/main/manager/grupy">Harmonogram grupy</a>
+          <a mat-list-item class="nav-link" routerLink="/main/manager/pracownik">Harmonogram konsultanta</a>
+          <a mat-list-item class="nav-link" routerLink="/main/manager/urlopy">Akceptacja nieobecność</a>
+          <a mat-list-item class="nav-link" routerLink="/main/manager/dyspozycyjnosc">Sprawdź dyspozycyjność</a>
+        </mat-list>
+      </div>
 
       <!-- Menu dla działu HR -->
-      <mat-divider></mat-divider>
-      <a mat-list-item (click)="toggleHR()">HR</a>
-      <mat-list *ngIf="showHR" class="sub-menu">
-        <a mat-list-item class="nav-link" routerLink="/main/hr">Dział HR</a>
-        <a mat-list-item class="nav-link" routerLink="/main/hr/harmonogram">Harmonogram</a>
-        <a mat-list-item class="nav-link" routerLink="/main/hr/stan-osobowy">Stan osobowy</a>
-        <a mat-list-item class="nav-link" routerLink="/main/hr/zatrudnij">Zatrudnij</a>
-        <a mat-list-item class="nav-link" routerLink="/main/hr/wnioski">Wnioski</a>
-      </mat-list>
+      <div>
+        <!-- NgIf dla roli -->
+        <mat-divider></mat-divider>
+        <a mat-list-item (click)="toggleHR()">HR</a>
+        <mat-list *ngIf="showHR" class="sub-menu">
+          <a mat-list-item class="nav-link" routerLink="/main/hr">Dział HR</a>
+          <a mat-list-item class="nav-link" routerLink="/main/hr/harmonogram">Harmonogram</a>
+          <a mat-list-item class="nav-link" routerLink="/main/hr/stan-osobowy">Stan osobowy</a>
+          <a mat-list-item class="nav-link" routerLink="/main/hr/zatrudnij">Zatrudnij</a>
+          <a mat-list-item class="nav-link" routerLink="/main/hr/wnioski">Wnioski</a>
+        </mat-list>
+      </div>
 
       <!-- Menu dla raportów -->
-      <mat-divider></mat-divider>
-      <a mat-list-item (click)="toggleRaports()">Raporty</a>
-      <mat-list *ngIf="showRaports" class="sub-menu">
-        <a mat-list-item class="nav-link" routerLink="/main/raport/lista">Stan osobowy</a>
-        <a mat-list-item class="nav-link" routerLink="/main/raport/urlopy">Stan urlopowy</a>
-        <a mat-list-item class="nav-link" routerLink="/main/raport/nieobecnosci">Stan nieobecności</a>
-        <a mat-list-item class="nav-link" routerLink="/main/raport/fte">FTE</a>
-      </mat-list>
+      <div>
+        <!-- NgIf dla roli -->
+        <mat-divider></mat-divider>
+        <a mat-list-item (click)="toggleRaports()">Raporty</a>
+        <mat-list *ngIf="showRaports" class="sub-menu">
+          <a mat-list-item class="nav-link" routerLink="/main/raport/lista">Stan osobowy</a>
+          <a mat-list-item class="nav-link" routerLink="/main/raport/urlopy">Stan urlopowy</a>
+          <a mat-list-item class="nav-link" routerLink="/main/raport/nieobecnosci">Stan nieobecności</a>
+          <a mat-list-item class="nav-link" routerLink="/main/raport/fte">FTE</a>
+        </mat-list>
+      </div>
 
       <!-- Menu dla paneulu administracyjnego -->
-      <mat-divider></mat-divider>
-      <a mat-list-item (click)="toggleAdmin()">Admin</a>
-      <mat-list *ngIf="showAdmin" class="sub-menu">
-        <a mat-list-item class="nav-link" routerLink="/main/admin/users">Użytkownicy</a>
-        <a mat-list-item class="nav-link" routerLink="/main/admin/config">Konfiguracja</a>
-        <a mat-list-item class="nav-link" routerLink="/main/admin/server">Serwer</a>
-      </mat-list>
+      <div>
+        <!-- NgIf dla roli -->
+        <mat-divider></mat-divider>
+        <a mat-list-item (click)="toggleAdmin()">Admin</a>
+        <mat-list *ngIf="showAdmin" class="sub-menu">
+          <a mat-list-item class="nav-link" routerLink="/main/admin/users">Użytkownicy</a>
+          <a mat-list-item class="nav-link" routerLink="/main/admin/config">Konfiguracja</a>
+          <a mat-list-item class="nav-link" routerLink="/main/admin/server">Serwer</a>
+        </mat-list>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 
