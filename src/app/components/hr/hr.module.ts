@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   ApplicationComponent,
   HireComponent,
@@ -7,6 +6,7 @@ import {
   PersonalDataComponent,
   ScheduleComponent
  } from './index';
+import { SharedModule } from 'src/app/modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import {
     ScheduleComponent
   ],
   imports: [
-    CommonModule
+    SharedModule
   ]
 })
 

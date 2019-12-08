@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './modules/app-routing.module';
@@ -17,6 +16,7 @@ import { ManagerModule } from './components/manager/manager.module';
 import { HrModule } from './components/hr/hr.module';
 import { EmplModule } from './components/employee/empl.module';
 import { AdminModule } from './components/admin/admin.module';
+import { SharedModule } from './modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,15 +30,13 @@ import { AdminModule } from './components/admin/admin.module';
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
-    FormsModule,
     RaportModule,
     ManagerModule,
     HrModule,
     EmplModule,
     AdminModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

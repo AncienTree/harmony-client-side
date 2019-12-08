@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CheckAbsenceComponent,
   CheckAvailabilityComponent,
   ManagerComponent,
   ScheduleEmployeeComponent,
   ScheduleGroupComponent } from './index';
+import { SharedModule } from 'src/app/modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { CheckAbsenceComponent,
     ScheduleGroupComponent,
   ],
   imports: [
-    CommonModule
+    SharedModule
   ]
 })
 

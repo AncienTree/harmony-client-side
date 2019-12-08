@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   AbsenceComponent,
   AvailabilityComponent,
   LeaveComponent,
   WorkTimeComponent
  } from './index';
+import { SharedModule } from 'src/app/modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import {
     WorkTimeComponent
   ],
   imports: [
-    CommonModule
+    SharedModule
   ]
 })
 
