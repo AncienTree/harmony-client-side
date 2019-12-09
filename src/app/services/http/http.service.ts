@@ -4,13 +4,14 @@ import { Resource } from '../../model/resource';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { Serializer } from 'src/app/model/Serializer/serializer';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService<T extends Resource> {
   private obs = new BehaviorSubject<Array<T>>([]);
-  private url = 'http://localhost:8080/api';
+  private url = environment.url;
   private options = {
     headers: new HttpHeaders().set('Content-Type', 'application/json')
   };
