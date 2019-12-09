@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { UsersService } from 'src/app/services/http/users.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { map } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-users-list',
@@ -19,7 +17,9 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator,  {static: false}) paginator: MatPaginator;
 
-  constructor(private userHttp: UsersService) { }
+  constructor(
+    private userHttp: UsersService,
+    ) { }
 
   ngOnInit() {
     return this.userHttp.showAll().subscribe( result => {
