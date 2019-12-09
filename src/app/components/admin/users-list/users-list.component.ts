@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { UsersService } from 'src/app/services/http/users.service';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { DialogEditComponent } from './dialog-edit/dialog-edit.component';
+import { Users } from 'src/app/model/users';
 
 @Component({
   selector: 'app-users-list',
@@ -13,20 +15,24 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
   isLoading = true;
   isActivated = true;
+  user: Users;
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   constructor(
     private userHttp: UsersService,
+    private dialog: MatDialog,
+    private change: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     this.refresh();
   }
 
+  // Odświeżanie tabeli
   refresh() {
-      this.userHttp.showAll().subscribe(result => {
+    this.userHttp.showAll().subscribe(result => {
       this.dataSource.data = result;
       this.isLoading = false;
     });
@@ -51,11 +57,32 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   //   }
   //  }
 
+  // Zmiana statusu 'aktywny'
   changeStatus(id, status) {
     this.userHttp.changeStatus(id, status).subscribe(() => {
       this.refresh();
     });
     console.log('zmiana statusu');
     console.log(id + ' - ' + !status);
+  }
+
+  // Edycja danych
+  editDialog(id: number) {
+    this.userHttp.read(id).subscribe(result => {
+      console.log('result: ' + result.login);
+      this.change.detectChanges();
+      this.user = result;
+    });
+    // Timeout potrzebny aby Obervable mógł przypisać wynik do user
+    setTimeout(() => {
+      console.log('Edycja elementu o id: ' + id);
+
+      const dialogRef = this.dialog.open(DialogEditComponent, {
+        width: '300px',
+        data: this.user,
+        disableClose: true,
+        autoFocus: true
+      }).afterClosed().subscribe(() => this.refresh());
+    }, 300);
   }
 }
