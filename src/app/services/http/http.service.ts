@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService<T extends Resource> {
   private obs = new BehaviorSubject<Array<T>>([]);
-  private url = environment.url;
-  private options = {
+  readonly url = environment.url;
+  readonly options = {
     headers: new HttpHeaders().set('Content-Type', 'application/json')
   };
 
@@ -75,18 +75,8 @@ export class HttpService<T extends Resource> {
       );
   }
 
-  // PATCHE methode
-  public updateStatus(id: number, status: boolean): Observable<any> {
-    return this.httpClient
-      .patch(`${this.url}/${this.endpoint}/${id}`, JSON.stringify(!status), this.options)
-      .pipe(
-        retry(1),
-        catchError(this.errorHandl)
-      );
-  }
-
   // Error handling
-  errorHandl(error) {
+  protected errorHandl(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

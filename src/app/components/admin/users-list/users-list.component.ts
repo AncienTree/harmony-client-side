@@ -52,7 +52,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   //  }
 
   changeStatus(id, status) {
-    this.userHttp.updateStatus(id, status).subscribe(() => {
+    this.userHttp.changeStatus(id, status).subscribe(() => {
       this.refresh();
     });
     console.log('zmiana statusu');
