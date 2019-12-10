@@ -35,6 +35,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
     this.userHttp.showAll().subscribe(result => {
       this.dataSource.data = result;
       this.isLoading = false;
+      this.change.detectChanges();
     });
   }
 
@@ -47,15 +48,15 @@ export class UsersListComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filter.trim().toLocaleLowerCase();
   }
 
-  //  activated() {
-  //   if(this.isActivated) {
+  // activated() {
+  //   if (this.isActivated) {
   //     this.dataSource.filter = '';
   //   } else {
-  //     this.dataSource.filterPredicate = (data, filter: string) => {
-
+  //     this.dataSource.filterPredicate = (data: Users, filter: string) => {
+  //       this.user.status.valueOf(filter) != -1;
   //     }
   //   }
-  //  }
+  // }
 
   // Zmiana statusu 'aktywny'
   changeStatus(id, status) {
@@ -75,14 +76,12 @@ export class UsersListComponent implements OnInit, AfterViewInit {
     });
     // Timeout potrzebny aby Obervable mógł przypisać wynik do user
     setTimeout(() => {
-      console.log('Edycja elementu o id: ' + id);
-
       const dialogRef = this.dialog.open(DialogEditComponent, {
         width: '300px',
         data: this.user,
         disableClose: true,
         autoFocus: true
-      }).afterClosed().subscribe(() => this.refresh());
+      }).afterClosed().subscribe(() => window.location.reload());
     }, 300);
   }
 }

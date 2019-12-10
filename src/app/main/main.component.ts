@@ -7,7 +7,7 @@ import { AuthenticationService } from '../services/authentication.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit{
+export class MainComponent implements OnInit {
   showEmpl = false;
   showManager = false;
   showHR = false;
