@@ -3,6 +3,7 @@ import { UsersService } from 'src/app/services/http/users.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { DialogEditComponent } from './dialog-edit/dialog-edit.component';
 import { Users } from 'src/app/model/users';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users-list',
@@ -32,7 +33,14 @@ export class UsersListComponent implements OnInit, AfterViewInit {
 
   // Odświeżanie tabeli
   refresh() {
-    this.userHttp.showAll().subscribe(result => {
+    this.userHttp.showAll()
+    .pipe(
+      map((response) => {
+        response = response.filter((data) => data.status === this.isActivated);
+        return response;
+      })
+    )
+    .subscribe(result => {
       this.dataSource.data = result;
       this.isLoading = false;
       this.change.detectChanges();
@@ -47,16 +55,6 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   applyFilter(filter: string) {
     this.dataSource.filter = filter.trim().toLocaleLowerCase();
   }
-
-  // activated() {
-  //   if (this.isActivated) {
-  //     this.dataSource.filter = '';
-  //   } else {
-  //     this.dataSource.filterPredicate = (data: Users, filter: string) => {
-  //       this.user.status.valueOf(filter) != -1;
-  //     }
-  //   }
-  // }
 
   // Zmiana statusu 'aktywny'
   changeStatus(id, status) {
