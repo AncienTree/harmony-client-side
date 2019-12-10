@@ -34,17 +34,17 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   // Odświeżanie tabeli
   refresh() {
     this.userHttp.showAll()
-    .pipe(
-      map((response) => {
-        response = response.filter((data) => data.status === this.isActivated);
-        return response;
-      })
-    )
-    .subscribe(result => {
-      this.dataSource.data = result;
-      this.isLoading = false;
-      this.change.detectChanges();
-    });
+      .pipe(
+        map((response) => {
+          response = response.filter((data) => data.status === this.isActivated);
+          return response;
+        })
+      )
+      .subscribe(result => {
+        this.dataSource.data = result;
+        this.isLoading = false;
+        this.change.detectChanges();
+      });
   }
 
   ngAfterViewInit() {
@@ -58,11 +58,11 @@ export class UsersListComponent implements OnInit, AfterViewInit {
 
   // Zmiana statusu 'aktywny'
   changeStatus(id, status) {
-    this.userHttp.changeStatus(id, status).subscribe(() => {
-      this.refresh();
-    });
-    console.log('zmiana statusu');
-    console.log(id + ' - ' + !status);
+    if (confirm('Czy na pewno chcesz zmienić status')) {
+      this.userHttp.changeStatus(id, status).subscribe(() => {
+        this.refresh();
+      });
+    }
   }
 
   // Edycja danych
