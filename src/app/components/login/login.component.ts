@@ -17,12 +17,16 @@ export class LoginComponent {
     private auth: AuthenticationService
     ) { }
 
-  public loginToApp() {
-    if (this.auth.authenticate(this.login, this.password)) {
-      console.log('Udane logowanie');
-      this.route.navigate(['main']);
-    } else {
-      console.log('Nieudane logowanie');
-    }
+  public basicAuthLoginToApp() {
+    this.auth.executeBasicAuthService(this.login, this.password)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.route.navigate(['main']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }

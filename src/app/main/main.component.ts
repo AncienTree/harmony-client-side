@@ -56,4 +56,8 @@ export class MainComponent implements OnInit {
       (error) => { console.log('Wystąpił błąd ', error); }
       );
   }
+
+  logout() {
+    this.auth.logout();
+  }
 }

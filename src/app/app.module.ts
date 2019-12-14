@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { AdminModule } from './components/admin/admin.module';
 import { SharedModule } from './modules/shared.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { NotFoundModule } from './components/not-found/not-found.module';
+import { HttpInterceptService } from './services/http/http-intercept.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,13 @@ import { NotFoundModule } from './components/not-found/not-found.module';
     HttpClientModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
