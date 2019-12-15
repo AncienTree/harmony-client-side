@@ -17,8 +17,8 @@ export class LoginComponent {
     private auth: AuthenticationService
     ) { }
 
-  public basicAuthLoginToApp() {
-    this.auth.executeBasicAuthService(this.login, this.password)
+  public authJWT() {
+    this.auth.executeJWTAuthService(this.login, this.password)
       .subscribe(
         data => {
           console.log(data);

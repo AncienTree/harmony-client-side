@@ -9,24 +9,21 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  executeBasicAuthService(login, password) {
-    const basicAuth = 'Basic ' + window.btoa(login + ':' + password);
+  executeJWTAuthService(login, password) {
 
-    const headers = new HttpHeaders({
-      Authorization: basicAuth
-    });
-
-    return this.http.get<AuthenticationBean>(
-      `http://localhost:8080/api/basicauth`,
-      { headers }).pipe(
-        map(
-          data => {
-            sessionStorage.setItem('authenticaterUser', login);
-            sessionStorage.setItem('token', basicAuth);
-            return data;
-          }
-        )
-      );
+    return this.http.post<any>(
+      `http://localhost:8080/authenticate`, {
+      login,
+      password
+    }).pipe(
+      map(
+        data => {
+          sessionStorage.setItem('authenticaterUser', login);
+          sessionStorage.setItem('token', `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
   }
 
   getAuthenticatedUser() {
@@ -48,8 +45,4 @@ export class AuthenticationService {
     sessionStorage.removeItem('authenticaterUser');
     sessionStorage.removeItem('token');
   }
-}
-
-export class AuthenticationBean {
-  constructor(public message: string) { }
 }
