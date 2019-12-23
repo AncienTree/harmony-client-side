@@ -21,11 +21,11 @@ export class LoginComponent {
     this.auth.executeJWTAuthService(this.login, this.password)
       .subscribe(
         data => {
-          console.log(data);
+        //  console.log(data);
           this.route.navigate(['main']);
         },
         error => {
-          console.log(error);
+          console.error(error);
         }
       );
   }

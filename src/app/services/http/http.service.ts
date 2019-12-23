@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HttpService<T extends Resource> {
-  private obs = new BehaviorSubject<Array<T>>([]);
   readonly url = environment.url;
 
   constructor(

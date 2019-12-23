@@ -13,9 +13,9 @@ import { environment } from 'src/environments/environment';
 export class UsersService extends HttpService<Users> {
 
   readonly url = environment.url;
-  readonly options = {
-    headers: new HttpHeaders().set('Content-Type', 'application/json')
-  };
+  // readonly options = {
+  //   headers: new HttpHeaders().set('Content-Type', 'application/json')
+  // };
 
   constructor(private http: HttpClient) {
     super(
@@ -24,24 +24,26 @@ export class UsersService extends HttpService<Users> {
     new UsersSerializer());
    }
 
+  // Zmiana statusu aktywności użytkownika
   public changeStatus(id: number, status: boolean): Observable<any> {
     return this.http
-    .patch(`${this.url}/users/${id}`, JSON.stringify(!status), this.options)
+    .patch(`${this.url}/users/${id}`, JSON.stringify(!status))
     .pipe(
-      retryWhen(error => error.pipe(delay(2000), take(3))),
+      retryWhen(error => error.pipe(delay(2000), take(2))),
       catchError(super.errorHandl)
     );
   }
 
+  // Aktualizacja danych
   public updateUser(id: number, password?: string, status?: boolean, role?: string): Observable<any> {
     return this.http
     .patch(`${this.url}/users/opt/${id}`, {
       'password': password,
       'status': status,
       'role': role,
-    }, this.options)
+    })
     .pipe(
-      retryWhen(error => error.pipe(delay(2000), take(3))),
+      retryWhen(error => error.pipe(delay(2000), take(2))),
       catchError(super.errorHandl)
     );
   }

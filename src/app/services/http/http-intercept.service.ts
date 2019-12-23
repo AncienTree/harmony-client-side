@@ -14,6 +14,7 @@ export class HttpInterceptService implements HttpInterceptor {
     const basicAuthHeaderString = this.auth.getAuthenticatedToken();
     const username = this.auth.getAuthenticatedUser();
 
+    // Dodanie do każdego requesta Token oraz typ zapytania
     if (basicAuthHeaderString && username) {
       request = request.clone({
         setHeaders: {

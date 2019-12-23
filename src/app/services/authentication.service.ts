@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -7,10 +7,11 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
 
   executeJWTAuthService(login, password) {
-
     return this.http.post<any>(
       `http://localhost:8080/authenticate`, {
       login,
@@ -30,8 +31,10 @@ export class AuthenticationService {
     return sessionStorage.getItem('authenticaterUser');
   }
 
+  // Zwraca token jeżeli użytkownik jest zalogowany
   getAuthenticatedToken() {
-    if (this.getAuthenticatedUser()) {
+  //  if (this.getAuthenticatedUser()) {
+      if (this.isUserLoggedIn()) {
       return sessionStorage.getItem('token');
     }
   }
