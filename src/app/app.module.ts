@@ -17,6 +17,7 @@ import { SharedModule } from './modules/shared.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { NotFoundModule } from './components/not-found/not-found.module';
 import { HttpInterceptService } from './services/http/http-intercept.service';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,10 @@ import { HttpInterceptService } from './services/http/http-intercept.service';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptService,
       multi: true
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {duration: 3500 }
     }
   ],
   bootstrap: [AppComponent]

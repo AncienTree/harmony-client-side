@@ -20,6 +20,7 @@ import {
   MatDividerModule,
   MatSelectModule,
   MatCheckboxModule,
+  MatSnackBarModule,
 } from '@angular/material';
 
 const material = [
@@ -41,7 +42,8 @@ const material = [
   MatMenuModule,
   MatDividerModule,
   MatSelectModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSnackBarModule
 ];
 
 @NgModule({
