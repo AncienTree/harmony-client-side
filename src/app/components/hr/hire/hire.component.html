@@ -1,1 +1,27 @@
-<p>Komponent do zatrudniania pracowników. Sprawdza czy dany pracownik istnieje już w bazie danych za pomocą nr PESEL, jeżeli nie to tworzy nowego użytkownika a jeżeli tak to przywraca go na status aktywny.</p>
+<h2>Zatrudnij pracownika</h2>
+
+<!-- Karta pierwsza -->
+<mat-horizontal-stepper linear labelPosition="bottom" #stepper>
+  <mat-step label="Wprowadź pesel" [completed]=isStepOneCompleted>
+    <div>
+      <h3>Wprowadź numer PESEL</h3>
+      PESEL:
+      <input type="text" [formControl]="pesel">
+    </div>
+    <button mat-button matStepperNext (click)="checkPesel()">Dalej</button>
+  </mat-step>
+
+  <!-- Karta druga -->
+  <mat-step label="Weryfikacja" [completed]=isStepTwoCompleted>
+    <p>Weryfikacja</p>
+    <div>
+      <button mat-button matStepperPrevious>Wstecz</button>
+      <button mat-button matStepperNext>Dalej</button>
+    </div>
+  </mat-step>
+
+  <!-- Karta trzecia -->
+  <mat-step label="Dane">
+    <p>Aktywuj/Wprowadź</p>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -13,9 +13,6 @@ import { environment } from 'src/environments/environment';
 export class UsersService extends HttpService<Users> {
 
   readonly url = environment.url;
-  // readonly options = {
-  //   headers: new HttpHeaders().set('Content-Type', 'application/json')
-  // };
 
   constructor(private http: HttpClient) {
     super(
