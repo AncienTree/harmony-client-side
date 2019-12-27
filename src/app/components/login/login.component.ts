@@ -34,7 +34,7 @@ export class LoginComponent {
               });
               break;
             case 401:
-              this.snackBarRef.open('Błędna nazwa użytkownika albo hasło.');
+              this.snackBarRef.open(this.errorStatus(error.error));
               break;
             case 500:
               this.snackBarRef.open('Wystąpił problem serwerze apkiacji.', 'close', {
@@ -45,5 +45,13 @@ export class LoginComponent {
           console.error(error);
         }
       );
+  }
+
+  private errorStatus(error: string){
+    if(error === 'INVALID_CREDENTIALS') {
+      return 'Błędna nazwa użytkownika albo hasło.';
+    } else if (error === 'USER_NOT_ACTIVATED') {
+      return 'Użytkownik jest zablokowany. Zgłoś się się do działu HR lub IT';
+    }
   }
 }
