@@ -3,11 +3,19 @@
 <!-- Karta pierwsza -->
 <mat-horizontal-stepper linear labelPosition="bottom" #stepper>
   <mat-step label="Wprowadź pesel" [completed]=isStepOneCompleted>
-    <div>
-      <h3>Wprowadź numer PESEL</h3>
-      PESEL:
-      <input type="text" [formControl]="pesel">
-    </div>
+    <form [formGroup] = "hireForm">
+      <div>
+        {{pesel.valid}}
+        <h3>Wprowadź numer PESEL</h3>
+        PESEL:
+        <input formControlName="pesel" type="text">
+      </div>
+      <div *ngIf="pesel.touched && pesel.invalid" class="error_msg">
+        <p><small *ngIf="pesel.errors?.required" >Pesel jest wymagany</small></p>
+        <p><small *ngIf="pesel.errors?.minlength" >Pesel jest za krótki, musi posiadać 11 znaków</small></p>
+        <p><small *ngIf="pesel.errors?.peselValidator" >Pesel jest nieprawidłowy</small></p>
+      </div>
+    </form>
     <button mat-button matStepperNext (click)="checkPesel()">Dalej</button>
   </mat-step>
 
@@ -15,7 +23,7 @@
   <mat-step label="Weryfikacja" [completed]=isStepTwoCompleted>
     <p>Weryfikacja</p>
     <div>
-      <button mat-button matStepperPrevious>Wstecz</button>
+      <button mat-button matStepperPrevious (click)="back()">Wstecz</button>
       <button mat-button matStepperNext>Dalej</button>
     </div>
   </mat-step>
