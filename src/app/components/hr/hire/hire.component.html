@@ -78,7 +78,6 @@
           <select matNativeControl formControlName="sex">
             <option value="k">Mężczyzna</option>
             <option value="m">Kobieta</option>
-            <option value="u">To skomplikowane</option>
           </select>
         </mat-form-field>
         <mat-form-field>
@@ -90,7 +89,7 @@
       <!-- start pracy i forma zatrudnienia -->
       <div>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker1" placeholder="Data rozpoczęcia pracy" formControlName="startWork">
+          <input matInput [matDatepicker]="picker1" placeholder="Data rozpoczęcia pracy" formControlName="startWorkDate">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
