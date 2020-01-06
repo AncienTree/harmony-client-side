@@ -3,17 +3,20 @@
 <!-- Karta pierwsza -->
 <mat-horizontal-stepper linear labelPosition="bottom" #stepper>
   <mat-step label="Wprowadź pesel" [completed]=isStepOneCompleted>
-    <form [formGroup] = "hireForm">
+    <form [formGroup]="hireForm">
       <div>
-        {{pesel.valid}}
         <h3>Wprowadź numer PESEL</h3>
-        PESEL:
-        <input formControlName="pesel" type="text">
+        <mat-form-field hintLabel="Maksymalnie 11 liczb">
+          <input matInput maxlength="11" placeholder="Pesel" formControlName="pesel">
+        </mat-form-field>
+
+        <!-- PESEL:
+        <input formControlName="pesel" type="text"> -->
       </div>
       <div *ngIf="pesel.touched && pesel.invalid" class="error_msg">
-        <p><small *ngIf="pesel.errors?.required" >Pesel jest wymagany</small></p>
-        <p><small *ngIf="pesel.errors?.minlength" >Pesel jest za krótki, musi posiadać 11 znaków</small></p>
-        <p><small *ngIf="pesel.errors?.peselValidator" >Pesel jest nieprawidłowy</small></p>
+        <p><small *ngIf="pesel.errors?.required">Pesel jest wymagany</small></p>
+        <p><small *ngIf="pesel.errors?.pattern">Pesel musi mieć 11 znaków</small></p>
+        <p><small *ngIf="pesel.errors?.peselValidator">Pesel jest nieprawidłowy</small></p>
       </div>
     </form>
     <button mat-button matStepperNext (click)="checkPesel()">Dalej</button>
@@ -21,15 +24,111 @@
 
   <!-- Karta druga -->
   <mat-step label="Weryfikacja" [completed]=isStepTwoCompleted>
-    <p>Weryfikacja</p>
+    <h2>Weryfikacja</h2>
+    <div>
+      <!-- Spiner -->
+      <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center" fxLayout="column">
+        <mat-progress-spinner color="primary" mode="indeterminate">
+        </mat-progress-spinner>
+        Trwa weryfikacja w bazie danych. Proszę czekać.
+      </div>
+      <!-- Warunki czy istnieje w bazie -->
+      <div *ngIf="!isLoading">
+        <div *ngIf="checkDB" fxLayout="column">
+          Podany pesel już istnieje w bazie danych.
+          Bla bla bla
+          <!-- TODO -->
+          <!-- Czy użytkownik aktywny czy nie oraz podanie pełnej nazwy użytkownika!  -->
+
+        </div>
+        <div ng *ngIf="!checkDB">
+          Podany pesel nie istnieje w bazie danych. Aby utworzyć nowego pracownika kliknij dalej.
+        </div>
+      </div>
+    </div>
     <div>
       <button mat-button matStepperPrevious (click)="back()">Wstecz</button>
-      <button mat-button matStepperNext>Dalej</button>
+      <button mat-button matStepperNext (click)="create()" [disabled]="isLoading">Dalej</button>
     </div>
   </mat-step>
 
   <!-- Karta trzecia -->
   <mat-step label="Dane">
-    <p>Aktywuj/Wprowadź</p>
+    <h2>Wprowadź podstawowe dane aby zatrudnić pracownika</h2>
+    <p>Reszte danych można uzupełnić w zakładce Stan osobowy</p>
+    <p><small>Wszystkie dane są wymagane!</small></p>
+    <!-- Formatki -->
+    <form [formGroup]="hireForm" class="form_style" (ngSubmit)="submit()">
+      <!-- Imię, nazwisko i pesel -->
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Imię" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Nazwisko" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Pesel" formControlName="pesel">
+        </mat-form-field>
+      </div>
+      <!-- Płeć i data urodzenia -->
+      <div>
+        <mat-form-field>
+          <mat-label>Płeć</mat-label>
+          <select matNativeControl formControlName="sex">
+            <option value="k">Mężczyzna</option>
+            <option value="m">Kobieta</option>
+            <option value="u">To skomplikowane</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Data urodzenia" formControlName="birthday">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <!-- start pracy i forma zatrudnienia -->
+      <div>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Data rozpoczęcia pracy" formControlName="startWork">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Stanowisko</mat-label>
+          <select matNativeControl formControlName="position">
+            <option value="doradca">Doradca</option>
+            <option value="specjalista">Specjalista</option>
+            <option value="kierownik">Kierownik</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Stanowisko na umowie" formControlName="contractPosition">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Umowa</mat-label>
+          <select matNativeControl formControlName="contractType">
+            <option value="mask_uop">Maksimum_UoP</option>
+            <option value="maks_zlec_chr">Maksimum_Zlec_CHR</option>
+            <option value="maks_zlec_stud">Maksimum_Zlec_STUD</option>
+            <option value="maks_zlec_zus">Maksimum_Zlec_ZUS</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <!-- zarobek -->
+      <div>
+        <mat-form-field>
+          <mat-label>Forma wynagrodzenia</mat-label>
+          <select matNativeControl formControlName="basicUnit">
+            <option value="stawka">Stawka</option>
+            <option value="kwota">Kwota</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Stawka" formControlName="unit">
+        </mat-form-field>
+      </div>
+    <button mat-raised-button type="submit" [disabled]="!hireForm.valid">Zatrudnij</button>
+    </form >
   </mat-step>
 </mat-horizontal-stepper>

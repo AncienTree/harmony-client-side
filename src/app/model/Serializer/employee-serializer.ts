@@ -8,6 +8,8 @@ export class EmployeeSerializer implements Serializer {
     employee.firstName = json.firstName;
     employee.lastName = json.lastName;
     employee.pesel = json.pesel;
+    employee.sex = json.sex;
+    employee.birthday = json.birthday;
     employee.email = json.email;
     employee.position = json.position;
     employee.contractPosition = json.contractPosition;
@@ -28,6 +30,8 @@ export class EmployeeSerializer implements Serializer {
       firstName: employee.firstName,
       lastName: employee.lastName,
       pesel: employee.pesel,
+      sex: employee.sex,
+      birthday: employee.birthday,
       email: employee.email,
       position: employee.position,
       contractPosition: employee.contractPosition,

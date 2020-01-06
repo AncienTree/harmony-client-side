@@ -13,21 +13,29 @@ export class HireComponent implements OnInit {
   constructor(
     private empl: EmployeeService,
     private fb: FormBuilder
-    ) { }
+  ) { }
 
   @ViewChild('stepper', { static: false }) stepper;
 
   isStepOneCompleted = false;
   isStepTwoCompleted = false;
-
+  isLoading = true;
   checkDB = false;
+  tempPesel: string;
 
+  // Formatki
   hireForm = this.fb.group({
-    pesel: ['', [
-      peselValidator,
-      Validators.required,
-      Validators.minLength(11)
-    ]],
+    pesel: ['', [peselValidator, Validators.pattern('[0-9]{11}'), Validators.required]],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    sex: ['', Validators.required],
+    birthday: ['', Validators.required],
+    startWork: ['', Validators.required],
+    position: ['', Validators.required],
+    contractPosition: ['', Validators.required],
+    contractType: ['', Validators.required],
+    basicUnit: ['', Validators.required],
+    unit: ['', Validators.required]
   });
 
   get pesel() {
@@ -41,13 +49,36 @@ export class HireComponent implements OnInit {
     if (this.hireForm.get('pesel').valid) {
       this.isStepOneCompleted = true;
       this.stepper.next();
-      // this.empl.checkInDB(this.pesel.value).subscribe( x => {
-      //   this.checkDB = x;
-      // });
+      // Sprawdzanie czy istnieje w bazie
+      this.empl.checkInDB(this.pesel.value).subscribe(x => {
+        this.checkDB = x;
+        this.isLoading = false;
+        this.tempPesel = this.pesel.value;
+      });
     }
   }
 
   public back() {
     this.isStepOneCompleted = false;
+  }
+
+  public create() {
+    if (!this.checkDB) {
+      this.isStepTwoCompleted = true;
+      this.stepper.next();
+      // Uzupełnia pesel aby nie było potrzeby ponownego wpisywania oraz datę urodzenia
+      this.pesel.setValue(this.tempPesel);
+      this.hireForm.get('birthday').setValue(this.getBirthday());
+    }
+  }
+
+  private getBirthday(): string {
+
+
+    return null;
+  }
+
+  public submit() {
+    console.warn(this.hireForm.value);
   }
 }
