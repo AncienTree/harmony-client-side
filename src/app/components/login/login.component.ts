@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MatSnackBar } from '@angular/material';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Component({
   selector: 'app-login',
@@ -16,14 +17,21 @@ export class LoginComponent {
   constructor(
     private route: Router,
     private auth: AuthenticationService,
-    private snackBarRef: MatSnackBar
+    private snackBarRef: MatSnackBar,
+    private cookie: CookieService
   ) { }
 
   public authJWT() {
-    this.auth.executeJWTAuthService(this.login, this.password)
+    this.auth.login(this.login, this.password)
       .subscribe(
         data => {
-          //  console.log(data);
+          this.cookie.put('authenticaterUser', this.login),
+          this.cookie.put('token', data.access_token),
+          this.cookie.put('refresh_token', data.refresh_token),
+          // this.cookie.put('expires', data.expires_in),
+          this.cookie.put('jti', data.jti),
+
+          console.log(data);
           this.route.navigate(['main']);
         },
         error => {
@@ -47,8 +55,8 @@ export class LoginComponent {
       );
   }
 
-  private errorStatus(error: string){
-    if(error === 'INVALID_CREDENTIALS') {
+  private errorStatus(error: string) {
+    if (error === 'INVALID_CREDENTIALS') {
       return 'Błędna nazwa użytkownika albo hasło.';
     } else if (error === 'USER_NOT_ACTIVATED') {
       return 'Użytkownik jest zablokowany. Zgłoś się się do działu HR lub IT';

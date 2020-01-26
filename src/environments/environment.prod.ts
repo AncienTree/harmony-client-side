@@ -2,5 +2,7 @@ export const environment = {
   production: true,
 
   // Rest Api
-  url: 'http://localhost:8080/harmony/api'
+  url: 'http://localhost:8080/harmony/api',
+  jwtClientid: 'harmonyClientId',
+  jwtClientSecret: 'secret'
 };

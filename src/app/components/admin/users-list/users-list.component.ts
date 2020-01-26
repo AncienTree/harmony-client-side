@@ -80,6 +80,6 @@ export class UsersListComponent implements OnInit, AfterViewInit {
         disableClose: true,
         autoFocus: true
       }).afterClosed().subscribe(() => window.location.reload());
-    }, 400);
+    }, 600);
   }
 }

@@ -1,51 +1,58 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { AuthToken } from '../model/authToken';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  clientId = environment.jwtClientid;
+  clientSecret = environment.jwtClientSecret;
 
   constructor(
-    private http: HttpClient
-    ) { }
-
-  executeJWTAuthService(login, password) {
-    return this.http.post<any>(
-      `http://localhost:8080/authenticate`, {
-      login,
       password
-    }).pipe(
-      map(
-        data => {
-          sessionStorage.setItem('authenticaterUser', login);
-          sessionStorage.setItem('token', `Bearer ${data.token}`);
-          return data;
-        }
-      )
-    );
+    private http: HttpClient,
+    private cookie: CookieService
+  ) { }
+
+  login(username: string, password: string): Observable<AuthToken> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: 'Basic ' + btoa(this.clientId + ':' + this.clientSecret)
+      })
+    };
+
+    const body = 'grant_type=password&username={0}&password={1}'
+    .replace('{0}', username)
+    .replace('{1}', password);
+
+    return this.http.post<AuthToken>('http://localhost:8080/oauth/token', body, httpOptions);
   }
 
   getAuthenticatedUser() {
-    return sessionStorage.getItem('authenticaterUser');
+    return this.cookie.get(('authenticaterUser'));
   }
 
   // Zwraca token jeżeli użytkownik jest zalogowany
   getAuthenticatedToken() {
-  //  if (this.getAuthenticatedUser()) {
-      if (this.isUserLoggedIn()) {
-      return sessionStorage.getItem('token');
+    if (this.isUserLoggedIn()) {
+      return this.cookie.get(('token'));
     }
   }
 
   isUserLoggedIn() {
-    const user = sessionStorage.getItem('authenticaterUser');
+    const user = this.cookie.get(('authenticaterUser'));
     return !(user === null);
   }
 
   logout() {
-    sessionStorage.removeItem('authenticaterUser');
-    sessionStorage.removeItem('token');
+    this.cookie.removeAll();
   }
 }
