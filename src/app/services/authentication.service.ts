@@ -15,7 +15,6 @@ export class AuthenticationService {
   clientSecret = environment.jwtClientSecret;
 
   constructor(
-      password
     private http: HttpClient,
     private cookie: CookieService
   ) { }
