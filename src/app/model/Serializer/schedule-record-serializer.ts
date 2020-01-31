@@ -1,10 +1,10 @@
 import { Serializer } from './serializer';
-import { Schedule } from '../schedule';
+import { ScheduleRecord } from '../schedule-record';
 
 
-export class ScheduleSerializer implements Serializer {
-  fromJson(json: any): Schedule {
-    const schedule = new Schedule();
+export class ScheduleRecordSerializer implements Serializer {
+  fromJson(json: any): ScheduleRecord {
+    const schedule = new ScheduleRecord();
     schedule.id = json.id;
     schedule.employee = json.employee;
     schedule.workDate = json.workDate;
@@ -12,10 +12,11 @@ export class ScheduleSerializer implements Serializer {
     schedule.endWork = json.endWork;
     schedule.status = json.status;
     schedule.type = json.type;
+    schedule.update = json.update;
     return schedule;
   }
 
-  toJson(schedule: Schedule): any {
+  toJson(schedule: ScheduleRecord): any {
     return {
       id: schedule.id,
       employee: schedule.employee,
@@ -24,6 +25,7 @@ export class ScheduleSerializer implements Serializer {
       endWork: schedule.endWork,
       status: schedule.status,
       type: schedule.type,
+      update: schedule.update,
     };
   }
 }

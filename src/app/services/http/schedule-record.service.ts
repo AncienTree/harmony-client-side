@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
-import { Schedule } from 'src/app/model/schedule';
+import { ScheduleRecord } from 'src/app/model/schedule-record';
 import { HttpClient } from '@angular/common/http';
-import { ScheduleSerializer } from 'src/app/model/Serializer/schedule-serializer';
+import { ScheduleRecordSerializer } from 'src/app/model/Serializer/schedule-record-serializer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScheduleService extends HttpService<Schedule> {
+export class ScheduleRecordService extends HttpService<ScheduleRecord> {
 
   constructor(private http: HttpClient) {
     super(
       http,
       'schedule',
-      new ScheduleSerializer()
+      new ScheduleRecordSerializer()
     );
    }
 }
