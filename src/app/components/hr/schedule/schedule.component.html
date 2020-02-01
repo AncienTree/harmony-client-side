@@ -19,7 +19,7 @@
     <div *ngFor="let months of month">
       <ng-container matColumnDef="{{months}}">
         <th mat-header-cell *matHeaderCellDef> {{months}} </th>
-        <td mat-cell *matCellDef="let element" (click)="testLog(element.scheduleRecords[months])"> {{element.scheduleRecords[months].status}} </td>
+        <td mat-cell *matCellDef="let element" (click)="scheduleDialog(element.scheduleRecords[months])"> {{element.scheduleRecords[months].status}} </td>
       </ng-container>
     </div>
 

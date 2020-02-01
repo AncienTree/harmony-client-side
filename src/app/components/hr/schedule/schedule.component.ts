@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ScheduleSummaryService } from 'src/app/services/http/schedule-summary.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
+import { ScheduleRecord } from 'src/app/model/schedule-record';
+import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 
 @Component({
   selector: 'app-schedule',
@@ -15,11 +17,10 @@ export class ScheduleComponent {
 
   constructor(
     private scheduleHttp: ScheduleSummaryService,
+    public dialog: MatDialog,
   ) { }
 
   refresh(date) {
-    console.log(date);
-
     this.scheduleHttp.getScheduleByMonth(date)
       .subscribe(result => {
         this.dataSource.data = result;
@@ -30,5 +31,21 @@ export class ScheduleComponent {
 
   testLog(object) {
     console.log(object);
+  }
+
+  scheduleDialog(schedule: ScheduleRecord): void {
+    console.log(schedule);
+    const dialogRef = this.dialog.open(ScheduleEditComponent, {
+      width: '400px',
+
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('Zaktualizowano grafik');
+
+      // TODO zmienić
+      this.refresh('2019-10-01');
+    });
+
   }
 }
