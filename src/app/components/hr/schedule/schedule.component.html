@@ -1,1 +1,31 @@
 <p>Harmonogram czasu pracy wszystkich pracowników </p>
+
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- FullName Column -->
+    <ng-container matColumnDef="fullName" sticky>
+      <th mat-header-cell *matHeaderCellDef> Imię i Nazwisko </th>
+      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.fullName}} </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> Stanowisko </th>
+      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.position}} </td>
+    </ng-container>
+
+    <!-- Day Column -->
+    <div *ngFor="let months of month">
+      <ng-container matColumnDef="{{months}}">
+        <th mat-header-cell *matHeaderCellDef> {{months}} </th>
+        <td mat-cell *matCellDef="let element" (click)="testLog(element.scheduleRecords[months])"> {{element.scheduleRecords[months].status}} </td>
+      </ng-container>
+    </div>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<button (click)="refresh('2019-10-01')">Test</button>

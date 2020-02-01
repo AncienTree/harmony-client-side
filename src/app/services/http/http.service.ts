@@ -79,9 +79,8 @@ export class HttpService<T extends Resource> {
       errorMessage = error.error.message;
     } else {
       // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}\nInfo: ${error.error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   }
 }

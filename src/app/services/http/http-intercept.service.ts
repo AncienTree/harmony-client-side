@@ -16,8 +16,6 @@ export class HttpInterceptService implements HttpInterceptor {
 
     // Dodanie do każdego requesta Token oraz typ zapytania
     if (basicAuthHeaderString && username) {
-      console.log(basicAuthHeaderString);
-
       request = request.clone({
         setHeaders: {
           Authorization : 'Bearer ' + basicAuthHeaderString,

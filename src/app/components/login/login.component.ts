@@ -31,7 +31,6 @@ export class LoginComponent {
           this.cookie.put('expires', data.expires_in.toString()),
           this.cookie.put('jti', data.jti),
 
-          console.log(data);
           this.route.navigate(['main']);
         },
         error => {
@@ -50,7 +49,6 @@ export class LoginComponent {
               });
               break;
           }
-          console.error(error);
         }
       );
   }

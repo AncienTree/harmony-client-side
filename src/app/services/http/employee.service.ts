@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { EmployeeSerializer } from 'src/app/model/Serializer/employee-serializer';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
