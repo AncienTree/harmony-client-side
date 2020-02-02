@@ -18,7 +18,7 @@
     <!-- Day Column -->
     <div *ngFor="let months of month">
       <ng-container matColumnDef="{{months}}">
-        <th mat-header-cell *matHeaderCellDef> {{months}} </th>
+        <th mat-header-cell *matHeaderCellDef> {{testDate(months) | date: 'dd/MM/yyyy'}}  </th>
         <td mat-cell *matCellDef="let element" (click)="scheduleDialog(element.simpleEmployee.fullName, element.scheduleRecords[months])"> {{element.scheduleRecords[months].status}} </td>
       </ng-container>
     </div>

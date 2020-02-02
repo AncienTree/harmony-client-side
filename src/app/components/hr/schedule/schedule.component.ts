@@ -11,7 +11,8 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 })
 export class ScheduleComponent {
 
-  displayedColumns = ['fullName', 'position', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+  displayedColumns = ['fullName', 'position', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14',
+   '15', '16', '17', '18', '19', '20'];
   dataSource = new MatTableDataSource();
   month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
@@ -27,8 +28,11 @@ export class ScheduleComponent {
       });
   }
 
-  testLog(object) {
-    console.log(object);
+  testDate(day) {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+
+    return new Date(year, month, day);
   }
 
   scheduleDialog(name: string, schedule: ScheduleRecord): void {
