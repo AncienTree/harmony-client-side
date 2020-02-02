@@ -1,1 +1,6 @@
-<p>schedule-edit works!</p>
+<h2 mat-dialog-title>{{data.fullName}}</h2>
+<mat-dialog-content> {{data.record.workDate}} </mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close mat-dialog-close="true">Zatwierdź</button>
+  <button mat-button mat-dialog-close mat-dialog-close="false">Anuluj</button>
+</mat-dialog-actions>

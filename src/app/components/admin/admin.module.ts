@@ -9,9 +9,6 @@ import { AdminRoutingModule } from './admin.routing.module';
     UsersListComponent,
     DialogEditComponent
   ],
-  entryComponents: [
-    DialogEditComponent
-  ],
   imports: [
     SharedModule,
     AdminRoutingModule

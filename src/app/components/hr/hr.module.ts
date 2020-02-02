@@ -4,7 +4,8 @@ import {
   HireComponent,
   HrComponent,
   PersonalDataComponent,
-  ScheduleComponent
+  ScheduleComponent,
+  ScheduleEditComponent
  } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
@@ -15,7 +16,8 @@ import { HrRoutingModule } from './hr.routing.module';
     HireComponent,
     HrComponent,
     PersonalDataComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    ScheduleEditComponent
   ],
   imports: [
     SharedModule,

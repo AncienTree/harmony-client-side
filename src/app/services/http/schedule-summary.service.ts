@@ -22,8 +22,6 @@ export class ScheduleSummaryService extends HttpService<ScheduleSummary> {
   }
 
   public getScheduleByMonth(date): Observable<any> {
-    console.log(`${this.url}/schedule/date/${date}`);
-
     return this.http
       .get<ScheduleSummary>(`${this.url}/schedule/date/${date}`)
       .pipe(

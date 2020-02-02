@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { ScheduleRecord } from 'src/app/model/schedule-record';
 
 @Component({
   selector: 'app-schedule-edit',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
   }
 
+}
+
+interface DialogData {
+  fullName: string;
+  record: ScheduleRecord;
 }

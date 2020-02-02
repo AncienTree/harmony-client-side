@@ -13,7 +13,7 @@ export class ScheduleComponent {
 
   displayedColumns = ['fullName', 'position', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
   dataSource = new MatTableDataSource();
-  month = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+  month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
   constructor(
     private scheduleHttp: ScheduleSummaryService,
@@ -24,8 +24,6 @@ export class ScheduleComponent {
     this.scheduleHttp.getScheduleByMonth(date)
       .subscribe(result => {
         this.dataSource.data = result;
-        console.log(result);
-
       });
   }
 
@@ -33,11 +31,11 @@ export class ScheduleComponent {
     console.log(object);
   }
 
-  scheduleDialog(schedule: ScheduleRecord): void {
-    console.log(schedule);
+  scheduleDialog(name: string, schedule: ScheduleRecord): void {
     const dialogRef = this.dialog.open(ScheduleEditComponent, {
-      width: '400px',
-
+      disableClose: true,
+      width: '800px',
+      data: {fullName: name, record: schedule }
     });
 
     dialogRef.afterClosed().subscribe(() => {
