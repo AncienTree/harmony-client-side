@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/http/employee.service';
 import { peselValidator } from 'src/app/utiles/validators/pesel-validator';
-import { Serializer } from 'src/app/model/Serializer/serializer';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-hire',
@@ -14,11 +14,11 @@ export class HireComponent implements OnInit {
   constructor(
     private empl: EmployeeService,
     private fb: FormBuilder,
+    private snackBarRef: MatSnackBar,
   ) { }
 
   @ViewChild('stepper', { static: false }) stepper;
 
-  isStepOneCompleted = false;
   isStepTwoCompleted = false;
   isLoading = true;
   checkDB = false;
@@ -47,8 +47,7 @@ export class HireComponent implements OnInit {
   }
 
   private checkPesel() {
-    if (this.hireForm.get('pesel').valid) {
-      this.isStepOneCompleted = true;
+    if (!this.hireForm.get('pesel').invalid) {
       this.stepper.next();
       // Sprawdzanie czy istnieje w bazie
       this.empl.checkInDB(this.pesel.value).subscribe(x => {
@@ -58,11 +57,6 @@ export class HireComponent implements OnInit {
       });
     }
   }
-
-  public back() {
-    this.isStepOneCompleted = false;
-  }
-
   public create() {
     if (!this.checkDB) {
       this.isStepTwoCompleted = true;
@@ -73,11 +67,9 @@ export class HireComponent implements OnInit {
   }
 
   public submit() {
-    console.log(this.hireForm.value);
-
     this.empl.create(this.hireForm.value).subscribe(x => {
-      console.log('Utworzono nowy login');
-      console.log(x);
+      this.snackBarRef.open('Utworzono nowy login');
+      setTimeout(() => window.location.reload(), 1500);
     });
   }
 }

@@ -2,14 +2,13 @@
 
 <!-- Karta pierwsza -->
 <mat-horizontal-stepper linear labelPosition="bottom" #stepper>
-  <mat-step label="Wprowadź pesel" [completed]=isStepOneCompleted>
+  <mat-step label="Wprowadź pesel" >
     <form [formGroup]="hireForm">
       <div>
         <h3>Wprowadź numer PESEL</h3>
         <mat-form-field hintLabel="Maksymalnie 11 liczb">
           <input matInput maxlength="11" placeholder="Pesel" formControlName="pesel">
         </mat-form-field>
-
         <!-- PESEL:
         <input formControlName="pesel" type="text"> -->
       </div>
@@ -19,7 +18,7 @@
         <p><small *ngIf="pesel.errors?.peselValidator">Pesel jest nieprawidłowy</small></p>
       </div>
     </form>
-    <button mat-button matStepperNext (click)="checkPesel()">Dalej</button>
+    <button mat-button matStepperNext (click)="checkPesel()" [disabled]="hireForm.get('pesel').invalid">Dalej</button>
   </mat-step>
 
   <!-- Karta druga -->
@@ -47,7 +46,7 @@
       </div>
     </div>
     <div>
-      <button mat-button matStepperPrevious (click)="back()">Wstecz</button>
+      <button mat-button matStepperPrevious>Wstecz</button>
       <button mat-button matStepperNext (click)="create()" [disabled]="isLoading">Dalej</button>
     </div>
   </mat-step>
