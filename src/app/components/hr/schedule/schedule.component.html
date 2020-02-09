@@ -1,12 +1,13 @@
 <p>Wybierz miesiąc
   <br>
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Wybierz" [formControl]="date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-select>
+      <mat-option *ngFor="let schedule of scheduleList" [value]="schedule.scheduleDate">
+        {{schedule.scheduleDate}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 </p>
-
 <div class="table-container mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 

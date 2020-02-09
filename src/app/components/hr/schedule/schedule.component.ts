@@ -1,32 +1,47 @@
-import { Component } from '@angular/core';
-import { ScheduleSummaryService } from 'src/app/services/http/schedule-summary.service';
+import { Component, OnInit } from '@angular/core';
+import { ScheduleService } from 'src/app/services/http/schedule.service';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { ScheduleRecord } from 'src/app/model/schedule-record';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { FormControl } from '@angular/forms';
+import { Schedule } from 'src/app/model/schedule';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements OnInit {
 
   displayedColumns = ['fullName', 'position', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14',
    '15', '16', '17', '18', '19', '20'];
   dataSource = new MatTableDataSource();
   month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
   date = new FormControl('');
+  scheduleList;
+
+
 
   constructor(
-    private scheduleHttp: ScheduleSummaryService,
+    private scheduleHttp: ScheduleService,
     public dialog: MatDialog,
-  ) { }
+  ) {
+
+   }
+
+  ngOnInit() {
+    this.scheduleHttp.getScheduleList().subscribe(date => {
+      console.log(date);
+      this.scheduleList = date;
+    });
+  }
+
+
 
   refresh() {
     console.log(this.toDate());
 
-    this.scheduleHttp.getScheduleByMonth(this.toDate())
+    this.scheduleHttp.getScheduleSummaryByMonth(this.toDate())
       .subscribe(result => {
         this.dataSource.data = result;
       });

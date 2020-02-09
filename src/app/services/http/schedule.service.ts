@@ -6,11 +6,12 @@ import { ScheduleSummarySerializer } from 'src/app/model/Serializer/schedule-sum
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
+import { Schedule } from 'src/app/model/schedule';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScheduleSummaryService extends HttpService<ScheduleSummary> {
+export class ScheduleService extends HttpService<ScheduleSummary> {
   readonly url = environment.url;
 
   constructor(private http: HttpClient) {
@@ -21,9 +22,17 @@ export class ScheduleSummaryService extends HttpService<ScheduleSummary> {
     );
   }
 
-  public getScheduleByMonth(date): Observable<any> {
+  public getScheduleSummaryByMonth(date): Observable<any> {
     return this.http
       .get<ScheduleSummary>(`${this.url}/schedule/date/${date}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  public getScheduleList(): Observable<any> {
+    return this.http
+      .get<Schedule[]>(`${this.url}/schedule/listSchedule`)
       .pipe(
         catchError(super.errorHandl)
       );

@@ -68,7 +68,9 @@ export class HireComponent implements OnInit {
 
   public submit() {
     this.empl.create(this.hireForm.value).subscribe(x => {
-      this.snackBarRef.open('Utworzono nowy login');
+      this.snackBarRef.open('Utworzono nowy login', 'close', {
+        panelClass: ['green-snackbar']
+      });
       setTimeout(() => window.location.reload(), 1500);
     });
   }
