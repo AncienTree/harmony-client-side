@@ -1,33 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ScheduleService } from 'src/app/services/http/schedule.service';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSort, MatSelect } from '@angular/material';
 import { ScheduleRecord } from 'src/app/model/schedule-record';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
-import { FormControl } from '@angular/forms';
-import { Schedule } from 'src/app/model/schedule';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(MatSort, null) sort: MatSort;
 
   displayedColumns = ['fullName', 'position', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14',
-   '15', '16', '17', '18', '19', '20'];
-  dataSource = new MatTableDataSource();
+    '15', '16', '17', '18', '19', '20'];
+  dataSource;
   month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-  date = new FormControl('');
   scheduleList;
-
-
 
   constructor(
     private scheduleHttp: ScheduleService,
     public dialog: MatDialog,
-  ) {
-
-   }
+  ) {}
 
   ngOnInit() {
     this.scheduleHttp.getScheduleList().subscribe(date => {
@@ -36,41 +31,33 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
 
-
-  refresh() {
-    console.log(this.toDate());
-
-    this.scheduleHttp.getScheduleSummaryByMonth(this.toDate())
-      .subscribe(result => {
-        this.dataSource.data = result;
-      });
   }
 
-  toDate() {
-    // tslint:disable-next-line: max-line-length
-    return this.date.value.getFullYear() + '-' + ('0' + (this.date.value.getMonth() + 1)).slice(-2) + '-' + ('0' + this.date.value.getDate()).slice(-2);
-  }
-
-  testDate(day) {
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-
-    return new Date(year, month, day);
+  refresh(data) {
+    if (!( typeof data === 'undefined')) {
+      this.scheduleHttp.getScheduleSummaryByMonth(data)
+        .subscribe(result => {
+          this.dataSource = new MatTableDataSource(result);
+         // this.dataSource.data = result;
+          this.dataSource.sort = this.sort;
+        });
+    }
   }
 
   scheduleDialog(name: string, schedule: ScheduleRecord): void {
     const dialogRef = this.dialog.open(ScheduleEditComponent, {
       disableClose: true,
       width: '800px',
-      data: {fullName: name, record: schedule }
+      data: { fullName: name, record: schedule }
     });
 
     dialogRef.afterClosed().subscribe(() => {
       console.log('Zaktualizowano grafik');
 
       // TODO zmienić
-      this.refresh();
+      // this.refresh();
     });
 
   }

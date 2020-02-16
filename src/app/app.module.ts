@@ -17,7 +17,7 @@ import { SharedModule } from './modules/shared.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { NotFoundModule } from './components/not-found/not-found.module';
 import { HttpInterceptService } from './services/http/http-intercept.service';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_DATE_LOCALE, MatSortModule } from '@angular/material';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ScheduleEditComponent } from './components/hr';
 import { DialogEditComponent } from './components/admin';
@@ -46,6 +46,7 @@ import { DialogEditComponent } from './components/admin';
     NotFoundModule,
     HttpClientModule,
     SharedModule,
+    MatSortModule
   ],
   providers: [
     CookieService,

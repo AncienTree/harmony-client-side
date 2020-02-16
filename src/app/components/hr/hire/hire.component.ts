@@ -46,7 +46,7 @@ export class HireComponent implements OnInit {
   ngOnInit() {
   }
 
-  private checkPesel() {
+  checkPesel() {
     if (!this.hireForm.get('pesel').invalid) {
       this.stepper.next();
       // Sprawdzanie czy istnieje w bazie
