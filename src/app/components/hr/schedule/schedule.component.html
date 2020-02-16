@@ -1,13 +1,15 @@
-<p>Wybierz miesiąc
+<p>
   <br>
   <mat-form-field>
-    <mat-select placeholder="Wybierz datę" #lista>
+    <mat-select placeholder="Wybierz miesiąc" #lista>
       <mat-option *ngFor="let schedule of scheduleList" [value]="schedule.scheduleDate" >
         {{schedule.scheduleDate}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <button mat-button (click)="refresh(lista.value)">Załaduj</button>
 </p>
+
 <div class="table-container mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
@@ -26,7 +28,7 @@
     <!-- Day Column -->
     <div *ngFor="let months of month">
       <ng-container matColumnDef="{{months}}">
-        <th mat-header-cell *matHeaderCellDef> test </th>
+        <th mat-header-cell *matHeaderCellDef> Testoway tekst </th>
         <td mat-cell *matCellDef="let element" (click)="scheduleDialog(element.simpleEmployee.fullName, element.scheduleRecords[months])"> {{element.scheduleRecords[months].status}} </td>
       </ng-container>
     </div>
@@ -35,5 +37,3 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
-
-<button (click)="refresh(lista.value)">Test</button>

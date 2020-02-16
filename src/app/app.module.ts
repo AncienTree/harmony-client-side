@@ -21,6 +21,7 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_DATE_LOCALE, MatSortModule } from '@
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ScheduleEditComponent } from './components/hr';
 import { DialogEditComponent } from './components/admin';
+import { ScheduleCell } from './components/hr/schedule/schedule-cell';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DialogEditComponent } from './components/admin';
   ],
   entryComponents: [
     ScheduleEditComponent,
-    DialogEditComponent
+    DialogEditComponent,
+    ScheduleCell
   ],
   imports: [
     BrowserModule,
