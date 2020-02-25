@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AuthToken } from '../model/authToken';
@@ -46,6 +46,12 @@ export class AuthenticationService {
     }
   }
 
+  getRefreshToken() {
+    if (this.isUserLoggedIn()) {
+      return this.cookie.get(('refresh_token'));
+    }
+  }
+  
   isUserLoggedIn() {
     const user = this.cookie.get(('authenticaterUser'));
     return !(user === null);
@@ -54,4 +60,17 @@ export class AuthenticationService {
   logout() {
     this.cookie.removeAll();
   }
+
+  refreshToken() {
+    const body = 'grant_type=refresh_token&refresh_token={0}'
+      .replace('{0}', this.getRefreshToken())
+
+    return this.http.post<any>('http://localhost:8080/oauth/token', body
+    ).pipe(
+      tap(token => {
+        this.cookie.put('token', token.access_token);
+      })
+    );
+  }
+ 
 }

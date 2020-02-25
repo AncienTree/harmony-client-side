@@ -26,7 +26,7 @@ export class UsersService extends HttpService<Users> {
     return this.http
     .patch(`${this.url}/users/${id}`, JSON.stringify(!status))
     .pipe(
-      retryWhen(error => error.pipe(delay(2000), take(2))),
+      retryWhen(error => error.pipe(delay(2000))),
       catchError(super.errorHandl)
     );
   }
@@ -40,7 +40,7 @@ export class UsersService extends HttpService<Users> {
       'role': role,
     })
     .pipe(
-      retryWhen(error => error.pipe(delay(2000), take(2))),
+      retryWhen(error => error.pipe(delay(2000))),
       catchError(super.errorHandl)
     );
   }
