@@ -27,8 +27,6 @@ export class LoginComponent {
         data => {
           this.cookie.put('authenticaterUser', this.login),
           this.cookie.put('token', data.access_token),
-          this.cookie.put('refresh_token', data.refresh_token),
-          this.cookie.put('expires', data.expires_in.toString()),
           this.cookie.put('jti', data.jti),
 
           this.route.navigate(['main']);

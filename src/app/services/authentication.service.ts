@@ -45,12 +45,6 @@ export class AuthenticationService {
       return this.cookie.get(('token'));
     }
   }
-
-  getRefreshToken() {
-    if (this.isUserLoggedIn()) {
-      return this.cookie.get(('refresh_token'));
-    }
-  }
   
   isUserLoggedIn() {
     const user = this.cookie.get(('authenticaterUser'));
@@ -61,16 +55,4 @@ export class AuthenticationService {
     this.cookie.removeAll();
   }
 
-  refreshToken() {
-    const body = 'grant_type=refresh_token&refresh_token={0}'
-      .replace('{0}', this.getRefreshToken())
-
-    return this.http.post<any>('http://localhost:8080/oauth/token', body
-    ).pipe(
-      tap(token => {
-        this.cookie.put('token', token.access_token);
-      })
-    );
-  }
- 
 }
