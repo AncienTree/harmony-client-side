@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/http/users.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-main',
@@ -15,9 +16,10 @@ export class MainComponent implements OnInit {
   showRaports = false;
   showAdmin = false;
   user;
+  userRole;
 
   date = new Date();
-  version = '0.0.1 Alpha';
+  version = '0.0.3 Alpha';
 
   constructor(private httpUsers: UsersService,
               private auth: AuthenticationService,
@@ -26,6 +28,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.cookie.get('name');
+    this.userRole = jwt_decode(this.cookie.get('token')).authorities[0];
   }
 
   toggleEmpl() {

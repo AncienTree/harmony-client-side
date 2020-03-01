@@ -16,21 +16,21 @@
       </mat-list>
 
       <!-- Menu dla kierownika -->
-      <div>
+      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR' || userRole == 'ROLE_SPEC' || userRole == 'ROLE_MANAGER'">
         <!-- NgIf dla roli -->
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleManager()">Kierownik</a>
         <mat-list *ngIf="showManager" class="sub-menu">
-          <a mat-list-item class="nav-link" routerLink="/main/manager">Panel kierownika</a>
+          <a *ngIf="userRole != 'ROLE_SPEC'" mat-list-item class="nav-link" routerLink="/main/manager">Panel kierownika</a>
           <a mat-list-item class="nav-link" routerLink="/main/manager/grupy">Harmonogram grupy</a>
           <a mat-list-item class="nav-link" routerLink="/main/manager/pracownik">Harmonogram konsultanta</a>
-          <a mat-list-item class="nav-link" routerLink="/main/manager/urlopy">Akceptacja nieobecność</a>
-          <a mat-list-item class="nav-link" routerLink="/main/manager/dyspozycyjnosc">Sprawdź dyspozycyjność</a>
+          <a *ngIf="userRole != 'ROLE_SPEC'" mat-list-item class="nav-link" routerLink="/main/manager/urlopy">Akceptacja nieobecność</a>
+          <a *ngIf="userRole != 'ROLE_SPEC'" mat-list-item class="nav-link" routerLink="/main/manager/dyspozycyjnosc">Sprawdź dyspozycyjność</a>
         </mat-list>
       </div>
 
       <!-- Menu dla działu HR -->
-      <div>
+      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR'">
         <!-- NgIf dla roli -->
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleHR()">HR</a>
@@ -44,7 +44,7 @@
       </div>
 
       <!-- Menu dla raportów -->
-      <div>
+      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR'">
         <!-- NgIf dla roli -->
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleRaports()">Raporty</a>
@@ -57,7 +57,7 @@
       </div>
 
       <!-- Menu dla paneulu administracyjnego -->
-      <div>
+      <div *ngIf="userRole == 'ROLE_ADMIN'">
         <!-- NgIf dla roli -->
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleAdmin()">Admin</a>
