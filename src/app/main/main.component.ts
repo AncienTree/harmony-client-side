@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/http/users.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Component({
   selector: 'app-main',
@@ -13,14 +14,18 @@ export class MainComponent implements OnInit {
   showHR = false;
   showRaports = false;
   showAdmin = false;
+  user;
 
   date = new Date();
   version = '0.0.1 Alpha';
 
   constructor(private httpUsers: UsersService,
-              private auth: AuthenticationService) {}
+              private auth: AuthenticationService,
+              private cookie: CookieService
+              ) {}
 
   ngOnInit() {
+    this.user = this.cookie.get('name');
   }
 
   toggleEmpl() {

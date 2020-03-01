@@ -5,7 +5,7 @@ import { RouteGuardService } from 'src/app/services/route-guard.service';
 import { RoleAuthenticationService } from '../services/role-authentication.service';
 
 const mainRouting: Routes = [
-  { path: 'main', component: MainComponent, canActivateChild: [RouteGuardService, RoleAuthenticationService],
+  { path: 'main', component: MainComponent, canActivateChild: [RouteGuardService],
   children: [
     {
       path: '',

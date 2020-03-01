@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { AuthToken } from '../model/authToken';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
