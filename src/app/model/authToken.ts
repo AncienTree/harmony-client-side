@@ -3,4 +3,6 @@ export interface AuthToken {
   token_type: string;
   scope: Array<string>;
   jti: string;
+  organization: string;
+  name: string;
 }

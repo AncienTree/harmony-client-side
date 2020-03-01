@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AuthToken } from '../model/authToken';
@@ -16,7 +15,8 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService
+    private cookie: CookieService,
+
   ) { }
 
   login(username: string, password: string): Observable<AuthToken> {
@@ -29,8 +29,8 @@ export class AuthenticationService {
     };
 
     const body = 'grant_type=password&username={0}&password={1}'
-    .replace('{0}', username)
-    .replace('{1}', password);
+      .replace('{0}', username)
+      .replace('{1}', password);
 
     return this.http.post<AuthToken>('http://localhost:8080/oauth/token', body, httpOptions);
   }
@@ -45,7 +45,7 @@ export class AuthenticationService {
       return this.cookie.get(('token'));
     }
   }
-  
+
   isUserLoggedIn() {
     const user = this.cookie.get(('authenticaterUser'));
     return !(user === null);
@@ -54,5 +54,4 @@ export class AuthenticationService {
   logout() {
     this.cookie.removeAll();
   }
-
 }

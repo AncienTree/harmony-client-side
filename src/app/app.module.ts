@@ -21,6 +21,8 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_DATE_LOCALE, MatSortModule } from '@
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ScheduleEditComponent } from './components/hr';
 import { DialogEditComponent } from './components/admin';
+import { JwtModule } from '@auth0/angular-jwt';
+import { RoleAuthenticationService } from './services/role-authentication.service';
 
 @NgModule({
   declarations: [
@@ -46,9 +48,10 @@ import { DialogEditComponent } from './components/admin';
     NotFoundModule,
     HttpClientModule,
     SharedModule,
-    MatSortModule
+    MatSortModule,
   ],
   providers: [
+    RoleAuthenticationService,
     CookieService,
     {
       provide: HTTP_INTERCEPTORS,
