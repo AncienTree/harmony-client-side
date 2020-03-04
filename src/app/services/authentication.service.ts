@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { AuthToken } from '../model/authToken';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
+import * as jwt_decode from "jwt-decode";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +19,17 @@ export class AuthenticationService {
     private cookie: CookieService,
 
   ) { }
+
+  getAuthenticatedUser() {
+    return this.cookie.get(('authenticaterUser'));
+  }
+
+  // Zwraca token jeżeli użytkownik jest zalogowany
+  getAuthenticatedToken() {
+    if (this.isUserLoggedIn()) {
+      return this.cookie.get(('token'));
+    }
+  }
 
   login(username: string, password: string): Observable<AuthToken> {
 
@@ -34,26 +47,26 @@ export class AuthenticationService {
     return this.http.post<AuthToken>('http://localhost:8080/oauth/token', body, httpOptions);
   }
 
-  getAuthenticatedUser() {
-    return this.cookie.get(('authenticaterUser'));
-  }
-
-  // Zwraca token jeżeli użytkownik jest zalogowany
-  getAuthenticatedToken() {
-    if (this.isUserLoggedIn()) {
-      return this.cookie.get(('token'));
-    }
+  logout() {
+    this.cookie.removeAll();
   }
 
   isUserLoggedIn() {
     const user = this.getAuthenticatedUser();
-    console.log(!(user == null));
-    console.log(user);
-    
     return !(user == null);
   }
 
-  logout() {
-    this.cookie.removeAll();
+  isAuthorized(allowedRoles: string[]): boolean {
+    if (allowedRoles == null || allowedRoles.length === 0) {
+      return true;
+    }
+
+    const token = this.getAuthenticatedToken();
+    const decodeToken = jwt_decode(token);
+    if (!decodeToken) {
+      console.log('Invalid token');
+      return false;
+    }
+    return allowedRoles.includes(decodeToken['authorities'][0]);
   }
 }

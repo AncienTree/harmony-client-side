@@ -6,6 +6,7 @@ import { AuthenticationService } from './authentication.service';
   providedIn: 'root'
 })
 export class RouteGuardService implements CanActivate, CanActivateChild {
+
   constructor(
       private auth: AuthenticationService,
       private router: Router
@@ -13,7 +14,16 @@ export class RouteGuardService implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.auth.isUserLoggedIn()) {
-      return true;
+      const allowedRoles = route.data.allowedRoles;
+      const isAuthorized = this.auth.isAuthorized(allowedRoles);   
+      
+      if (!isAuthorized) {
+        this.router.navigate(['/accessdenied']);
+      } else if (route.data.roles === -1) {
+        this.router.navigate(['/']);
+        return false;
+      }
+      return isAuthorized;
     }
     this.router.navigate(['login']);
     return false;
@@ -21,9 +31,20 @@ export class RouteGuardService implements CanActivate, CanActivateChild {
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
     if (this.auth.isUserLoggedIn()) {
-      return true;
+      const allowedRoles = childRoute.data.allowedRoles;
+      const isAuthorized = this.auth.isAuthorized(allowedRoles);   
+      
+      if (!isAuthorized) {
+        this.router.navigate(['/accessdenied']);
+      } else if (childRoute.data.roles === -1) {
+        this.router.navigate(['/']);
+        return false;
+      }
+      return isAuthorized;
     }
     this.router.navigate(['login']);
     return false;
   }
+
+
 }
