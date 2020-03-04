@@ -21,7 +21,6 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_DATE_LOCALE, MatSortModule } from '@
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ScheduleEditComponent } from './components/hr';
 import { DialogEditComponent } from './components/admin';
-import { RoleAuthenticationService } from './services/role-authentication.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +49,6 @@ import { RoleAuthenticationService } from './services/role-authentication.servic
     MatSortModule,
   ],
   providers: [
-    RoleAuthenticationService,
     CookieService,
     {
       provide: HTTP_INTERCEPTORS,

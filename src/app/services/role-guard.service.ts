@@ -19,10 +19,12 @@ export class RoleGuardService implements CanActivate, CanActivateChild {
 
     if (!isAuthorized) {
       this.router.navigate(['/accessdenied']);
-    }
+    } else if (next.data.roles === -1) {
+      this.router.navigate(['/']);
+      return false;
+  }
 
     return isAuthorized;
-
   }
 
   canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

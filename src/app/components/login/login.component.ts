@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MatSnackBar } from '@angular/material';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { delay, delayWhen } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',

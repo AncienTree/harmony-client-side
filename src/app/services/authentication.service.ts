@@ -46,8 +46,11 @@ export class AuthenticationService {
   }
 
   isUserLoggedIn() {
-    const user = this.cookie.get(('authenticaterUser'));
-    return !(user === null);
+    const user = this.getAuthenticatedUser();
+    console.log(!(user == null));
+    console.log(user);
+    
+    return !(user == null);
   }
 
   logout() {
