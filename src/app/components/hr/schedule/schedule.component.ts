@@ -13,20 +13,20 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort, null) sort: MatSort;
 
-  displayedColumns = ['fullName', 'position', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14',
-    '15', '16', '17', '18', '19', '20', '21' ];
+  hidden = false;
+  displayedColumns = ['fullName', 'position'];
+  month = [];
+  selectedDate;
   dataSource;
-  month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
   scheduleList;
 
   constructor(
     private scheduleHttp: ScheduleService,
     public dialog: MatDialog,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.scheduleHttp.getScheduleList().subscribe(date => {
-      console.log(date);
       this.scheduleList = date;
     });
   }
@@ -35,12 +35,26 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
 
   }
 
-  refresh(data) {
-    if (!( typeof data === 'undefined')) {
-      this.scheduleHttp.getScheduleSummaryByMonth(data)
+  refresh(date) {
+    // Restart kolumn
+    this.displayedColumns = ['fullName', 'position'];
+    this.month = [];
+
+    if (!(typeof date === 'undefined')) {
+      // Dodanie kolumn względem daty.
+      this.month = Array(this.getNumberDays(date)).fill(0).map((x, i) => i + 1);
+      console.log(this.month);
+      for (let index = 1; index <= this.month.length; index++) {
+        this.displayedColumns.push(index.toString());
+      }
+
+      this.selectedDate = date;
+      this.hidden = true;
+      // Pobieranie danych z serwera
+      this.scheduleHttp.getScheduleSummaryByMonth(date)
         .subscribe(result => {
           this.dataSource = new MatTableDataSource(result);
-         // this.dataSource.data = result;
+          // this.dataSource.data = result;
           this.dataSource.sort = this.sort;
         });
     }
@@ -59,6 +73,27 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       // TODO zmienić
       // this.refresh();
     });
+  }
 
+  getNumberDays(date): number {
+    const year = date.slice(0, 4);
+    const month = date.slice(5, 7);
+
+    return new Date(year, month, 0).getDate();
+  }
+
+  // Zwaraca dla soboty 1 a dla niedzieli 2
+  checkWeekend(day) {
+    const year = this.selectedDate.slice(0, 4);
+    const month = this.selectedDate.slice(5, 7);
+
+    const date = new Date(year, month, day);
+    if (date.getDay() === 6) {
+      return '#F0E68C';
+    } else if (date.getDay() === 0) {
+      return '#DC143C';
+    } else {
+      return -1;
+    }
   }
 }

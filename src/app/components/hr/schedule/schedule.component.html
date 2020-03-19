@@ -10,7 +10,7 @@
   <button mat-button (click)="refresh(lista.value)">Załaduj</button>
 </p>
 
-<div class="table-container mat-elevation-z8">
+<div class="table-container mat-elevation-z8" *ngIf="hidden">
   <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- FullName Column -->
@@ -28,8 +28,12 @@
     <!-- Day Column -->
     <div *ngFor="let months of month">
       <ng-container matColumnDef="{{months}}">
-        <th mat-header-cell *matHeaderCellDef> Testoway tekst </th>
-        <td mat-cell *matCellDef="let element" (click)="scheduleDialog(element.simpleEmployee.fullName, element.scheduleRecords[months])"> {{element.scheduleRecords[months].status}} </td>
+        <th mat-header-cell *matHeaderCellDef [style.background-color] = checkWeekend(months)> Dzień: {{months}} </th>
+        <td mat-cell *matCellDef="let element"
+            (click)="scheduleDialog(element.simpleEmployee.fullName, element.scheduleRecords[months])"
+            [style.background-color] = checkWeekend(months)>
+           {{element.scheduleRecords[months].status}}
+        </td>
       </ng-container>
     </div>
 
