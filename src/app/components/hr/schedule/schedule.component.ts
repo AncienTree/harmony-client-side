@@ -93,7 +93,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     } else if (date.getDay() === 0) {
       return '#DC143C';
     } else {
-      return -1;
+      return '#FFFFFF';
     }
   }
 }
