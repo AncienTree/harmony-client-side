@@ -5,7 +5,7 @@ export class Employee extends Resource {
   lastName: string;
   pesel: string;
   sex: string;
-  birthday: string;
+  birthday: Date;
   email: string;
   position: string;
   contractPosition: string;
@@ -13,8 +13,8 @@ export class Employee extends Resource {
   contractType: string;
   basicUnit: string;
   unit: string;
-  startWorkDate: string;
-  endWorkDate: string;
-  startContractDate: string;
-  endContractDate: string;
+  startWorkDate: Date;
+  endWorkDate: Date;
+  startContractDate: Date;
+  endContractDate: Date;
 }

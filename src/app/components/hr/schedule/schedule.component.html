@@ -2,7 +2,7 @@
   <br>
   <mat-form-field>
     <mat-select placeholder="Wybierz miesiąc" #lista>
-      <mat-option *ngFor="let schedule of scheduleList" [value]="schedule.scheduleDate" >
+      <mat-option *ngFor="let schedule of scheduleList" [value]="schedule.scheduleDate">
         {{schedule.scheduleDate}}
       </mat-option>
     </mat-select>
@@ -28,11 +28,11 @@
     <!-- Day Column -->
     <div *ngFor="let months of month">
       <ng-container matColumnDef="{{months}}">
-        <th mat-header-cell *matHeaderCellDef [style.background-color] = checkWeekend(months)> Dzień: {{months}} </th>
-        <td mat-cell *matCellDef="let element"
-            (click)="scheduleDialog(element.simpleEmployee.fullName, element.scheduleRecords[months])"
-            [style.background-color] = checkWeekend(months)>
-           Test
+        <th mat-header-cell *matHeaderCellDef [style.background-color]=checkWeekend(months)> Dzień: {{months}} </th>
+        <td mat-cell *matCellDef="let element" [style.background-color]=checkWeekend(months)>
+          <div>
+            {{transformDate(months, element)}}
+          </div>
         </td>
       </ng-container>
     </div>

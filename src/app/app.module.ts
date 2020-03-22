@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './modules/app-routing.module';
@@ -21,6 +21,13 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_DATE_LOCALE, MatSortModule } from '@
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ScheduleEditComponent } from './components/hr';
 import { DialogEditComponent } from './components/admin';
+import { registerLocaleData } from '@angular/common';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+
+
+import localePl from '@angular/common/locales/pl';
+
+registerLocaleData(localePl);
 
 @NgModule({
   declarations: [
@@ -51,6 +58,10 @@ import { DialogEditComponent } from './components/admin';
   providers: [
     CookieService,
     {
+      provide: LOCALE_ID,
+      useValue: 'pl-PL'
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptService,
       multi: true
@@ -61,7 +72,11 @@ import { DialogEditComponent } from './components/admin';
     },
     {
       provide: MAT_DATE_LOCALE,
-      useValue: 'pl-PL'
+      useValue: 'pl'
+    },
+    {
+      provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+      useValue: { useUtc: true }
     }
   ],
   bootstrap: [AppComponent]

@@ -43,7 +43,6 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     if (!(typeof date === 'undefined')) {
       // Dodanie kolumn względem daty.
       this.month = Array(this.getNumberDays(date)).fill(0).map((x, i) => i + 1);
-      console.log(this.month);
       for (let index = 1; index <= this.month.length; index++) {
         this.displayedColumns.push(index.toString());
       }
@@ -82,12 +81,16 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     return new Date(year, month, 0).getDate();
   }
 
-  // Zwaraca dla soboty 1 a dla niedzieli 2
-  checkWeekend(day) {
+  createDayFromHeader(day) {
     const year = this.selectedDate.slice(0, 4);
     const month = this.selectedDate.slice(5, 7);
 
-    const date = new Date(year, month, day);
+    return new Date(year, month, day);
+  }
+
+  // Zwaraca dla soboty 1 a dla niedzieli 2
+  checkWeekend(day) {
+    const date = this.createDayFromHeader(day);
     if (date.getDay() === 6) {
       return '#F0E68C';
     } else if (date.getDay() === 0) {
@@ -95,5 +98,24 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     } else {
       return '#FFFFFF';
     }
+  }
+
+  transformDate(day, record) {
+    const date = this.createDayFromHeader(day);
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let index = 0; index < record.scheduleRecords.length; index++) {
+      var recordDate = new Date(Date.parse(record.scheduleRecords[index].workDate));
+      // console.log(record.scheduleRecords[index].workDate);
+      // console.log(date);
+      // console.log('--------------');
+      // console.log(recordDate);
+
+      // tslint:disable-next-line: triple-equals
+      if (date === recordDate) {
+        return 'DZIAŁA!!!!!';
+      }
+    }
+    return 'NOOO';
   }
 }

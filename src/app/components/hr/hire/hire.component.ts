@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/http/employee.service';
 import { peselValidator } from 'src/app/utiles/validators/pesel-validator';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'app-hire',
@@ -15,7 +15,10 @@ export class HireComponent implements OnInit {
     private empl: EmployeeService,
     private fb: FormBuilder,
     private snackBarRef: MatSnackBar,
-  ) { }
+    private dateAdapter: DateAdapter<Date>
+  ) {
+    this.dateAdapter.setLocale('pl');
+  }
 
   @ViewChild('stepper', { static: false }) stepper;
 
@@ -63,15 +66,18 @@ export class HireComponent implements OnInit {
       this.stepper.next();
       // Uzupełnia pesel aby nie było potrzeby ponownego wpisywania
       this.pesel.setValue(this.tempPesel);
+
     }
   }
 
   public submit() {
     this.empl.create(this.hireForm.value).subscribe(x => {
+      console.log(this.hireForm.value);
+
       this.snackBarRef.open('Utworzono nowy login', 'close', {
         panelClass: ['green-snackbar']
       });
-      setTimeout(() => window.location.reload(), 1500);
+      // setTimeout(() => window.location.reload(), 1500);
     });
   }
 }
