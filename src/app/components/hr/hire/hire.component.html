@@ -80,7 +80,7 @@
           </select>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Data urodzenia" formControlName="birthday">
+          <input matInput [matDatepicker]="picker" placeholder="Data urodzenia" [max]="startdate" formControlName="birthday" [ngModel]="startdate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -88,7 +88,7 @@
       <!-- start pracy i forma zatrudnienia -->
       <div>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker1" placeholder="Data rozpoczęcia pracy" formControlName="startWorkDate">
+          <input matInput [matDatepicker]="picker1" placeholder="Data rozpoczęcia pracy" [max]="startdate" formControlName="startWorkDate" [ngModel]="startdate">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>

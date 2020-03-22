@@ -72,7 +72,7 @@ registerLocaleData(localePl);
     },
     {
       provide: MAT_DATE_LOCALE,
-      useValue: 'pl'
+      useValue: 'pl-PL'
     },
     {
       provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
