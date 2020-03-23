@@ -1,15 +1,18 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScheduleService } from 'src/app/services/http/schedule.service';
-import { MatTableDataSource, MatDialog, MatSort, MatSelect } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
 import { ScheduleRecord } from 'src/app/model/schedule-record';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
+
+import * as moment from 'moment';
+import { ScheduleSummary } from 'src/app/model/schedule-summary';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent implements OnInit, AfterViewInit {
+export class ScheduleComponent implements OnInit {
 
   @ViewChild(MatSort, null) sort: MatSort;
 
@@ -29,10 +32,6 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     this.scheduleHttp.getScheduleList().subscribe(date => {
       this.scheduleList = date;
     });
-  }
-
-  ngAfterViewInit() {
-
   }
 
   refresh(date) {
@@ -85,7 +84,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     const year = this.selectedDate.slice(0, 4);
     const month = this.selectedDate.slice(5, 7);
 
-    return new Date(year, month, day);
+    return new Date(year, month - 1, day);
   }
 
   // Zwaraca dla soboty 1 a dla niedzieli 2
@@ -100,22 +99,14 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     }
   }
 
-  transformDate(day, record) {
-    const date = this.createDayFromHeader(day);
+  transformDate(day, record: ScheduleSummary) {
+    const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
 
-    // tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < record.scheduleRecords.length; index++) {
-      var recordDate = new Date(Date.parse(record.scheduleRecords[index].workDate));
-      // console.log(record.scheduleRecords[index].workDate);
-      // console.log(date);
-      // console.log('--------------');
-      // console.log(recordDate);
-
-      // tslint:disable-next-line: triple-equals
-      if (date === recordDate) {
-        return 'DZIAŁA!!!!!';
-      }
+    if (!(typeof (record.scheduleRecords.find(x => x.workDate === date)) === 'undefined')) {
+      return 'Działa'
+    } else {
+      return '';
     }
-    return 'NOOO';
   }
 }
+
