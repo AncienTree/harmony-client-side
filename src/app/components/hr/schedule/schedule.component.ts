@@ -99,13 +99,15 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
-  transformDate(day, record: ScheduleSummary) {
+  transformDate(day, records: ScheduleSummary) {
     const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
 
-    if (!(typeof (record.scheduleRecords.find(x => x.workDate === date)) === 'undefined')) {
-      return 'Działa'
+    const record = records.scheduleRecords.find(x => x.workDate === date);
+
+    if (!(typeof(record) === 'undefined')) {
+      return record;
     } else {
-      return '';
+      return undefined;
     }
   }
 }

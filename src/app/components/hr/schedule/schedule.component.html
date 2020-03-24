@@ -30,13 +30,10 @@
       <ng-container matColumnDef="{{months}}">
         <th mat-header-cell *matHeaderCellDef [style.background-color]=checkWeekend(months)> Dzień: {{months}} </th>
         <td mat-cell *matCellDef="let element" [style.background-color]=checkWeekend(months)>
-          <div>
-            {{transformDate(months, element)}}
-          </div>
+          <app-record [record]="transformDate(months, element)"></app-record>
         </td>
       </ng-container>
     </div>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

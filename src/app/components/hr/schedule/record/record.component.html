@@ -1,0 +1,10 @@
+<ng-container *ngIf="record; else elseTemplate">
+  <p>
+    {{record.status}}
+    {{record.startWork}}
+    {{record.endWork}}
+  </p>
+</ng-container>
+<ng-template #elseTemplate>
+  Brak statusu
+</ng-template>

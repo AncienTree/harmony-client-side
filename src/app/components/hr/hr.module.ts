@@ -9,6 +9,7 @@ import {
  } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
+import { RecordComponent } from './schedule/record/record.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HrRoutingModule } from './hr.routing.module';
     HrComponent,
     PersonalDataComponent,
     ScheduleComponent,
-    ScheduleEditComponent
+    ScheduleEditComponent,
+    RecordComponent
   ],
   imports: [
     SharedModule,
