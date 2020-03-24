@@ -22,6 +22,7 @@ export class ScheduleComponent implements OnInit {
   selectedDate;
   dataSource;
   scheduleList;
+  status = ['wg. dyspozycyjności', 'wg. dostępności', 'wg. grafiku', 'wg. zalogowania', 'wg. jitsi', 'wg. obecności', 'wg. dzwonienia'];
 
   constructor(
     private scheduleHttp: ScheduleService,
@@ -36,7 +37,7 @@ export class ScheduleComponent implements OnInit {
 
   refresh(date) {
     // Restart kolumn
-    this.displayedColumns = ['fullName', 'position'];
+    this.displayedColumns = ['fullName', 'position', 'status'];
     this.month = [];
 
     if (!(typeof date === 'undefined')) {
