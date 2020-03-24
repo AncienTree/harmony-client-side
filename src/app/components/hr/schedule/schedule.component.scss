@@ -11,11 +11,15 @@ td.mat-column-position {
   border-right: 1px solid #e0e0e0;
 }
 
+.mat-header-cell{
+  padding: 15px;
+  text-align: center;
+}
+
 .mat-cell,
 .mat-header-cell {
   word-wrap: initial;
   display: table-cell;
-  padding: 15px;
   line-break: unset;
   width: 100%;
   white-space: nowrap;
@@ -26,8 +30,4 @@ td.mat-column-position {
 .mat-row,
 .mat-header-row {
   display: table-row;
-}
-
-.record {
-  font-size: 10px;
 }

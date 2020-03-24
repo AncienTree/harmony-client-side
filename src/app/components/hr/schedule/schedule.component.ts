@@ -61,7 +61,7 @@ export class ScheduleComponent implements OnInit {
   scheduleDialog(name: string, schedule: ScheduleRecord): void {
     const dialogRef = this.dialog.open(ScheduleEditComponent, {
       disableClose: true,
-      width: '800px',
+      width: '500px',
       data: { fullName: name, record: schedule }
     });
 

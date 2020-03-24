@@ -14,6 +14,10 @@ export class ScheduleEditComponent implements OnInit {
   ngOnInit() {
   }
 
+  isAvailable() {
+    return typeof(this.data.record) !== 'undefined';
+  }
+
 }
 
 interface DialogData {

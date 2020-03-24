@@ -1,6 +1,38 @@
-<h2 mat-dialog-title>{{data.fullName}}</h2>
-<mat-dialog-content> {{data.record.workDate}} </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close mat-dialog-close="true">Zatwierdź</button>
-  <button mat-button mat-dialog-close mat-dialog-close="false">Anuluj</button>
-</mat-dialog-actions>
+<div class="container">
+  <h1 mat-dialog-title>{{data.fullName}}</h1>
+  <ng-container *ngIf="isAvailable(); then showRecod; else insertRecord"></ng-container>
+
+  <mat-divider></mat-divider>
+  <!-- Gdy rekord istnieje -->
+  <ng-template #showRecod>
+    <mat-dialog-content>
+      <div>
+        <h3>Wg. dostępności</h3>
+        <b>Godzina rozpoczęcia pracy:</b> {{data.record.startWork}} <br>
+        <b>Godzina zakończenia pracy:</b> {{data.record.endWork}}
+        <mat-divider></mat-divider>
+        <h3>wg. dyspozycyjności</h3>
+        <mat-divider></mat-divider>
+        <h3>wg. grafiku</h3>
+        <mat-divider></mat-divider>
+        <h3>wg. obecności</h3>
+        <mat-divider></mat-divider>
+        <h3>wg. dzwonienia</h3>
+        <mat-divider></mat-divider>
+        <h3>wg. zalogowania</h3>
+        <mat-divider></mat-divider>
+        <h3>wg. jitsi</h3>
+      </div>
+    </mat-dialog-content>
+  </ng-template>
+
+  <!-- Gdy record nie istenije -->
+  <ng-template #insertRecord>
+
+  </ng-template>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="true">Zatwierdź</button>
+    <button mat-button mat-dialog-close mat-dialog-close="false">Anuluj</button>
+  </mat-dialog-actions>
+</div>
