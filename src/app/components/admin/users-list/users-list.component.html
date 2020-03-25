@@ -41,7 +41,7 @@
       <ng-container matColumnDef="aktywuj">
         <th mat-header-cell *matHeaderCellDef fxFlex="6%">Aktywacja</th>
         <td mat-cell *matCellDef="let element" fxFlex="6%">
-          <button mat-icon-button (click)="changeStatus(element.id, element.status)" [ngStyle]="{'color':element.status === true ? 'red' : 'green' }">
+          <button mat-icon-button (click)="changeStatus(element.id, element.status)" [ngStyle]="{'color': statusColor(element) }" [disabled]="isLoggedUser(element.login)">
             <mat-icon class="mat-18">check_circle</mat-icon>
           </button>
         </td>

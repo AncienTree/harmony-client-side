@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/m
 import { DialogEditComponent } from './dialog-edit/dialog-edit.component';
 import { Users } from 'src/app/model/users';
 import { map } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-users-list',
@@ -24,7 +25,8 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   constructor(
     private userHttp: UsersService,
     private dialog: MatDialog,
-    private change: ChangeDetectorRef
+    private change: ChangeDetectorRef,
+    private authServ: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -81,5 +83,20 @@ export class UsersListComponent implements OnInit, AfterViewInit {
         autoFocus: true
       }).afterClosed().subscribe(() => window.location.reload());
     }, 600);
+  }
+
+  isLoggedUser(user) {
+    return(this.authServ.getAuthenticatedUser() === user);
+  }
+
+  statusColor(user: Users) {
+    if (!this.isLoggedUser(user.login)) {
+      if (user.status === true) {
+        return 'red';
+      } else {
+        return 'green';
+      }
+    }
+    return 'grey';
   }
 }

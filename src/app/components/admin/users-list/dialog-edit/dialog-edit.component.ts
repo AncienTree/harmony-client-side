@@ -2,7 +2,7 @@ import { Component, Inject, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Users } from 'src/app/model/users';
 import { UsersService } from 'src/app/services/http/users.service';
-import { UsersListComponent } from '../users-list.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-dialog-edit',
@@ -18,7 +18,8 @@ export class DialogEditComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogEditComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) private data: Users,
-    private userHttp: UsersService
+    private userHttp: UsersService,
+    private authServ: AuthenticationService
     ) {
       this.status = this.data.status;
       this.role = this.data.role;
@@ -30,5 +31,9 @@ export class DialogEditComponent {
       console.log('Update complite');
     });
     this.dialogRef.close();
+  }
+
+  isLoggedUser() {
+    return(this.authServ.getAuthenticatedUser() === this.login);
   }
 }
