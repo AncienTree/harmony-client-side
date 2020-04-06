@@ -37,7 +37,7 @@ export class ScheduleComponent implements OnInit {
 
   refresh(date) {
     // Restart kolumn
-    this.displayedColumns = ['fullName', 'position', 'status'];
+    this.displayedColumns = ['fullName', 'position'];
     this.month = [];
 
     if (!(typeof date === 'undefined')) {

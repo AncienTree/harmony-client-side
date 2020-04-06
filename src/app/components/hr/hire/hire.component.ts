@@ -91,7 +91,7 @@ export class HireComponent implements OnInit {
 
   public submit() {
     const testDate = moment(this.hireForm.get('birthday').value).format('YYYY-MM-DD').toString();
-    const startWorkDate = moment(this.hireForm.get('birthday').value).format('YYYY-MM-DD').toString();
+    const startWorkDate = moment(this.hireForm.get('startWorkDate').value).format('YYYY-MM-DD').toString();
     this.hireForm.get('birthday').setValue(testDate);
     this.hireForm.get('startWorkDate').setValue(startWorkDate);
 
