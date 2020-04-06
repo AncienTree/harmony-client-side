@@ -11,7 +11,7 @@ export class ScheduleRecordSerializer implements Serializer {
     schedule.startWork = json.startWork;
     schedule.endWork = json.endWork;
     schedule.status = json.status;
-    schedule.type = json.type;
+    schedule.types = json.types;
     schedule.update = json.update;
     return schedule;
   }
@@ -24,7 +24,7 @@ export class ScheduleRecordSerializer implements Serializer {
       startWork: schedule.startWork,
       endWork: schedule.endWork,
       status: schedule.status,
-      type: schedule.type,
+      types: schedule.types,
       update: schedule.update,
     };
   }

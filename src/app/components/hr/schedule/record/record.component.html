@@ -1,9 +1,9 @@
-<ng-container *ngIf="record; else elseTemplate">
+<ng-container *ngIf="chosenRecord; else elseTemplate">
   <div class="record">
     <div class="status">
-      {{record.status}}
+      {{chosenRecord.status}}
     </div>
-    {{record.startWork}} - {{record.endWork}}
+    {{chosenRecord.startWork}} - {{chosenRecord.endWork}}
   </div>
 </ng-container>
 <ng-template #elseTemplate>

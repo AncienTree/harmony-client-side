@@ -67,8 +67,6 @@ export class ScheduleComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      console.log('Zaktualizowano grafik');
-
       // TODO zmienić
       // this.refresh();
     });
@@ -103,9 +101,10 @@ export class ScheduleComponent implements OnInit {
   transformDate(day, records: ScheduleSummary) {
     const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
 
-    const record = records.scheduleRecords.find(x => x.workDate === date);
+    const record: ScheduleRecord[] = [];
+    record.push(records.scheduleRecords.find(rec => rec.workDate === date));
 
-    if (!(typeof(record) === 'undefined')) {
+    if (typeof(record) !== 'undefined') {
       return record;
     } else {
       return undefined;

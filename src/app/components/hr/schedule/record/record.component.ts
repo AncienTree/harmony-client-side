@@ -8,10 +8,19 @@ import { ScheduleRecord } from 'src/app/model/schedule-record';
 })
 export class RecordComponent implements OnInit {
 
-  @Input() record: ScheduleRecord;
+  @Input() record: ScheduleRecord[];
+  @Input() status: string;
+  chosenRecord: ScheduleRecord;
+
   constructor() { }
 
   ngOnInit() {
+    this.findByStatus();
   }
 
+  findByStatus() {
+    if (this.record !== undefined) {
+      this.chosenRecord = this.record.find(sRec => sRec.types === this.status);
+    }
+  }
 }
