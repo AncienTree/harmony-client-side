@@ -38,7 +38,7 @@
         <!-- Komórka -->
         <td mat-cell *matCellDef="let element" [style.background-color]=checkWeekend(months)
           (click)="scheduleDialog(element.simpleEmployee.fullName, transformDate(months, element))">
-          <app-record [status]="'LOGIN'" [record]="transformDate(months, element)" ></app-record>
+          <app-record [record]="transformDate(months, element)"></app-record>
         </td>
       </ng-container>
     </div>

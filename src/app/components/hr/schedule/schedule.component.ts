@@ -86,7 +86,7 @@ export class ScheduleComponent implements OnInit {
     return new Date(year, month - 1, day);
   }
 
-  // Zwaraca dla soboty 1 a dla niedzieli 2
+  // Zwaraca kolor dla soboty oraz niedzieli
   checkWeekend(day) {
     const date = this.createDayFromHeader(day);
     if (date.getDay() === 6) {
@@ -100,9 +100,7 @@ export class ScheduleComponent implements OnInit {
 
   transformDate(day, records: ScheduleSummary) {
     const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
-
-    const record: ScheduleRecord[] = [];
-    record.push(records.scheduleRecords.find(rec => rec.workDate === date));
+    const record = records.scheduleRecords.find(x => x.workDate === date);
 
     if (typeof(record) !== 'undefined') {
       return record;
