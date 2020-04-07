@@ -6,6 +6,7 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 
 import * as moment from 'moment';
 import { ScheduleSummary } from 'src/app/model/schedule-summary';
+import { Status } from 'src/app/utiles/status';
 
 @Component({
   selector: 'app-schedule',
@@ -22,12 +23,16 @@ export class ScheduleComponent implements OnInit {
   selectedDate;
   dataSource;
   scheduleList;
-  status = ['wg. dyspozycyjności', 'wg. dostępności', 'wg. grafiku', 'wg. zalogowania', 'wg. jitsi', 'wg. obecności', 'wg. dzwonienia'];
+  scheduleStatus = [];
+  selectedStatus = 'OBEC';
 
   constructor(
     private scheduleHttp: ScheduleService,
     public dialog: MatDialog,
-  ) { }
+    private stat: Status,
+  ) {
+    this.scheduleStatus = this.stat.getStatus();
+   }
 
   ngOnInit() {
     this.scheduleHttp.getScheduleList().subscribe(date => {

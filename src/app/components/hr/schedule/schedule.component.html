@@ -7,6 +7,16 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select [(value)]="selectedStatus">
+      <mat-option *ngFor="let stat of scheduleStatus" [value]="stat.key">
+        {{stat.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <button mat-button (click)="refresh(lista.value)">Załaduj</button>
 </p>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { ScheduleRecord } from 'src/app/model/schedule-record';
+import { Status } from 'src/app/utiles/status';
 
 @Component({
   selector: 'app-schedule-edit',
@@ -10,18 +11,18 @@ import { ScheduleRecord } from 'src/app/model/schedule-record';
 export class ScheduleEditComponent implements OnInit {
 
   displayedColumns: string[] = ['status', 'start', 'end'];
-  scheduleStatus: Status[] = [
-    { name: 'wg. obecności', key: 'OBEC' },
-    { name: 'wg. dyspozycyjności', key: 'DYSPO' },
-    { name: 'wg. dostępności', key: 'DOSTP' },
-    { name: 'wg. grafiku', key: 'GRAFIK' },
-    { name: 'wg. zalogowania', key: 'LOGIN' },
-    { name: 'wg. jitsi', key: 'JITSI' },
-    { name: 'wg. dzwonienia', key: 'DZWON' }
-  ];
+  scheduleStatus = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private stat: Status,
+  ) {
+    this.scheduleStatus = this.stat.getStatus();
+  }
+
   ngOnInit() {
+    console.log(this.data);
+
   }
 
   isAvailable() {
@@ -30,7 +31,7 @@ export class ScheduleEditComponent implements OnInit {
 
   displayTimeByStatus(key: string, type: string) {
     const searchedRecord = this.data.record.filter(x => x.types === key);
-    if (typeof(searchedRecord) !== 'undefined') {
+    if (typeof (searchedRecord) !== 'undefined') {
       return 'Works';
     }
     return '---';
@@ -41,9 +42,4 @@ export class ScheduleEditComponent implements OnInit {
 interface DialogData {
   fullName: string;
   record: ScheduleRecord[];
-}
-
-interface Status {
-  name: string;
-  key: string;
 }

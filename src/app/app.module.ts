@@ -26,6 +26,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapte
 
 
 import localePl from '@angular/common/locales/pl';
+import { Status } from './utiles/status';
 
 registerLocaleData(localePl);
 
@@ -56,6 +57,7 @@ registerLocaleData(localePl);
     MatSortModule,
   ],
   providers: [
+    Status,
     CookieService,
     {
       provide: LOCALE_ID,
