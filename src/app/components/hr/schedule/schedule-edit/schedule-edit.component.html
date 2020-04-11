@@ -1,7 +1,9 @@
 <div class="container">
   <h1 mat-dialog-title>
-    {{data.fullName}} <br>
-    za dzień {{data.record[0].workDate | date: 'mediumDate'}}
+    {{data.simpleEmployee.fullName}} <br>
+    za dzień {{data.recordDate | date: 'mediumDate'}} <br>
+    <small>{{data.recordDate | date: 'EEEE'}}</small>
+
   </h1>
   <ng-container *ngIf="isAvailable(); then showRecod; else insertRecord"></ng-container>
 
@@ -20,8 +22,8 @@
         <tbody *ngFor="let item of scheduleStatus">
           <tr>
             <td class="table-row-status">{{item.name}}</td>
-            <!-- <td class="table-row-time">{{displayTimeByStatus(item.key, 'start')}}</td>
-            <td class="table-row-time">{{displayTimeByStatus(item.key, 'end')}}</td> -->
+            <td class="table-row-time">{{displayTimeByStatus(item.key, 'start')}}</td>
+            <td class="table-row-time">{{displayTimeByStatus(item.key, 'end')}}</td>
           </tr>
         </tbody>
       </table>

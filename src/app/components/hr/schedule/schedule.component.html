@@ -36,19 +36,19 @@
     </ng-container>
 
     <!-- Day Column -->
-    <div *ngFor="let months of month">
-      <ng-container matColumnDef="{{months}}">
+    <div *ngFor="let month of months">
+      <ng-container matColumnDef="{{month}}">
         <!-- Nagłówek -->
-        <th mat-header-cell *matHeaderCellDef [style.background-color]=checkWeekend(months)>
+        <th mat-header-cell *matHeaderCellDef [style.background-color]=checkWeekend(month)>
           <div>
-            {{createDayFromHeader(months) | date: 'mediumDate'}} <br>
-            {{createDayFromHeader(months) | date: 'EEEE'}}
+            {{createDayFromHeader(month) | date: 'mediumDate'}} <br>
+            {{createDayFromHeader(month) | date: 'EEEE'}}
           </div>
         </th>
         <!-- Komórka -->
-        <td mat-cell *matCellDef="let element" [style.background-color]=checkWeekend(months)
-          (click)="scheduleDialog(element.simpleEmployee.fullName, transformDate(months, element))">
-          <app-record [record]="transformDate(months, element)"></app-record>
+        <td mat-cell *matCellDef="let element" [style.background-color]=checkWeekend(month)
+          (click)="scheduleDialog(element.simpleEmployee, month)">
+          <app-record [record]="transformDate(month, element)"></app-record>
         </td>
       </ng-container>
     </div>

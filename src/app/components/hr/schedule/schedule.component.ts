@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScheduleService } from 'src/app/services/http/schedule.service';
 import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
-import { ScheduleRecord } from 'src/app/model/schedule-record';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 
 import * as moment from 'moment';
@@ -19,7 +18,7 @@ export class ScheduleComponent implements OnInit {
 
   hidden = false;
   displayedColumns = ['fullName', 'position'];
-  month = [];
+  months = [];
   selectedDate;
   dataSource;
   scheduleList;
@@ -43,39 +42,35 @@ export class ScheduleComponent implements OnInit {
   refresh(date) {
     // Restart kolumn
     this.displayedColumns = ['fullName', 'position'];
-    this.month = [];
+    this.months = [];
 
     if (!(typeof date === 'undefined')) {
       // Dodanie kolumn względem daty.
-      this.month = Array(this.getNumberDays(date)).fill(0).map((x, i) => i + 1);
-      for (let index = 1; index <= this.month.length; index++) {
+      this.months = Array(this.getNumberDays(date)).fill(0).map((x, i) => i + 1);
+      for (let index = 1; index <= this.months.length; index++) {
         this.displayedColumns.push(index.toString());
       }
-
       this.selectedDate = date;
       this.hidden = true;
+
       // Pobieranie danych z serwera
-      // this.scheduleHttp.getScheduleSummaryByMonth(date)
-      //   .subscribe(result => {
-      //     this.dataSource = new MatTableDataSource(result);
-      //     // this.dataSource.data = result;
-      //     this.dataSource.sort = this.sort;
-      //   });
       this.scheduleHttp.getScheduleSummaryByMonthAndStatus(date, this.selectedStatus)
         .subscribe(result => {
           this.dataSource = new MatTableDataSource(result);
-          // this.dataSource.data = result;
           this.dataSource.sort = this.sort;
-          console.log(result);
         });
     }
   }
 
-  scheduleDialog(name: string, schedule: ScheduleRecord): void {
+  scheduleDialog(employee, day ): void {
+    const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
     const dialogRef = this.dialog.open(ScheduleEditComponent, {
       disableClose: true,
-      width: '500px',
-      data: { fullName: name, record: schedule }
+      // width: '500px',
+      data: {
+        simpleEmployee: employee,
+        recordDate: date
+      }
     });
 
     dialogRef.afterClosed().subscribe(() => {
