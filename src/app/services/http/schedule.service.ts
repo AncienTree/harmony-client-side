@@ -37,4 +37,12 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
         catchError(super.errorHandl)
       );
   }
+
+  public getScheduleSummaryByMonthAndStatus(date, status): Observable<any> {
+    return this.http
+      .get<ScheduleSummary>(`${this.url}/schedule/${date}/${status}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
 }

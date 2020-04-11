@@ -55,11 +55,18 @@ export class ScheduleComponent implements OnInit {
       this.selectedDate = date;
       this.hidden = true;
       // Pobieranie danych z serwera
-      this.scheduleHttp.getScheduleSummaryByMonth(date)
+      // this.scheduleHttp.getScheduleSummaryByMonth(date)
+      //   .subscribe(result => {
+      //     this.dataSource = new MatTableDataSource(result);
+      //     // this.dataSource.data = result;
+      //     this.dataSource.sort = this.sort;
+      //   });
+      this.scheduleHttp.getScheduleSummaryByMonthAndStatus(date, this.selectedStatus)
         .subscribe(result => {
           this.dataSource = new MatTableDataSource(result);
           // this.dataSource.data = result;
           this.dataSource.sort = this.sort;
+          console.log(result);
         });
     }
   }
