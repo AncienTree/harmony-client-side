@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Users } from '../../model/users';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UsersSerializer } from '../../model/Serializer/users-serializer';
 import { Observable } from 'rxjs';
-import { delay, catchError, retryWhen, take } from 'rxjs/operators';
+import { delay, catchError, retryWhen } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

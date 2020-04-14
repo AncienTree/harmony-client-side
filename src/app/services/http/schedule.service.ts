@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { ScheduleSummary } from 'src/app/model/schedule-summary';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ScheduleSummarySerializer } from 'src/app/model/Serializer/schedule-summary-serializer';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Schedule } from 'src/app/model/schedule';
 import { ScheduleRecord } from 'src/app/model/schedule-record';
 
@@ -42,14 +42,6 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
   public getScheduleSummaryByMonthAndStatus(date, status): Observable<any> {
     return this.http
       .get<ScheduleSummary>(`${this.url}/schedule/${date}/${status}`)
-      .pipe(
-        catchError(super.errorHandl)
-      );
-  }
-
-  public getRecors(id, date): Observable<any> {
-    return this.http
-      .get<ScheduleRecord[]>(`${this.url}/schedule/record/${id}/${date}`)
       .pipe(
         catchError(super.errorHandl)
       );
