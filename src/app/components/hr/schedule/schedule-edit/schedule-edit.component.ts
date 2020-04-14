@@ -1,4 +1,4 @@
-import { Component, Inject, AfterViewInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Status } from 'src/app/utiles/status';
 import { ScheduleRecordService } from 'src/app/services/http/schedule-record.service';
@@ -9,7 +9,7 @@ import { ScheduleRecord } from 'src/app/model/schedule-record';
   templateUrl: './schedule-edit.component.html',
   styleUrls: ['./schedule-edit.component.scss']
 })
-export class ScheduleEditComponent implements AfterViewInit {
+export class ScheduleEditComponent {
   scheduleStatus = [];
   recordsData;
 
@@ -24,24 +24,24 @@ export class ScheduleEditComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-
-  }
-
-
   isAvailable() {
     return typeof (this.recordsData) !== 'undefined';
   }
 
   displayTimeByStatus(key: string, type: string) {
     const searchedRecord: ScheduleRecord = this.recordsData.find(x => x.types === key);
-    console.log(searchedRecord);    
 
     if (typeof (searchedRecord) !== 'undefined') {
-      return 'Works';
+      switch (type) {
+        case 'start':
+          return searchedRecord.startWork;
+        case 'end':
+          return searchedRecord.endWork;
+        default:
+          return 'ERROR';
+      }
     }
     return '---';
-
   }
 }
 
