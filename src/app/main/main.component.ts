@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
   userRole;
 
   date = new Date();
-  version = '0.0.3 Alpha';
+  version = '0.1.0 Alpha';
 
   constructor(private httpUsers: UsersService,
               private auth: AuthenticationService,

@@ -8,7 +8,7 @@ const mainRouting: Routes = [
     path: 'main', component: MainComponent, canActivateChild: [RouteGuardService],
     children: [
       { path: '', loadChildren: '../components/dashboard/dashboard.module#DashboardModule' },
-      { path: 'empl', loadChildren: '../components/employee/empl.module#EmplModule', data: { allowedRoles: ['ROLE_ADMIN'] } },
+      { path: 'empl', loadChildren: '../components/employee/empl.module#EmplModule' },
       { path: 'manager', loadChildren: '../components/manager/manager.module#ManagerModule', data: { allowedRoles: ['ROLE_ADMIN', 'ROLE_HR', 'ROLE_SPEC', 'ROLE_MANAGER'] } },
       { path: 'hr', loadChildren: '../components/hr/hr.module#HrModule', data: { allowedRoles: ['ROLE_ADMIN', 'ROLE_HR'] } },
       { path: 'raport', loadChildren: '../components/raports/raport.module#RaportModule', data: { allowedRoles: ['ROLE_ADMIN', 'ROLE_HR'] } },

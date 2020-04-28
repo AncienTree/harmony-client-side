@@ -7,9 +7,12 @@ import {
   PersonalDataComponent,
   ScheduleComponent
  } from './index';
+import { RouteGuardService } from 'src/app/services/route-guard.service';
 
 const hrRouting: Routes = [
-  { path: '', component: HrComponent },
+  { path: '', component: HrComponent, canActivateChild: [RouteGuardService], children: [
+    { path: '', loadChildren: './hr/options/hr-options.module#HrOptionsModule' },
+  ] },
   { path: 'harmonogram', component: ScheduleComponent },
   { path: 'stan-osobowy', component: PersonalDataComponent },
   { path: 'zatrudnij', component: HireComponent },
