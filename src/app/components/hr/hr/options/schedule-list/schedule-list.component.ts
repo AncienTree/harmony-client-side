@@ -1,3 +1,5 @@
+import { Schedule } from 'src/app/model/schedule';
+import { ScheduleService } from 'src/app/services/http/schedule.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleListComponent implements OnInit {
 
-  constructor() { }
+  scheduleList;
+  scheduleValue;
+
+  constructor(
+    private scheduleHttp: ScheduleService,
+  ) {
+   }
 
   ngOnInit() {
+    this.scheduleHttp.getFullScheduleList().subscribe(date => {
+      this.scheduleList = date;
+    });
   }
 
 }

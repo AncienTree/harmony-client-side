@@ -10,3 +10,7 @@ mat-grid-tile {
 .container {
   flex-direction: column;
 }
+
+mat-grid-tile.mat-grid-tile { 
+  height: 100%; 
+}

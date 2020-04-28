@@ -8,6 +8,7 @@ export class ScheduleSerializer implements Serializer {
     schedule.id = json.id;
     schedule.scheduleDate = json.scheduleDate;
     schedule.active = json.active;
+    schedule.visible = json.visible;
     return schedule;
   }
 
@@ -16,6 +17,7 @@ export class ScheduleSerializer implements Serializer {
       id: schedule.id,
       scheduleDate: schedule.scheduleDate,
       active: schedule.active,
+      visible: schedule.visible
     };
   }
 }

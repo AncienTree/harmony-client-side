@@ -5,9 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ScheduleSummarySerializer } from 'src/app/model/Serializer/schedule-summary-serializer';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, retryWhen, delay } from 'rxjs/operators';
 import { Schedule } from 'src/app/model/schedule';
-import { ScheduleRecord } from 'src/app/model/schedule-record';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +30,16 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       );
   }
 
+  // Pełna lista grafików
+  public getFullScheduleList(): Observable<any> {
+    return this.http
+      .get<Schedule[]>(`${this.url}/schedule/all`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  // Lista tylko widocznych grafików
   public getScheduleList(): Observable<any> {
     return this.http
       .get<Schedule[]>(`${this.url}/schedule/listSchedule`)
@@ -45,5 +54,19 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       .pipe(
         catchError(super.errorHandl)
       );
+  }
+
+  // Aktualizacja statusow grafiku
+  public updateSchedule(id, active, visible): Observable<any> {
+    return this.http
+    .patch(`${this.url}/schedule/changeStatus`, {
+      'id': id,
+      'active': active,
+      'visible': visible,
+    })
+    .pipe(
+      retryWhen(error => error.pipe(delay(2000))),
+      catchError(super.errorHandl)
+    );
   }
 }
