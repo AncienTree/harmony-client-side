@@ -10,3 +10,8 @@ body {
 .error_msg {
   color: #D8000C;
 }
+
+.mat-grid-tile .mat-figure {
+  justify-content: flex-start !important ;
+  align-items: flex-start !important;
+}

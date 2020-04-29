@@ -1,6 +1,5 @@
 mat-grid-tile {
-  text-align: left;
-  vertical-align: top;
+  margin: 50px;
 }
 
 .route {
@@ -11,6 +10,6 @@ mat-grid-tile {
   flex-direction: column;
 }
 
-mat-grid-tile.mat-grid-tile { 
-  height: 100%; 
+mat-grid-tile.mat-grid-tile {
+  height: 100%;
 }
