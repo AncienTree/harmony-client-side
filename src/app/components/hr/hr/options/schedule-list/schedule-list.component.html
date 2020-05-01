@@ -1,20 +1,30 @@
 <div class="container">
+  <div>
+    <h3>Lista grafików</h3>
     <div>
-        <h3>Lista grafików</h3>
-        <form>
-            <mat-form-field>
-                <mat-label>Miesiąc</mat-label>
-                <mat-select [(ngModel)]="scheduleValue" name="schedule">
-                    <mat-option *ngFor="let schedule of scheduleList" [value]="schedule">
-                        {{schedule.scheduleDate | date:'LLLL yyyy'}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <p> Selected schedule: {{scheduleValue | json}} </p>
-        </form>
+      <mat-form-field>
+        <mat-label>Miesiąc</mat-label>
+        <mat-select [(ngModel)]="scheduleValue" (selectionChange)="changeSchedule($event.value)">
+          <mat-option *ngFor="let schedule of scheduleList" [value]="schedule">
+            {{schedule.scheduleDate | date:'LLLL yyyy'}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>Edytuj ustawienia grafika</p>
+      <div class="edit">
+        <mat-slide-toggle
+          [checked]="isActive('aktywny')"
+          #active>Aktywny</mat-slide-toggle>
+        <br>
+        <mat-slide-toggle
+          [checked]="isActive('widoczny')"
+          #visible>Widoczny</mat-slide-toggle>
+        <br>
+        <button mat-flat-button
+          [disabled]="disableButton"
+          matTooltip="Wybierz grafik z listy i zmień jego ustawienia"
+          (click)="sendChanges(visible.checked, active.checked)">Zmień ustawienia</button>
+      </div>
     </div>
-    <mat-divider></mat-divider>
-    <div>
-        <p>Utwórz nowy grafik</p>
-    </div>
+  </div>
 </div>

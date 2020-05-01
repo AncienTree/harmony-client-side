@@ -1,3 +1,13 @@
 .container {
   margin-left: 50px;
+  width: 100%;
+}
+
+.edit {
+  float: left;
+}
+
+
+::ng-deep .red-snackbar {
+  background: #B00020;
 }

@@ -65,7 +65,6 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       'visible': visible,
     })
     .pipe(
-      retryWhen(error => error.pipe(delay(2000))),
       catchError(super.errorHandl)
     );
   }
