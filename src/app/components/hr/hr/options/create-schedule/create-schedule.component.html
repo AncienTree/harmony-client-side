@@ -1,0 +1,15 @@
+<div class="container">
+  <h3>Utwórz nowy harmonogram</h3>
+  <div fxLayout="column" fxLayoutAlign="|start,center,end,space-around,space-between| |start,center,end,stretch|"
+    fxLayoutGap="gappx">
+    <mat-form-field>
+      <input matInput [matDatepicker]="dpSchedule" placeholder="Wybierz miesiąc" [(ngModel)]="date" disabled>
+      <mat-datepicker-toggle matSuffix [for]="dpSchedule"></mat-datepicker-toggle>
+      <mat-datepicker #dpSchedule
+        startView="multi-year"
+        (monthSelected)="closeDatePicker($event, dpSchedule)"
+        disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <button mat-flat-button (click)="submit()" [disabled]="isDisabled()">Utwórz</button>
+  </div>
+</div>

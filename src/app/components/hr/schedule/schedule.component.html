@@ -3,7 +3,7 @@
   <mat-form-field>
     <mat-select placeholder="Wybierz miesiąc" #lista>
       <mat-option *ngFor="let schedule of scheduleList" [value]="schedule.scheduleDate">
-        {{schedule.scheduleDate}}
+        {{schedule.scheduleDate | date:'LLLL yyyy'}}
       </mat-option>
     </mat-select>
   </mat-form-field>

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ScheduleSummarySerializer } from 'src/app/model/Serializer/schedule-summary-serializer';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError, retryWhen, delay } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Schedule } from 'src/app/model/schedule';
 
 @Injectable({
@@ -67,5 +67,13 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
     .pipe(
       catchError(super.errorHandl)
     );
+  }
+
+  public createSchedule( date ): Observable<any> {
+    return this.http
+      .post(`${this.url}/schedule/create`, date)
+      .pipe(
+        catchError(super.errorHandl)
+      );
   }
 }

@@ -16,3 +16,6 @@ body {
   align-items: flex-start !important;
 }
 
+::ng-deep .red-snackbar {
+  background: #B00020;
+}

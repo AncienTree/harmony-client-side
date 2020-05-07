@@ -3,7 +3,11 @@
   <!-- Kolumna z opcjami -->
   <mat-grid-tile colspan="4" rowspan="1">
     <div class="container">
-      <a mat-list-item class="nav-link" routerLink="/main/hr/lista">Lista grafików</a>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
+        <button class="nav-link" routerLink="/main/hr/lista">Lista grafików</button>
+        <button class="nav-link" routerLink="/main/hr/nowyGrafik">Utwórz harmonogram</button>
+        <button class="nav-link" routerLink="/main/hr/dodajDoGrafiku">Dodaj pracownika do harmonogramu</button>
+      </div>
       <p>Ogólne statystyki, ilość urlopów / nieobecności, ilość za dany dzień / miesiąc / rok itp.</p>
     </div>
   </mat-grid-tile>
@@ -13,4 +17,3 @@
     <router-outlet></router-outlet>
   </mat-grid-tile>
 </mat-grid-list>
-

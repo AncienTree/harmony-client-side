@@ -23,6 +23,8 @@ export class LoginComponent {
   ) { }
 
   public authJWT() {
+    this.cookie.removeAll();
+
     this.auth.login(this.login, this.password)
       .subscribe(
         data => {
