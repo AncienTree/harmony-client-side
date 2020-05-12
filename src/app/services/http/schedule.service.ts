@@ -63,7 +63,7 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       'id': id,
       'active': active,
       'visible': visible,
-    })
+    }, {responseType: 'text'})
     .pipe(
       catchError(super.errorHandl)
     );
@@ -71,7 +71,7 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
 
   public createSchedule( date ): Observable<any> {
     return this.http
-      .post(`${this.url}/schedule/create`, date)
+      .post(`${this.url}/schedule/create`, date, {responseType: 'text'})
       .pipe(
         catchError(super.errorHandl)
       );

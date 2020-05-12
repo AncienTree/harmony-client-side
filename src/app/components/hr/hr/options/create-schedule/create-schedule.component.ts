@@ -29,7 +29,7 @@ export class CreateScheduleComponent {
 
   submit() {
     this.httpSchedule.createSchedule(this.date).subscribe(
-      () => this.snackBarRef.open('data', 'close'),
+      result => this.snackBarRef.open(result, 'close'),
       err => this.snackBarRef.open(err, 'close', {
         duration: 6000,
         panelClass: ['red-snackbar'] })
