@@ -21,6 +21,7 @@ export class EmployeeSerializer implements Serializer {
     employee.endWorkDate = json.endWorkDate;
     employee.startContractDate = json.startContractDate;
     employee.endContractDate = json.endContractDate;
+    employee.created = json.created;
     return employee;
   }
 
@@ -42,7 +43,8 @@ export class EmployeeSerializer implements Serializer {
       startWorkDate: employee.startWorkDate,
       endWorkDate: employee.endWorkDate,
       startContractDate: employee.startContractDate,
-      endContractDate: employee.endContractDate
+      endContractDate: employee.endContractDate,
+      created: employee.created
     };
   }
 }

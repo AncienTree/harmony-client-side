@@ -28,4 +28,18 @@ export class EmployeeService extends HttpService<Employee> {
         catchError(super.errorHandl)
       );
    }
+
+   public counter(): Observable<any> {
+     return this.http.get<any>(`${this.url}/employee/counter`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+   }
+
+   public getEmployee(): Observable<any> {
+    return this.http.get<Employee[]>(`${this.url}/employee/all`)
+     .pipe(
+       catchError(super.errorHandl)
+     );
+  }
 }

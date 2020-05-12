@@ -17,4 +17,5 @@ export class Employee extends Resource {
   endWorkDate: Date;
   startContractDate: Date;
   endContractDate: Date;
+  created: boolean;
 }

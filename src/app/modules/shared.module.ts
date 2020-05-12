@@ -5,6 +5,7 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ActiveBooleanPipe } from '../pipe/active-boolean.pipe';
 import { RolesPipe } from '../pipe/roles.pipe';
+import { StatusPipe } from '../pipe/status.pipe';
 
 
 
@@ -12,6 +13,7 @@ import { RolesPipe } from '../pipe/roles.pipe';
   declarations: [
     ActiveBooleanPipe,
     RolesPipe,
+    StatusPipe
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { RolesPipe } from '../pipe/roles.pipe';
     FlexLayoutModule,
     ActiveBooleanPipe,
     RolesPipe,
+    StatusPipe,
   ]
 })
 export class SharedModule { }

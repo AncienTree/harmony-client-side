@@ -18,9 +18,6 @@ export class MainComponent implements OnInit {
   user;
   userRole;
 
-  date = new Date();
-  version = '0.1.0 Alpha';
-
   constructor(private httpUsers: UsersService,
               private auth: AuthenticationService,
               private cookie: CookieService
