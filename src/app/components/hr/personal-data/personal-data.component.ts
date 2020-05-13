@@ -10,7 +10,7 @@ import { EmployeeService } from 'src/app/services/http/employee.service';
 })
 export class PersonalDataComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  displayedColumns: string[] = ['no', 'lastName', 'position', 'workStatus', 'sex', 'birthday', 'contractType', 'startContractDate', 'endContractDate'];
+  displayedColumns: string[] = ['no', 'lastName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'sex', 'birthday', 'contractType', 'startContractDate', 'endContractDate', 'crm', 'email'];
   dataSource;
   isLoadingResults = true;
   counter: Counter;
@@ -28,6 +28,7 @@ export class PersonalDataComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
+
   }
 
   private refresh() {
@@ -37,6 +38,7 @@ export class PersonalDataComponent implements OnInit {
 
       this.isLoadingResults = false;
       this.change.detectChanges();
+      console.log(result);
 
     });
 

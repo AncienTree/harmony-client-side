@@ -1,4 +1,5 @@
 import { Resource } from './resource';
+import { EmployeeDetails } from './employee-details';
 
 export class Employee extends Resource {
   firstName: string;
@@ -18,4 +19,5 @@ export class Employee extends Resource {
   startContractDate: Date;
   endContractDate: Date;
   created: boolean;
+  employeeDetials: EmployeeDetails;
 }
