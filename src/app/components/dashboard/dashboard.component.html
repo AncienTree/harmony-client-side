@@ -1,86 +1,84 @@
 <h2>Dashboard</h2>
-<!-- Pierwszy wiersz kart -->
-<div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
-  <mat-card fxFlex="25">
-    <mat-card-header class="card-header">
-      Przepracowane godziny w bieżącym miesiącu
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
-  <mat-card fxFlex="25">
-    <mat-card-header class="card-header">
-      Przepracowane godziny w bieżącym miesiącu
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
-  <mat-card fxFlex="25">
-    <mat-card-header class="card-header">
-      Pozostało godzin
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
-</div>
-<!-- Drugi wiersz kart -->
-<br>
-<mat-divider></mat-divider>
-<br>
-<div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
-  <mat-card fxFlex="25">
-    <mat-card-header class="card-header">
-      Licba urlopów
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
-  <mat-card fxFlex="25">
-    <mat-card-header class="card-header">
-      Urlopy w bieżącym miesiącu
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
-</div>
-<!-- Trzeci wiersz kart -->
-<br>
-<mat-divider></mat-divider>
-<br>
 <div>
-  <mat-card fxFlex="25">
-    <mat-card-header class="card-header">
-      Nieobecności
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
-</div>
-<!-- Wiadomości -->
-<br>
-<mat-divider></mat-divider>
-<br>
-<div fxLayout="column">
-  <mat-card fxFlex="100">
-    <mat-card-header class="card-header" fxLayoutAlign="center">
-      Wiadomości HR
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
-  <mat-card fxFlex="100">
-    <mat-card-header class="card-header" fxLayoutAlign="center">
-      Wiadomości System
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      test
-    </mat-card-content>
-  </mat-card>
+  <div fxLayoutAlign="end start">
+    {{date | date:'EEEE, MMMM d, y HH:mm:ss'}}
+  </div>
+
+  <!-- Pierwszy wiersz kart -->
+  <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+    <mat-card fxFlex="25">
+      <mat-card-header class="card-header">
+        Przepracowane godziny w bieżącym miesiącu
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        test
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="25">
+      <mat-card-header class="card-header">
+        Przepracowane godziny w bieżącym miesiącu
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        test
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="25">
+      <mat-card-header class="card-header">
+        Pozostało godzin
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        test
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- Drugi wiersz kart -->
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+    <mat-card fxFlex="25">
+      <mat-card-header class="card-header">
+        Licba urlopów
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        test
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="25">
+      <mat-card-header class="card-header">
+        Urlopy w bieżącym miesiącu
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        test
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- Trzeci wiersz kart -->
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <div>
+    <mat-card fxFlex="25">
+      <mat-card-header class="card-header">
+        Nieobecności
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        test
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- Wiadomości -->
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <div fxLayout="column">
+    <mat-card fxFlex="100">
+      <mat-card-header class="card-header" fxLayoutAlign="center">
+        Wiadomości
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        test
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
