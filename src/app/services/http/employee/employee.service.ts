@@ -31,7 +31,7 @@ export class EmployeeService extends HttpService<Employee> {
 
    public checkInDB(pesel): Observable<any> {
      return this.http
-      .get<boolean>(`${this.url}/employee/hr/${pesel}`)
+      .get<boolean>(`${this.url}/employee/hr/${pesel}/isAvailable`)
       .pipe(
         catchError(super.errorHandl)
       );
@@ -44,10 +44,18 @@ export class EmployeeService extends HttpService<Employee> {
       );
    }
 
-   public getEmployee(): Observable<any> {
+   public getEmployees(): Observable<any> {
     return this.http.get<Employee[]>(`${this.url}/employee/all`)
      .pipe(
        catchError(super.errorHandl)
      );
+  }
+
+  public getEmployee(id): Observable<any> {
+    return this.http
+      .get<Employee>(`${this.url}/employee/${id}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
   }
 }

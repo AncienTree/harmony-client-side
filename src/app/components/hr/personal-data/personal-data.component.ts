@@ -36,7 +36,7 @@ export class PersonalDataComponent implements OnInit {
   }
 
   private refresh() {
-    this.emplHttp.getEmployee().subscribe(result => {
+    this.emplHttp.getEmployees().subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
 
