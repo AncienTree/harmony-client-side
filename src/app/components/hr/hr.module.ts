@@ -10,6 +10,7 @@ import {
 import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
 import { RecordComponent } from './schedule/record/record.component';
+import { DetailsComponent } from './personal-data/details/details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RecordComponent } from './schedule/record/record.component';
     PersonalDataComponent,
     ScheduleComponent,
     ScheduleEditComponent,
-    RecordComponent
+    RecordComponent,
+    DetailsComponent
   ],
   imports: [
     SharedModule,

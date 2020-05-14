@@ -26,7 +26,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatGridListModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTabsModule
 } from '@angular/material';
 
 const material = [
@@ -55,7 +56,8 @@ const material = [
   MatNativeDateModule,
   MatGridListModule,
   MatTooltipModule,
-  MatMultiSortModule
+  MatMultiSortModule,
+  MatTabsModule
 ];
 
 @NgModule({

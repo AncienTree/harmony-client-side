@@ -1,0 +1,49 @@
+<div>
+  <div>
+    <h1>Dane osobowe</h1>
+    <button mat-button (click)="return()">Powrót do stanu osobowego</button>
+  </div>
+  <div>
+    <div class="loading" *ngIf="isLoadingResults">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!isLoadingResults">
+      <mat-tab-group dynamicHeight>
+        <!-- Dane pracownika -->
+        <mat-tab label="Dane pracownika">
+          <ng-template matTabContent>
+            Content
+          </ng-template>
+        </mat-tab>
+
+        <!-- Dodatkowe dane -->
+        <mat-tab label="Dodatkowe dane">
+          <ng-template matTabContent>
+            Content
+          </ng-template>
+        </mat-tab>
+
+        <!-- Dane informacyjne -->
+        <mat-tab label="Dane informacyjne">
+          <ng-template matTabContent>
+            Content
+          </ng-template>
+        </mat-tab>
+
+        <!-- Dane kontaktowe -->
+        <mat-tab label="Dane kontaktowe">
+          <ng-template matTabContent>
+            Content
+          </ng-template>
+        </mat-tab>
+
+        <!-- Dane urlopowe -->
+        <mat-tab label="Dane urlopowe">
+          <ng-template matTabContent>
+            Content
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

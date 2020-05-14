@@ -8,6 +8,7 @@ import {
   ScheduleComponent
  } from './index';
 import { RouteGuardService } from 'src/app/services/route-guard.service';
+import { DetailsComponent } from './personal-data/details/details.component';
 
 const hrRouting: Routes = [
   // { path: '', component: HrComponent, canActivateChild: [RouteGuardService], children: [
@@ -18,6 +19,7 @@ const hrRouting: Routes = [
   ] },
   { path: 'harmonogram', component: ScheduleComponent },
   { path: 'stan-osobowy', component: PersonalDataComponent },
+  { path: 'dane/:id', component: DetailsComponent },
   { path: 'zatrudnij', component: HireComponent },
   { path: 'wnioski', component: ApplicationComponent },
 ];

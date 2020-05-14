@@ -5,19 +5,19 @@ export class EmployeeDetailsSerializer implements Serializer {
   fromJson(json: any): EmployeeDetails {
     const employeeDetails = new EmployeeDetails();
     employeeDetails.id = json.id;
-    employeeDetails.ltLogin = json.firstName;
-    employeeDetails.ltId = json.lastName;
-    employeeDetails.crmLogin = json.pesel;
-    employeeDetails.crmAccountExpirationDate = json.sex;
-    employeeDetails.userSection = json.birthday;
-    employeeDetails.userLine = json.email;
-    employeeDetails.fte = json.position;
-    employeeDetails.fteStart = json.contractPosition;
-    employeeDetails.goal1 = json.workStatus;
-    employeeDetails.goal2 = json.contractType;
-    employeeDetails.goal3 = json.basicUnit;
-    employeeDetails.goal4 = json.unit;
-    employeeDetails.goal5 = json.unit;
+    employeeDetails.ltLogin = json.ltLogin;
+    employeeDetails.ltId = json.ltId;
+    employeeDetails.crmLogin = json.crmLogin;
+    employeeDetails.crmAccountExpirationDate = json.crmAccountExpirationDate;
+    employeeDetails.userSection = json.userSection;
+    employeeDetails.userLine = json.userLine;
+    employeeDetails.fte = json.fte;
+    employeeDetails.fteStart = json.fteStart;
+    employeeDetails.goal1 = json.goal1;
+    employeeDetails.goal2 = json.goal2;
+    employeeDetails.goal3 = json.goal3;
+    employeeDetails.goal4 = json.goal4;
+    employeeDetails.goal5 = json.goal5;
 
     return employeeDetails;
   }

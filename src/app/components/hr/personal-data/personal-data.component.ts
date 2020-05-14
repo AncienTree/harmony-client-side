@@ -3,6 +3,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material';
 import { EmployeeService } from 'src/app/services/http/employee.service';
 import { MatMultiSort } from 'ngx-mat-multi-sort';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personal-data',
@@ -11,7 +12,7 @@ import { MatMultiSort } from 'ngx-mat-multi-sort';
 })
 export class PersonalDataComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  displayedColumns: string[] = ['no', 'lastName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'sex', 'birthday', 'contractType', 'startContractDate', 'endContractDate', 'crm', 'email'];
+  displayedColumns: string[] = ['no', 'lastName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'sex', 'birthday', 'contractType', 'startContractDate', 'endContractDate', 'crm', 'email', 'action'];
   dataSource;
   isLoadingResults = true;
   counter: Counter;
@@ -22,6 +23,7 @@ export class PersonalDataComponent implements OnInit {
   constructor(
     private emplHttp: EmployeeService,
     private change: ChangeDetectorRef,
+    private router: Router
   ) {
     this.emplHttp.counter().subscribe(result => {
       this.counter = result;
@@ -40,10 +42,11 @@ export class PersonalDataComponent implements OnInit {
 
       this.isLoadingResults = false;
       this.change.detectChanges();
-      console.log(result);
-
     });
+  }
 
+  public onSelect(user) {
+    this.router.navigate(['/main/hr/dane/', user.id]);
   }
 }
 
