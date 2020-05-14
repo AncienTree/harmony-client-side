@@ -7,5 +7,4 @@ export class EmployeeContact extends Resource {
   phoneNumber: string;
   contactPhoneNumber: string;
   contactName: string;
-  position: string;
 }
