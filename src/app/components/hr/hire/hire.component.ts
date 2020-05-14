@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { EmployeeService } from 'src/app/services/http/employee.service';
+import { EmployeeService } from 'src/app/services/http/employee/employee.service';
 import { peselValidator } from 'src/app/utiles/validators/pesel-validator';
 import { MatSnackBar, MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';

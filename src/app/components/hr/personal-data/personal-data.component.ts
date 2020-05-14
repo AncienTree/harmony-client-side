@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material';
-import { EmployeeService } from 'src/app/services/http/employee.service';
+import { EmployeeService } from 'src/app/services/http/employee/employee.service';
 import { MatMultiSort } from 'ngx-mat-multi-sort';
 import { Router } from '@angular/router';
 

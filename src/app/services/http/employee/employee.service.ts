@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
+import { HttpService } from '../http.service';
 import { Employee } from 'src/app/model/employee';
 import { HttpClient } from '@angular/common/http';
 import { EmployeeSerializer } from 'src/app/model/Serializer/employee-serializer';
@@ -19,6 +19,14 @@ export class EmployeeService extends HttpService<Employee> {
       http,
       'employee',
       new EmployeeSerializer());
+   }
+
+   public update(employee): Observable<any> {
+    return this.http
+      .patch(`${this.url}/employee/`, employee, { responseType: 'text'})
+      .pipe(
+        catchError(super.errorHandl)
+      );
    }
 
    public checkInDB(pesel): Observable<any> {

@@ -1,7 +1,7 @@
 import { Serializer } from './serializer';
 import { EmployeeContact } from '../employee-contact';
 
-export class EmployeeSerializer implements Serializer {
+export class EmployeeContactSerializer implements Serializer {
   fromJson(json: any): EmployeeContact {
     const employeeContact = new EmployeeContact();
     employeeContact.id = json.id;
