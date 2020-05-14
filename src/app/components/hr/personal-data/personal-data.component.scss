@@ -24,3 +24,26 @@ table {
   font-size: large;
   padding: 10px;
 }
+th, td {
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// Table Columns
+
+.mat-column-no {
+  flex: 0 0 3% !important;
+  width: 3% !important;
+}
+
+.mat-column-lastName {
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+
+.mat-column-lider {
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+

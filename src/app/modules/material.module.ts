@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {MatMultiSortModule} from 'ngx-mat-multi-sort';
 
 import {
   MatSidenavModule,
@@ -53,7 +54,8 @@ const material = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatGridListModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatMultiSortModule
 ];
 
 @NgModule({

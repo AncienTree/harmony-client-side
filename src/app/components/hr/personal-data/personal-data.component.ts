@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material';
 import { EmployeeService } from 'src/app/services/http/employee.service';
+import { MatMultiSort } from 'ngx-mat-multi-sort';
 
 @Component({
   selector: 'app-personal-data',
@@ -15,7 +16,8 @@ export class PersonalDataComponent implements OnInit {
   isLoadingResults = true;
   counter: Counter;
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  // @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatMultiSort, { static: false }) sort: MatMultiSort;
 
   constructor(
     private emplHttp: EmployeeService,
