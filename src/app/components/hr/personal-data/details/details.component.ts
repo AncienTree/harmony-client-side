@@ -10,6 +10,8 @@ import { EmployeeService } from './../../../../services/http/employee/employee.s
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeContact } from 'src/app/model/employee-contact';
+import { MatDialog } from '@angular/material';
+import { EditDetailsComponent } from './edit-details/edit-details.component';
 
 @Component({
   selector: 'app-details',
@@ -21,6 +23,7 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private returnRoute: Router,
+    private dialog: MatDialog,
     private employeeHttp: EmployeeService,
     private employeeInfoHttp: EmployeeInfoService,
     private employeeContactHttp: EmployeeContactService,
@@ -29,7 +32,7 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   employeeId;
-  isLoadingResults = false;
+  isLoadingResults = true;
   employee: Employee;
   employeeDetails: EmployeeDetails;
   employeeInfo: EmployeeInfo;
@@ -41,8 +44,13 @@ export class DetailsComponent implements OnInit {
     this.employeeId = id;
 
     // Pobieranie danych pracownika
+    this.refresh();
+  }
+
+  refresh() {
     this.employeeHttp.getEmployee(this.employeeId).subscribe(result => {
       this.employee = result;
+      this.isLoadingResults = false;
     });
     this.employeeContactHttp.getContact(this.employeeId).subscribe(result => {
       this.employeeContact = result;
@@ -56,16 +64,13 @@ export class DetailsComponent implements OnInit {
     this.employeeLeaveHttp.getLeave(this.employeeId).subscribe(result => {
       this.employeeLeave = result;
     });
-    setTimeout(() => {
-      console.log(this.employee);
-    }, 2000);
   }
 
   return() {
     this.returnRoute.navigate(['/main/hr/stan-osobowy']);
   }
 
-  leave(){
+  leave() {
     const norm = this.employeeLeave.normal;
     const uz = this.employeeLeave.uz;
     const past = this.employeeLeave.pastYears;
@@ -74,7 +79,37 @@ export class DetailsComponent implements OnInit {
     return norm + uz + past + addi;
   }
 
-  submitEmployee() {
+  editEmployee() {
+    console.log('test');
+    const dialogRef = this.dialog.open(EditDetailsComponent, {
+      data: {
+        employee: this.employee,
+        formatka: 'employee'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.refresh();
+    });
+  }
+
+  editEmployeeInfo() {
+    console.log('test');
+
+  }
+
+  editEmployeeContact() {
+    console.log('test');
+
+  }
+
+  editEmployeeDeatils() {
+    console.log('test');
+
+  }
+
+  editEmployeeLeave() {
+    console.log('test');
 
   }
 

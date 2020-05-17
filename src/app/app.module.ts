@@ -23,7 +23,7 @@ import { ScheduleEditComponent } from './components/hr';
 import { DialogEditComponent } from './components/admin';
 import { registerLocaleData } from '@angular/common';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-
+import { EditDetailsComponent } from './components/hr/personal-data/details/edit-details/edit-details.component';
 
 import localePl from '@angular/common/locales/pl';
 import { Status } from './utiles/status';
@@ -38,7 +38,8 @@ registerLocaleData(localePl);
   ],
   entryComponents: [
     ScheduleEditComponent,
-    DialogEditComponent
+    DialogEditComponent,
+    EditDetailsComponent
   ],
   imports: [
     BrowserModule,

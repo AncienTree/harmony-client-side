@@ -4,3 +4,6 @@ export * from './hr/hr.component';
 export * from './personal-data/personal-data.component';
 export * from './schedule/schedule.component';
 export * from './schedule/schedule-edit/schedule-edit.component';
+export * from './personal-data/details/details.component';
+export * from './personal-data/details/edit-details/edit-details.component';
+export * from './schedule/record/record.component';

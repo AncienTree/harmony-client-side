@@ -61,7 +61,7 @@
                   {{employee.endWorkDate | date:'longDate'}}
                 </p>
               </div>
-              <button mat-flat-button color="primary">Zmień dane podstawowe</button>
+              <button mat-flat-button color="primary" (click)="editEmployee()">Zmień dane podstawowe</button>
             </div>
           </ng-template>
         </mat-tab>
@@ -104,7 +104,7 @@
                   <i>Cel 5: </i>{{employeeDetails.goal5}}
                 </p>
               </div>
-              <button mat-flat-button color="primary">Zmień dane dodatkowe</button>
+              <button mat-flat-button color="primary" (click)="editEmployeeDeatils()">Zmień dane dodatkowe</button>
             </div>
           </ng-template>
         </mat-tab>
@@ -168,7 +168,7 @@
                   <i>Info 4: </i>{{employeeInfo.info4}}
                 </p>
               </div>
-              <button mat-flat-button color="primary">Zmień dane informacyjne</button>
+              <button mat-flat-button color="primary" (click)="editEmployeeInfo()">Zmień dane informacyjne</button>
             </div>
           </ng-template>
         </mat-tab>
@@ -195,7 +195,7 @@
                   <b>Numer: </b>{{employeeContact.contactPhoneNumber}}
                 </p>
               </div>
-              <button mat-flat-button color="primary">Zmień dane kontaktowe</button>
+              <button mat-flat-button color="primary" (click)="editEmployeeContact()">Zmień dane kontaktowe</button>
             </div>
           </ng-template>
         </mat-tab>
@@ -221,7 +221,12 @@
                   <b>Urlop za poprzednie lata: </b>{{employeeLeave.pastYears}}
                 </p>
               </div>
-              <button mat-flat-button color="primary">Zmień dane urlopowe</button>
+              <!-- TODO -->
+              Urlop okolicznościowy / ojcowski / opieka na dziecko <br>
+              Historia urlopowa <br>
+              <div fxLayout="row" style="flex: auto;">
+                <button mat-flat-button color="primary" (click)="editEmployeeLeave()">Zmień dane urlopowe</button><button mat-flat-button color="primary" (click)="editEmployeeLeave()">Historia urlopowa</button>
+              </div>
             </div>
           </ng-template>
         </mat-tab>
