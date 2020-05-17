@@ -2,6 +2,7 @@
   <div>
     <h1 class="head">Dane osobowe</h1>
     <button mat-button (click)="return()">Powrót do stanu osobowego</button>
+    <p style="color: red;">Wygląd danych wersja beta</p>
   </div>
   <div>
     <div class="loading" *ngIf="isLoadingResults">
@@ -27,39 +28,40 @@
                   {{employee.firstName}} {{employee.lastName}}
                 </h1>
                 <div>
-                  <p>Numer PESEL: {{employee.pesel}}</p>
+                  <p><b>Numer PESEL: </b>{{employee.pesel}}</p>
                   <p>
-                    Płeć:
+                    <b>Płeć:</b>
                     <ng-container *ngIf="employee.sex==='m'; else elseSex">
                       Mężczyzna
                     </ng-container>
                     <ng-template #elseSex>
                       Kobieta
                     </ng-template><br>
-                    Data urodzenia: {{employee.birthday | date:'longDate'}}
+                    <b>Data urodzenia: </b>{{employee.birthday | date:'longDate'}}
                   </p>
                   <mat-divider></mat-divider>
                   <p>
-                    Stanowisko: {{employee.position | titlecase}}<br>
-                    Stanowisko na umowe: {{employee.contractPosition | titlecase}}<br>
-                    Adres email: {{employee.email}}
+                    <b>Stanowisko: </b>{{employee.position | titlecase}}<br>
+                    <b>Stanowisko na umowe: </b>{{employee.contractPosition | titlecase}}<br>
+                    <b>Adres email: </b>{{employee.email}}
                   </p>
                   <mat-divider></mat-divider>
                   <p>
-                    Rodzaj umowy: {{employee.contractType}} <br>
-                    Stawka: {{employee.basicUnit}} <br>
-                    Kwota: {{employee.unit}}
+                    <b>Rodzaj umowy: </b>{{employee.contractType}} <br>
+                    <b>Stawka: </b>{{employee.basicUnit}} <br>
+                    <b>Kwota: </b>{{employee.unit}}
                   </p>
                   <mat-divider></mat-divider>
                 </div>
                 <p>
-                  Umowa od {{employee.startContractDate | date:'longDate'}} do
+                  <b>Umowa od </b>{{employee.startContractDate | date:'longDate'}} <b>do</b>
                   {{employee.endContractDate | date:'longDate'}}
                   <br>
-                  Pracuje od {{employee.startWorkDate | date:'longDate'}} do {{employee.endWorkDate | date:'longDate'}}
+                  <b>Pracuje od </b>{{employee.startWorkDate | date:'longDate'}} <b>do</b>
+                  {{employee.endWorkDate | date:'longDate'}}
                 </p>
               </div>
-              <button mat-flat-button color="primary">Zmień dane</button>
+              <button mat-flat-button color="primary">Zmień dane podstawowe</button>
             </div>
           </ng-template>
         </mat-tab>
@@ -67,28 +69,160 @@
         <!-- Dodatkowe dane -->
         <mat-tab label="Dodatkowe dane">
           <ng-template matTabContent>
-            Content
+            <div class="container">
+              <h3>Dodatkowe dane pracownika</h3>
+              <mat-divider></mat-divider>
+              <div class="personal_data">
+                <p>
+                  <b>Login LT: </b>{{employeeDetails.ltLogin}} <br>
+                  <b>LT ID: </b>{{employeeDetails.ltId}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Login CRM: </b>{{employeeDetails.crmLogin}} <br>
+                  <b>Data wygaśnięcia konta: </b>{{employeeDetails.crmAccountExpirationDate | date:'longDate'}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Linia: </b>{{employeeDetails.userLine}} <br>
+                  <b>Sekcja: </b>{{employeeDetails.userSection}} <br>
+                  <!-- TODO Szukanie kierownika po sekcji -->
+                  <b>Kierownik: </b>Brak zaimplementowanej funkcji!!
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>FTE: </b>{{employeeDetails.fte}} <br>
+                  <b>FTE na starcie: </b>{{employeeDetails.fteStart}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Cele</b> <br>
+                  <i>Cel 1: </i>{{employeeDetails.goal1}} <br>
+                  <i>Cel 2: </i>{{employeeDetails.goal2}} <br>
+                  <i>Cel 3: </i>{{employeeDetails.goal3}} <br>
+                  <i>Cel 4: </i>{{employeeDetails.goal4}} <br>
+                  <i>Cel 5: </i>{{employeeDetails.goal5}}
+                </p>
+              </div>
+              <button mat-flat-button color="primary">Zmień dane dodatkowe</button>
+            </div>
           </ng-template>
         </mat-tab>
 
         <!-- Dane informacyjne -->
         <mat-tab label="Dane informacyjne">
           <ng-template matTabContent>
-            Content
+            <div class="container">
+              <h3>Dane informacyjne pracownika</h3>
+              <mat-divider></mat-divider>
+              <div class="personal_data">
+                <p>
+                  <b>Zgoda na publikacje wizerunku: </b><ng-container *ngIf="employeeInfo.agreement; else elseAgreement">
+                    <div class="zgoda">
+                      Zgoda
+                    </div>
+                  </ng-container>
+                  <ng-template #elseAgreement>
+                    <div class="brak_zgody">
+                      Brak zgody
+                    </div>
+                  </ng-template><br>
+                  <b>Zgoda PPK: </b><ng-container *ngIf="employeeInfo.ppk; else elsePPK">
+                    <div class="zgoda">
+                      Zgoda
+                    </div>
+                  </ng-container>
+                  <ng-template #elsePPK>
+                    <div class="brak_zgody">
+                      Brak zgody
+                    </div>
+                  </ng-template><br>
+                  <b>Wydano słuchawki: </b><ng-container *ngIf="employeeInfo.headphones; else elseHeadphones">
+                    <div class="zgoda">
+                      Wydano
+                    </div>
+                  </ng-container>
+                  <ng-template #elseHeadphones>
+                    <div class="brak_zgody">
+                      Nie wydano
+                    </div>
+                  </ng-template><br>
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Numer szafki: </b>{{employeeInfo.locker}} <br>
+                  <b>Numer karty RCP: </b>{{employeeInfo.idCard}} <br>
+                  <b>Numer karty parkingowej: </b>{{employeeInfo.parkingCard}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>FTE: </b>{{employeeDetails.fte}} <br>
+                  <b>FTE na starcie: </b>{{employeeDetails.fteStart}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Dodatkowe informacje</b> <br>
+                  <i>Info 1: </i>{{employeeInfo.info1}} <br>
+                  <i>Info 2: </i>{{employeeInfo.info2}} <br>
+                  <i>Info 3: </i>{{employeeInfo.info3}} <br>
+                  <i>Info 4: </i>{{employeeInfo.info4}}
+                </p>
+              </div>
+              <button mat-flat-button color="primary">Zmień dane informacyjne</button>
+            </div>
           </ng-template>
         </mat-tab>
 
         <!-- Dane kontaktowe -->
         <mat-tab label="Dane kontaktowe">
           <ng-template matTabContent>
-            Content
+            <div class="container">
+              <h3>Dane kontaktowe pracownika</h3>
+              <mat-divider></mat-divider>
+              <div class="personal_data">
+                <p>
+                  <b>Miasto: </b>{{employeeContact.zipCode}}, {{employeeContact.city}} <br>
+                  <b>Adres: </b>{{employeeContact.address}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Numer kontaktowy: </b>{{employeeContact.phoneNumber}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Osoba do kontaktu</b> <br>
+                  <b>Nazwa: </b>{{employeeContact.contactName}} <br>
+                  <b>Numer: </b>{{employeeContact.contactPhoneNumber}}
+                </p>
+              </div>
+              <button mat-flat-button color="primary">Zmień dane kontaktowe</button>
+            </div>
           </ng-template>
         </mat-tab>
 
         <!-- Dane urlopowe -->
         <mat-tab label="Dane urlopowe">
           <ng-template matTabContent>
-            Content
+            <div class="container">
+              <h3>Dodatkowe urlopowe pracownika</h3>
+              <mat-divider></mat-divider>
+              <div class="personal_data">
+                <p>
+                  <b>Urlop całkowity: </b>{{leave()}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Urlop normalny: </b>{{employeeLeave.normal}} <br>
+                  <b>Urlop na żądanie: </b>{{employeeLeave.uz}} <br>
+                  <b>Urlop dodatkowy: </b>{{employeeLeave.additional}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                  <b>Urlop za poprzednie lata: </b>{{employeeLeave.pastYears}}
+                </p>
+              </div>
+              <button mat-flat-button color="primary">Zmień dane urlopowe</button>
+            </div>
           </ng-template>
         </mat-tab>
       </mat-tab-group>
