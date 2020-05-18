@@ -79,12 +79,11 @@ export class DetailsComponent implements OnInit {
     return norm + uz + past + addi;
   }
 
-  editEmployee() {
-    console.log('test');
+  openDialog(dataEmployeeType, formType) {
     const dialogRef = this.dialog.open(EditDetailsComponent, {
       data: {
-        employee: this.employee,
-        formatka: 'employee'
+        employee: dataEmployeeType,
+        formatka: formType
       }
     });
 
@@ -93,24 +92,24 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  editEmployeeInfo() {
-    console.log('test');
+  editEmployee() {
+    this.openDialog(this.employee, 'employee');
+  }
 
+  editEmployeeInfo() {
+    this.openDialog(this.employeeInfo, 'employeeInfo');
   }
 
   editEmployeeContact() {
-    console.log('test');
-
+    this.openDialog(this.employeeContact, 'employeeContact');
   }
 
   editEmployeeDeatils() {
-    console.log('test');
-
+    this.openDialog(this.employeeDetails, 'employeeDetails');
   }
 
   editEmployeeLeave() {
-    console.log('test');
-
+    this.openDialog(this.employeeLeave, 'employeeLeave');
   }
 
 }

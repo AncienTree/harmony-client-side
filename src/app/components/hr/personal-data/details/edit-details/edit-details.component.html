@@ -1,1 +1,112 @@
-<p>edit-details works!</p>
+<div class="container">
+  <h3>Zmiana danych</h3>
+  <div [ngSwitch]="formatka" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
+
+    <!-- Formatka dla danych podstawowych -->
+    <div *ngSwitchCase="'employee'">
+      <form [formGroup]="employeeForm" class="form_style" (ngSubmit)="submitEmployee()">
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Adres email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Stanowisko</mat-label>
+            <select matNativeControl formControlName="position">
+              <option value="doradca">Doradca</option>
+              <option value="specjalista">Specjalista</option>
+              <option value="kierownik">Kierownik</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Stanowisko na umowie" formControlName="contractPosition">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Umowa</mat-label>
+            <select matNativeControl formControlName="contractType">
+              <option value="mask_uop">Maksimum_UoP</option>
+              <!-- NewOfiice umowa dodać -->
+              <option value="maks_zlec_chr">Maksimum_Zlec_CHR</option>
+              <option value="maks_zlec_stud">Maksimum_Zlec_STUD</option>
+              <option value="maks_zlec_zus">Maksimum_Zlec_ZUS</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Forma wynagrodzenia</mat-label>
+            <select matNativeControl formControlName="basicUnit">
+              <option value="stawka">Stawka</option>
+              <option value="kwota">Kwota</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Stawka" formControlName="unit">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="Data zatrudnienia" formControlName="startWorkDate" [ngModel]="startdate" [value]="startWork">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="Umowa od" formControlName="startContractDate" [ngModel]="startdate" [value]="startContract">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker3" placeholder="Umowa do" formControlName="endContractDate" [ngModel]="startdate" [value]="endContract">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+
+          <p>
+            {{employeeForm.get('startContractDate').value}} <br>
+          </p>
+
+        </div>
+        <button mat-raised-button type="submit" [disabled]="!employeeForm.valid">Edytuj</button>
+      </form>
+    </div>
+
+    <!-- Formatka dla danych dodatkowych-->
+    <div *ngSwitchCase="'employeeDetails'">
+      <form [formGroup]="employeeDetailsForm" class="form_style" (ngSubmit)="submitEmployeeDetails()">
+
+        <button mat-raised-button type="submit" [disabled]="!employeeDetailsForm.valid">Edytuj</button>
+      </form>
+    </div>
+
+    <!-- Formatka dla danych informacyjnych -->
+    <div *ngSwitchCase="'employeeInfo'">
+      <form [formGroup]="employeeInfoForm" class="form_style" (ngSubmit)="submitEmployeeInfo()">
+
+        <button mat-raised-button type="submit" [disabled]="!employeeInfoForm.valid">Edytuj</button>
+      </form>
+    </div>
+
+    <!-- Formatka dla danych kontaktowych -->
+    <div *ngSwitchCase="'employeeContact'">
+      <form [formGroup]="employeeContactForm" class="form_style" (ngSubmit)="submitEmployeeContact()">
+
+        <button mat-raised-button type="submit" [disabled]="!employeeContactForm.valid">Edytuj</button>
+      </form>
+    </div>
+
+    <!-- Formatka dla danych urlopowych -->
+    <div *ngSwitchCase="'employeeLeave'">
+      <form [formGroup]="employeeLeaveForm" class="form_style" (ngSubmit)="submitEmployeeLeave()">
+
+        <button mat-raised-button type="submit" [disabled]="!employeeLeaveForm.valid">Edytuj</button>
+      </form>
+    </div>
+
+    <div *ngSwitchDefault class="error_form">
+      Nieznany typ formatyki. Proszę spróbuj otworzyć formatkę edycji jeszcze raz.
+    </div>
+  </div>
+</div>
