@@ -7,9 +7,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
-import * as moment from 'moment';
-import { Employee } from 'src/app/model/employee';
-
 @Component({
   selector: 'app-edit-details',
   templateUrl: './edit-details.component.html',
@@ -18,10 +15,6 @@ import { Employee } from 'src/app/model/employee';
 export class EditDetailsComponent implements OnInit {
 
   formatka;
-  startdate = moment();
-  startWork;
-  startContract;
-  endContract;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
@@ -57,11 +50,11 @@ export class EditDetailsComponent implements OnInit {
     userSection: ['', Validators.required],
     fte: ['', Validators.required],
     fteStart: ['', Validators.required],
-    goal1: ['', Validators.required],
-    goal2: ['', Validators.required],
-    goal3: ['', Validators.required],
-    goal4: ['', Validators.required],
-    goal5: ['', Validators.required]
+    goal1: [''],
+    goal2: [''],
+    goal3: [''],
+    goal4: [''],
+    goal5: ['']
   });
 
   // EmployeeInfo
@@ -71,11 +64,11 @@ export class EditDetailsComponent implements OnInit {
     headphones: ['', Validators.required],
     locker: ['', Validators.required],
     idCard: ['', Validators.required],
-    parkingCard: ['', Validators.required],
-    info1: ['', Validators.required],
-    info2: ['', Validators.required],
-    info3: ['', Validators.required],
-    info4: ['', Validators.required]
+    parkingCard: [''],
+    info1: [''],
+    info2: [''],
+    info3: [''],
+    info4: ['']
   });
 
 
@@ -180,18 +173,83 @@ export class EditDetailsComponent implements OnInit {
   }
 
   public submitEmployeeInfo() {
+    const employeeInfo = {
+      id: this.data.employee.id,
+      agreement: this.employeeInfoForm.get('agreement').value,
+      ppk: this.employeeInfoForm.get('ppk').value,
+      headphones: this.employeeInfoForm.get('headphones').value,
+      locker: this.employeeInfoForm.get('locker').value,
+      idCard: this.employeeInfoForm.get('idCard').value,
+      parkingCard: this.employeeInfoForm.get('parkingCard').value,
+      info1: this.employeeInfoForm.get('info1').value,
+      info2: this.employeeInfoForm.get('info2').value,
+      info3: this.employeeInfoForm.get('info3').value,
+      info4: this.employeeInfoForm.get('info4').value
+    };
 
+    this.employeeInfoHttp.update(employeeInfo).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+    });
   }
 
   public submitEmployeeContact() {
+    const employeeContact = {
+      id: this.data.employee.id,
+      address: this.employeeContactForm.get('address').value,
+      city: this.employeeContactForm.get('city').value,
+      zipCode: this.employeeContactForm.get('zipCode').value,
+      phone: this.employeeContactForm.get('phone').value,
+      contact: this.employeeContactForm.get('contact').value,
+      contactPhone: this.employeeContactForm.get('contactPhone').value
+    };
 
+    this.employeeContactHttp.update(employeeContact).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+    });
   }
 
   public submitEmployeeDetails() {
+    const employeeDetails = {
+      id: this.data.employee.id,
+      ltLogin: this.employeeDetailsForm.get('ltLogin').value,
+      ltId: this.employeeDetailsForm.get('ltId').value,
+      crmLogin: this.employeeDetailsForm.get('crmLogin').value,
+      crmExp: this.employeeDetailsForm.get('crmExp').value,
+      userLine: this.employeeDetailsForm.get('userLine').value,
+      userSection: this.employeeDetailsForm.get('userSection').value,
+      fte: this.employeeDetailsForm.get('fte').value,
+      fteStart: this.employeeDetailsForm.get('fteStart').value,
+      goal1: this.employeeDetailsForm.get('goal1').value,
+      goal2: this.employeeDetailsForm.get('goal2').value,
+      goal3: this.employeeDetailsForm.get('goal3').value,
+      goal4: this.employeeDetailsForm.get('goal4').value,
+      goal5: this.employeeDetailsForm.get('goal5').value
+    };
 
+    this.employeeDeatilsHttp.update(employeeDetails).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+    });
   }
 
   public submitEmployeeLeave() {
+    const employeeLeave = {
+      id: this.data.employee.id,
+      normal: this.employeeLeaveForm.get('normal').value,
+      uz: this.employeeLeaveForm.get('uz').value,
+      add: this.employeeLeaveForm.get('add').value,
+      past: this.employeeLeaveForm.get('past').value
+    };
 
+    this.employeeLeaveHttp.update(employeeLeave).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+    });
   }
 }

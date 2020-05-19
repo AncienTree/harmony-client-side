@@ -18,6 +18,14 @@ export class EmployeeDetailsService extends HttpService<EmployeeDetails> {
       new EmployeeDetailsSerializer());
   }
 
+  public update(data): Observable<any> {
+    return this.http
+      .patch(`${this.url}/employee/details/`, data, { responseType: 'text' })
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
   public getDetails(id): Observable<any> {
     return this.http
       .get<EmployeeDetails>(`${this.url}/employee/details/${id}`)

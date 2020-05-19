@@ -20,7 +20,7 @@ export class EmployeeLeaveService extends HttpService<EmployeeLeave>{
 
   public update(data): Observable<any> {
     return this.http
-      .patch(`${this.url}/employee/leave`, data, { responseType: 'text' })
+      .patch(`${this.url}/employee/leave/`, data, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );

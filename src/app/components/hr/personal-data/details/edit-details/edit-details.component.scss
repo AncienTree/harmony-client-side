@@ -2,9 +2,21 @@
   margin: 15px;
 }
 
+::ng-deep .green-snackbar {
+  background:green;
+}
+
 .error_form{
   text-align: center;
   font-size: small;
   font-weight: bold;
   color: red;
+}
+
+.goals mat-form-field {
+  width: 10%;
+}
+
+.example-margin {
+  margin: 0 10px;
 }

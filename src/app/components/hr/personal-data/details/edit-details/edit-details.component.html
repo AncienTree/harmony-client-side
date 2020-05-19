@@ -52,7 +52,59 @@
     <!-- Formatka dla danych dodatkowych-->
     <div *ngSwitchCase="'employeeDetails'">
       <form [formGroup]="employeeDetailsForm" class="form_style" (ngSubmit)="submitEmployeeDetails()">
-
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Numer ID LT" formControlName="ltId">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Login LT" formControlName="ltLogin">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Login CRM" formControlName="crmLogin">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Data wygaśnięcia konta" formControlName="crmExp">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Linia" formControlName="userLine">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Sekcja" formControlName="userSection">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="FTE" formControlName="fte">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="FTE na starcie" formControlName="fteStart">
+          </mat-form-field>
+        </div>
+        <div class="goals">
+          <mat-form-field>
+            <input matInput placeholder="Cel 1" formControlName="goal1">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Cel 2" formControlName="goal2">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Cel 3" formControlName="goal3">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Cel 4" formControlName="goal4">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Cel 5" formControlName="goal5">
+          </mat-form-field>
+        </div>
         <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeDetailsForm.valid">Edytuj</button>
       </form>
     </div>
@@ -60,7 +112,45 @@
     <!-- Formatka dla danych informacyjnych -->
     <div *ngSwitchCase="'employeeInfo'">
       <form [formGroup]="employeeInfoForm" class="form_style" (ngSubmit)="submitEmployeeInfo()">
-
+        <div>
+          <mat-checkbox color="primary" class="example-margin" formControlName="agreement">Zgoda na wizerunek</mat-checkbox>
+          <mat-checkbox color="primary" class="example-margin" formControlName="ppk">Zgoda PPK</mat-checkbox>
+          <mat-checkbox color="primary" class="example-margin" formControlName="headphones">Słuchawki</mat-checkbox>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Numer szafki" formControlName="locker">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Numer karty RCP" formControlName="idCard">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Numer karty parkingowej" formControlName="parkingCard">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Info</mat-label>
+            <textarea matInput formControlName="info1"></textarea>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Info 2</mat-label>
+            <textarea matInput formControlName="info2"></textarea>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Info 3</mat-label>
+            <textarea matInput formControlName="info3"></textarea>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Info 4</mat-label>
+            <textarea matInput formControlName="info4"></textarea>
+          </mat-form-field>
+        </div>
         <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeInfoForm.valid">Edytuj</button>
       </form>
     </div>
@@ -68,7 +158,31 @@
     <!-- Formatka dla danych kontaktowych -->
     <div *ngSwitchCase="'employeeContact'">
       <form [formGroup]="employeeContactForm" class="form_style" (ngSubmit)="submitEmployeeContact()">
-
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Kod pocztowy" formControlName="zipCode">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Miasto" formControlName="city">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Adres" formControlName="address">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Numer telefonu" formControlName="phone">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Osoba kontaktowa" formControlName="contact">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Numer osoby kontaktowej" formControlName="contactPhone">
+          </mat-form-field>
+        </div>
         <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeContactForm.valid">Edytuj</button>
       </form>
     </div>
@@ -76,7 +190,23 @@
     <!-- Formatka dla danych urlopowych -->
     <div *ngSwitchCase="'employeeLeave'">
       <form [formGroup]="employeeLeaveForm" class="form_style" (ngSubmit)="submitEmployeeLeave()">
-
+       <div>
+        <mat-form-field>
+          <input matInput placeholder="Urlop wypoczynkowy" formControlName="normal">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Urlop na żądanie" formControlName="uz">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Urlop dodatkowy" formControlName="add">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Urlop za zeszłe lata" formControlName="past">
+        </mat-form-field>
+       </div>
         <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeLeaveForm.valid">Edytuj</button>
       </form>
     </div>

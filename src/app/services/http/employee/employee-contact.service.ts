@@ -23,7 +23,7 @@ export class EmployeeContactService extends HttpService<EmployeeContact> {
 
   public update(data): Observable<any> {
     return this.http
-      .patch(`${this.url}/employee/contact`, data, { responseType: 'text' })
+      .patch(`${this.url}/employee/contact/`, data, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );
