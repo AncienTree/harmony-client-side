@@ -5,9 +5,10 @@ import { EmployeeInfoService } from './../../../../../services/http/employee/emp
 import { EmployeeService } from './../../../../../services/http/employee/employee.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
 import * as moment from 'moment';
+import { Employee } from 'src/app/model/employee';
 
 @Component({
   selector: 'app-edit-details',
@@ -30,6 +31,7 @@ export class EditDetailsComponent implements OnInit {
     private employeeContactHttp: EmployeeContactService,
     private employeeDeatilsHttp: EmployeeDetailsService,
     private employeeLeaveHttp: EmployeeLeaveService,
+    private snackBarRef: MatSnackBar,
   ) {
     this.formatka = this.data.formatka;
   }
@@ -42,10 +44,7 @@ export class EditDetailsComponent implements OnInit {
     contractPosition: ['', Validators.required],
     contractType: ['', Validators.required],
     basicUnit: ['', Validators.required],
-    unit: ['', Validators.required],
-    startWorkDate: ['', Validators.required],
-    startContractDate: ['', Validators.required],
-    endContractDate: ['', Validators.required]
+    unit: ['', Validators.required]
   });
 
   // EmployeeDetails
@@ -109,13 +108,6 @@ export class EditDetailsComponent implements OnInit {
         this.employeeForm.get('contractType').setValue(this.data.employee.contractType);
         this.employeeForm.get('basicUnit').setValue(this.data.employee.basicUnit);
         this.employeeForm.get('unit').setValue(this.data.employee.unit);
-        this.employeeForm.get('startWorkDate').setValue(this.data.employee.startWorkDate);
-        this.employeeForm.get('startContractDate').setValue(this.data.employee.startContractDate);
-        this.employeeForm.get('endContractDate').setValue(this.data.employee.endContractDate);
-
-        this.startWork = moment(this.employeeForm.get('startWorkDate').value).format('YYYY-MM-DD').toString();
-        this.startContract = moment(this.employeeForm.get('startContractDate').value).format('YYYY-MM-DD').toString();
-        this.endContract = moment(this.employeeForm.get('endContractDate').value).format('YYYY-MM-DD').toString();
         break;
 
       case 'employeeDetails':
@@ -170,8 +162,21 @@ export class EditDetailsComponent implements OnInit {
   }
 
   public submitEmployee() {
-    // this.startWork = moment(this.employeeForm.get('startWorkDate').value).format('YYYY-MM-DD').toString();
+    const employee = {
+      id: this.data.employee.id,
+      email: this.employeeForm.get('email').value,
+      position: this.employeeForm.get('position').value,
+      contractPosition: this.employeeForm.get('contractPosition').value,
+      contractType: this.employeeForm.get('contractType').value,
+      basicUnit: this.employeeForm.get('basicUnit').value,
+      unit: this.employeeForm.get('unit').value
+    };
 
+    this.employeeHttp.update(employee).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+    });
   }
 
   public submitEmployeeInfo() {

@@ -45,31 +45,7 @@
             <input matInput placeholder="Stawka" formControlName="unit">
           </mat-form-field>
         </div>
-        <div>
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker1" placeholder="Data zatrudnienia" formControlName="startWorkDate" [ngModel]="startdate" [value]="startWork">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker2" placeholder="Umowa od" formControlName="startContractDate" [ngModel]="startdate" [value]="startContract">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker3" placeholder="Umowa do" formControlName="endContractDate" [ngModel]="startdate" [value]="endContract">
-            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-            <mat-datepicker #picker3></mat-datepicker>
-          </mat-form-field>
-
-          <p>
-            {{employeeForm.get('startContractDate').value}} <br>
-          </p>
-
-        </div>
-        <button mat-raised-button type="submit" [disabled]="!employeeForm.valid">Edytuj</button>
+        <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeForm.valid">Edytuj</button>
       </form>
     </div>
 
@@ -77,7 +53,7 @@
     <div *ngSwitchCase="'employeeDetails'">
       <form [formGroup]="employeeDetailsForm" class="form_style" (ngSubmit)="submitEmployeeDetails()">
 
-        <button mat-raised-button type="submit" [disabled]="!employeeDetailsForm.valid">Edytuj</button>
+        <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeDetailsForm.valid">Edytuj</button>
       </form>
     </div>
 
@@ -85,7 +61,7 @@
     <div *ngSwitchCase="'employeeInfo'">
       <form [formGroup]="employeeInfoForm" class="form_style" (ngSubmit)="submitEmployeeInfo()">
 
-        <button mat-raised-button type="submit" [disabled]="!employeeInfoForm.valid">Edytuj</button>
+        <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeInfoForm.valid">Edytuj</button>
       </form>
     </div>
 
@@ -93,7 +69,7 @@
     <div *ngSwitchCase="'employeeContact'">
       <form [formGroup]="employeeContactForm" class="form_style" (ngSubmit)="submitEmployeeContact()">
 
-        <button mat-raised-button type="submit" [disabled]="!employeeContactForm.valid">Edytuj</button>
+        <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeContactForm.valid">Edytuj</button>
       </form>
     </div>
 
@@ -101,7 +77,7 @@
     <div *ngSwitchCase="'employeeLeave'">
       <form [formGroup]="employeeLeaveForm" class="form_style" (ngSubmit)="submitEmployeeLeave()">
 
-        <button mat-raised-button type="submit" [disabled]="!employeeLeaveForm.valid">Edytuj</button>
+        <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeLeaveForm.valid">Edytuj</button>
       </form>
     </div>
 
