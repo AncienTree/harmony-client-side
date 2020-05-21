@@ -12,6 +12,7 @@ import {
  } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
+import { SectionEditComponent } from './hr/options/sections/section-edit/section-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HrRoutingModule } from './hr.routing.module';
     ScheduleEditComponent,
     RecordComponent,
     DetailsComponent,
-    EditDetailsComponent
+    EditDetailsComponent,
+    SectionEditComponent
   ],
   imports: [
     SharedModule,

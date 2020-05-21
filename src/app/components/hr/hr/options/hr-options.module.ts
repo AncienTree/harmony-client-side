@@ -7,12 +7,14 @@ import {
   CreateScheduleComponent,
   AddUsersScheduleComponent
 } from './index';
+import { SectionsComponent } from './sections/sections.component';
 
 @NgModule({
   declarations: [
     ScheduleListComponent,
     CreateScheduleComponent,
     AddUsersScheduleComponent,
+    SectionsComponent
   ],
   imports: [
     SharedModule,

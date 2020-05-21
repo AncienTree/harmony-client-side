@@ -20,11 +20,10 @@ export class HttpService<T extends Resource> {
 
   // POST methode
   public create(item: T): Observable<T> {
-    return this.httpClient.post<T>(`${this.url}/${this.endpoint}`,
+    return this.httpClient.post<T>(`${this.url}/${this.endpoint}/`,
       this.serializer.toJson(item))
       .pipe(
         map(data => this.serializer.fromJson(data) as T),
-        retry(1),
         catchError(this.errorHandl)
       );
   }
@@ -35,7 +34,6 @@ export class HttpService<T extends Resource> {
       .get(`${this.url}/${this.endpoint}/${id}`)
       .pipe(
         map((data: any) => this.serializer.fromJson(data) as T),
-        retry(1),
         catchError(this.errorHandl)
       );
   }
@@ -43,9 +41,8 @@ export class HttpService<T extends Resource> {
   // GET all methode
   public showAll(): Observable<T[]> {
     return this.httpClient
-      .get<T[]>(`${this.url}/${this.endpoint}`)
+      .get<T[]>(`${this.url}/${this.endpoint}/`)
       .pipe(
-        retry(1),
         catchError(this.errorHandl)
       );
   }
@@ -56,7 +53,6 @@ export class HttpService<T extends Resource> {
       this.serializer.toJson(item))
       .pipe(
         map((data) => this.serializer.fromJson(data) as T),
-        retry(1),
         catchError(this.errorHandl)
       );
   }
@@ -66,7 +62,6 @@ export class HttpService<T extends Resource> {
     return this.httpClient
       .delete(`${this.url}/${this.endpoint}/${id}`)
       .pipe(
-        retry(1),
         catchError(this.errorHandl)
       );
   }

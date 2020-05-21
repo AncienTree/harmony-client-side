@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   ScheduleListComponent,
   CreateScheduleComponent,
-  AddUsersScheduleComponent
+  AddUsersScheduleComponent,
+  SectionsComponent
  } from './index';
 
 const hrOptionsRouting: Routes = [
   { path: 'lista', component: ScheduleListComponent },
   { path: 'nowyGrafik', component: CreateScheduleComponent },
   { path: 'dodajDoGrafiku', component: AddUsersScheduleComponent },
+  { path: 'sekcje', component: SectionsComponent },
 ];
 
 @NgModule({
