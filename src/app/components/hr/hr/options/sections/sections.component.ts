@@ -33,14 +33,19 @@ export class SectionsComponent implements OnInit {
     });
   }
 
-  openDialog(section) {
+  openDialog(section, type) {
     const dialogRef = this.dialog.open(SectionEditComponent, {
       width: '250px',
-      data: section
+      data: {
+        section,
+        type
+      }
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.refresh();
+      setTimeout(() => {
+        this.refresh();
+      }, 1500);
     });
   }
 

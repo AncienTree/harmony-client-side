@@ -1,1 +1,23 @@
-<p>section-edit works!</p>
+<div>
+  <h2>Edytuj sekcję</h2>
+  <form [formGroup]="form" class="form_style" (ngSubmit)="submit()">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Nazwa sekcji" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field *ngIf = "liders">
+        <mat-select formControlName="lider" placeholder="Lider" >
+          <mat-option *ngFor="let lid of liders" [value]="lid.fullName">
+            {{lid.fullName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Data ważności" formControlName="expired">
+      </mat-form-field>
+    </div>
+    <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit"
+      [disabled]="!form.valid">Wykonaj</button>
+  </form>
+</div>

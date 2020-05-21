@@ -58,4 +58,11 @@ export class EmployeeService extends HttpService<Employee> {
         catchError(super.errorHandl)
       );
   }
+
+  public getSimpleEmployeesByPosition(position): Observable<any> {
+    return this.http.get<any>(`${this.url}/employee/position/${position}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
 }

@@ -29,4 +29,21 @@ export class SectionService extends HttpService<Section> {
       );
   }
 
+  public update(section): Observable<any> {
+    return this.http
+      .patch(`${this.url}/setting/usersection/`, section, { responseType: 'text' })
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  public create(section): Observable<any> {
+    return this.http
+      .post(`${this.url}/setting/usersection/`, section, { responseType: 'text' })
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+
 }
