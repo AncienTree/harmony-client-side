@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { SectionService } from 'src/app/services/http/section.service';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { SectionEditComponent } from './section-edit/section-edit.component';
 import { Section } from 'src/app/model/section';
 
@@ -14,6 +14,9 @@ export class SectionsComponent implements OnInit {
   displayedColumns: string[] = ['no', 'name', 'lider', 'expired', 'action'];
   dataSource;
   isLoadingResults = true;
+
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   constructor(
     private sectionHttp: SectionService,
@@ -30,6 +33,8 @@ export class SectionsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(respone);
       this.change.detectChanges();
       this.isLoadingResults = false;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -57,4 +62,8 @@ export class SectionsComponent implements OnInit {
     }
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

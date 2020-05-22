@@ -15,6 +15,11 @@ th, td {
   white-space: nowrap;
 }
 
+.table_container {
+  height: 400px;
+  overflow: auto;
+}
+
 .loading {
   position: absolute;
   top: 0;

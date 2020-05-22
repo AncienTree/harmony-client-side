@@ -1,22 +1,24 @@
-<h2>HR Dashboard</h2>
-<mat-grid-list cols="10" fxLayout="fxFill">
-  <!-- Kolumna z opcjami -->
-  <mat-grid-tile colspan="4" rowspan="1">
-    <div class="container">
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
-        <button class="nav-link" routerLink="/main/hr/lista">Lista grafików</button>
-        <button class="nav-link" routerLink="/main/hr/nowyGrafik">Utwórz harmonogram</button>
-        <button class="nav-link" routerLink="/main/hr/dodajDoGrafiku">Dodaj pracownika do harmonogramu</button>
+<div class="dashboard">
+  <h2>HR Dashboard</h2>
+  <mat-grid-list cols="10" fxLayout="fxFill">
+    <!-- Kolumna z opcjami -->
+    <mat-grid-tile colspan="4" rowspan="1">
+      <div class="container">
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
+          <button class="nav-link" routerLink="/main/hr/lista">Lista grafików</button>
+          <button class="nav-link" routerLink="/main/hr/nowyGrafik">Utwórz harmonogram</button>
+          <button class="nav-link" routerLink="/main/hr/dodajDoGrafiku">Dodaj pracownika do harmonogramu</button>
+        </div>
+        <div>
+          <button class="nav-link" routerLink="/main/hr/sekcje">Zarządzaj sekcjami</button>
+        </div>
+        <p>Ogólne statystyki, ilość urlopów / nieobecności, ilość za dany dzień / miesiąc / rok itp.</p>
       </div>
-      <div>
-        <button class="nav-link" routerLink="/main/hr/sekcje">Zarządzaj sekcjami</button>
-      </div>
-      <p>Ogólne statystyki, ilość urlopów / nieobecności, ilość za dany dzień / miesiąc / rok itp.</p>
-    </div>
-  </mat-grid-tile>
+    </mat-grid-tile>
 
-  <!-- Kolumna routing -->
-  <mat-grid-tile colspan="6" rowspan="1" class="route">
-    <router-outlet></router-outlet>
-  </mat-grid-tile>
-</mat-grid-list>
+    <!-- Kolumna routing -->
+    <mat-grid-tile colspan="6" rowspan="1" class="route">
+      <router-outlet></router-outlet>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

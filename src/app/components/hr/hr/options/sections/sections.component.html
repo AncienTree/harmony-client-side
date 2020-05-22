@@ -3,12 +3,17 @@
   <div class="loading" *ngIf="isLoadingResults">
     <mat-spinner></mat-spinner>
   </div>
-
-  <button mat-icon-button (click)="openDialog({}, 'new')" mat-flat-button color="primary"><mat-icon>add</mat-icon></button>
-
+  <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
+    <button mat-icon-button (click)="openDialog({}, 'new')" mat-flat-button color="primary"><mat-icon>add</mat-icon></button>
+    <!-- Filter -->
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)">
+    </mat-form-field>
+  </div>
   <!-- Tabela -->
-  <div>
-    <table mat-table [dataSource]="dataSource">
+  <div class="table_container">
+    <table mat-table [dataSource]="dataSource" matSort>
 
       <!-- No. Column -->
       <ng-container matColumnDef="no">
@@ -18,19 +23,19 @@
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</th>
         <td mat-cell *matCellDef="let data">{{data.name}}</td>
       </ng-container>
 
       <!-- Lider Column -->
       <ng-container matColumnDef="lider">
-        <th mat-header-cell *matHeaderCellDef>Lider</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Lider</th>
         <td mat-cell *matCellDef="let data">{{data.lider }}</td>
       </ng-container>
 
       <!-- Expired Column -->
       <ng-container matColumnDef="expired">
-        <th mat-header-cell *matHeaderCellDef>Data ważności</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data ważności</th>
         <td mat-cell *matCellDef="let data">{{data.expired | date}}</td>
       </ng-container>
 
@@ -43,7 +48,11 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [length]="100"
+              [pageSize]="25"
+              [pageSizeOptions]="[25, 50 ,100]">
+</mat-paginator>
   </div>
