@@ -21,6 +21,14 @@ export class SectionService extends HttpService<Section> {
     );
   }
 
+  public getAllExpired(): Observable<any> {
+    return this.http
+      .get<Section[]>(`${this.url}/setting/usersection/all`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
   public remove(id): Observable<any> {
     return this.http
       .delete(`${this.url}/setting/usersection/${id}`, { responseType: 'text' })

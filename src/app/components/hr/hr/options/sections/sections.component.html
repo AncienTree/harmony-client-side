@@ -10,6 +10,7 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)">
     </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="isChecked" (change)="refresh()">Tylko aktywne</mat-slide-toggle>
   </div>
   <!-- Tabela -->
   <div class="table_container">

@@ -14,6 +14,7 @@ export class SectionsComponent implements OnInit {
   displayedColumns: string[] = ['no', 'name', 'lider', 'expired', 'action'];
   dataSource;
   isLoadingResults = true;
+  isChecked = true;
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -28,14 +29,24 @@ export class SectionsComponent implements OnInit {
     this.refresh();
   }
 
-  private refresh() {
-    this.sectionHttp.showAll().subscribe(respone => {
-      this.dataSource = new MatTableDataSource(respone);
-      this.change.detectChanges();
-      this.isLoadingResults = false;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+  public refresh() {
+    if (this.isChecked) {
+      this.sectionHttp.showAll().subscribe(respone => {
+        this.dataSource = new MatTableDataSource(respone);
+        this.change.detectChanges();
+        this.isLoadingResults = false;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    } else {
+      this.sectionHttp.getAllExpired().subscribe(respone => {
+        this.dataSource = new MatTableDataSource(respone);
+        this.change.detectChanges();
+        this.isLoadingResults = false;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }
   }
 
   openDialog(section, type) {
