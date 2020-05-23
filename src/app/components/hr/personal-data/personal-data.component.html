@@ -26,27 +26,27 @@
         </ng-container>
 
         <!-- FullName Column -->
-        <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef mat-multi-sort-header="lastName">Nazwa</th>
-          <td mat-cell *matCellDef="let data">{{data.lastName}} {{data.firstName}}</td>
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef mat-multi-sort-header="fullName">Nazwa</th>
+          <td mat-cell *matCellDef="let data">{{data.fullName}}</td>
         </ng-container>
 
         <!-- Position Column -->
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef mat-multi-sort-header="position">Stanowisko</th>
-          <td mat-cell *matCellDef="let data">{{data.position | titlecase }}</td>
+          <td mat-cell *matCellDef="let data">{{data.position | titlecase}}</td>
         </ng-container>
 
         <!-- Section Column -->
         <ng-container matColumnDef="userSection">
           <th mat-header-cell *matHeaderCellDef>Sekcja</th>
-          <td mat-cell *matCellDef="let data">{{data.employeeDetails.userSection }}</td>
+          <td mat-cell *matCellDef="let data">{{data.userSection}}</td>
         </ng-container>
 
         <!-- Section Column -->
         <ng-container matColumnDef="userLine">
           <th mat-header-cell *matHeaderCellDef>Linia</th>
-          <td mat-cell *matCellDef="let data">{{data.employeeDetails.userLine }}</td>
+          <td mat-cell *matCellDef="let data">{{data.userLine}}</td>
         </ng-container>
 
         <!-- Work status Column -->
@@ -98,23 +98,41 @@
           <td mat-cell *matCellDef="let data">{{data.endContractDate | date}}</td>
         </ng-container>
 
-        <!-- workStatus Column -->
+        <!-- Crm Column -->
         <ng-container matColumnDef="crm">
           <th mat-header-cell *matHeaderCellDef>Konto CRM ważne do</th>
-          <td mat-cell *matCellDef="let data">{{data.employeeDetails.crmAccountExpirationDate | date}}</td>
+          <td mat-cell *matCellDef="let data">{{data.crmExpirationDate | date}}</td>
         </ng-container>
 
-        <!-- workStatus Column -->
+        <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef>Email</th>
           <td mat-cell *matCellDef="let data">{{data.email}}</td>
+        </ng-container>
+
+        <!-- fte Column -->
+        <ng-container matColumnDef="fte">
+          <th mat-header-cell *matHeaderCellDef>FTE</th>
+          <td mat-cell *matCellDef="let data">{{data.fte}}</td>
+        </ng-container>
+
+        <!-- city Column -->
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>Miasto zamieszkania</th>
+          <td mat-cell *matCellDef="let data">{{data.city}}</td>
+        </ng-container>
+
+        <!-- leave Column -->
+        <ng-container matColumnDef="leave">
+          <th mat-header-cell *matHeaderCellDef>Ilość urlopu</th>
+          <td mat-cell *matCellDef="let data">{{data.leave}}</td>
         </ng-container>
 
         <!-- ACtion Column -->
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Akcja</th>
           <td mat-cell *matCellDef="let data">
-            <a mat-mini-fab (click)="onSelect(data)" > <mat-icon>send</mat-icon> </a>
+            <button mat-icon-button (click)="onSelect(data)" color="primary"> <mat-icon>edit</mat-icon> </button>
           </td>
         </ng-container>
 

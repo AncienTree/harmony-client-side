@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 })
 export class PersonalDataComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  displayedColumns: string[] = ['no', 'lastName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'sex', 'birthday', 'contractType', 'startContractDate', 'endContractDate', 'crm', 'email', 'action'];
+  displayedColumns: string[] = ['no', 'fullName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'sex', 'birthday', 'contractType',
+   'startContractDate', 'endContractDate', 'crm', 'email', 'city', 'fte', 'leave', 'action'];
   dataSource;
   isLoadingResults = true;
   counter: Counter;
@@ -36,7 +37,7 @@ export class PersonalDataComponent implements OnInit {
   }
 
   private refresh() {
-    this.emplHttp.getEmployees().subscribe(result => {
+    this.emplHttp.getPersnoalDate().subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
 

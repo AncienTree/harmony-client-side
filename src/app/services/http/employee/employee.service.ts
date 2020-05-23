@@ -59,6 +59,14 @@ export class EmployeeService extends HttpService<Employee> {
       );
   }
 
+  public getPersnoalDate(): Observable<any> {
+    return this.http
+      .get(`${this.url}/employee/personal`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
   public getSimpleEmployeesByPosition(position): Observable<any> {
     return this.http.get<any>(`${this.url}/employee/position/${position}`)
       .pipe(
