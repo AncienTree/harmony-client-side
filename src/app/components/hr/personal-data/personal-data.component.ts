@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { EmployeeService } from 'src/app/services/http/employee/employee.service';
 import { MatMultiSort } from 'ngx-mat-multi-sort';
 import { Router } from '@angular/router';
-import { SectionService } from 'src/app/services/http/section.service';
+import { SectionService } from 'src/app/services/http/settings/section.service';
 import { Section } from 'src/app/model/section';
 
 @Component({

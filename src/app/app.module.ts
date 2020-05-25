@@ -28,6 +28,7 @@ import { SectionEditComponent } from './components/hr/hr/options/sections/sectio
 
 import localePl from '@angular/common/locales/pl';
 import { Status } from './utiles/status';
+import { LineEditComponent } from './components/hr/hr/options/lines/line-edit/line-edit.component';
 
 registerLocaleData(localePl);
 
@@ -41,7 +42,8 @@ registerLocaleData(localePl);
     ScheduleEditComponent,
     DialogEditComponent,
     EditDetailsComponent,
-    SectionEditComponent
+    SectionEditComponent,
+    LineEditComponent
   ],
   imports: [
     BrowserModule,

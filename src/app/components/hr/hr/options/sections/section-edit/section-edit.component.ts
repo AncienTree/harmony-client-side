@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/http/employee/employee.service';
-import { SectionService } from 'src/app/services/http/section.service';
+import { SectionService } from 'src/app/services/http/settings/section.service';
 
 @Component({
   templateUrl: './section-edit.component.html',
@@ -27,8 +27,6 @@ export class SectionEditComponent implements OnInit {
   });
 
   ngOnInit() {
-    console.log(this.data);
-
     this.employeeHttp.getSimpleEmployeesByPosition('kierownik').subscribe(data => {
       this.liders = data;
     });
@@ -52,7 +50,7 @@ export class SectionEditComponent implements OnInit {
         response => {
           this.snackBarRef.open(response, 'close', {
             panelClass: ['green-snackbar']
-          })
+          });
         },
           err => {
             // tslint:disable-next-line: max-line-length

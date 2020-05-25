@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Section } from 'src/app/model/section';
-import { HttpService } from './http.service';
+import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 import { SectionSerializer } from 'src/app/model/Serializer/section-serializer';
 import { environment } from 'src/environments/environment';

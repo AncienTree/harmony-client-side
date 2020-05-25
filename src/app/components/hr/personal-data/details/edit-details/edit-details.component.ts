@@ -6,7 +6,7 @@ import { EmployeeService } from './../../../../../services/http/employee/employe
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import { SectionService } from 'src/app/services/http/section.service';
+import { SectionService } from 'src/app/services/http/settings/section.service';
 import { Section } from 'src/app/model/section';
 
 @Component({

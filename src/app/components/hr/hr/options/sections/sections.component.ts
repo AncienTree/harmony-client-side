@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { SectionService } from 'src/app/services/http/section.service';
+import { SectionService } from 'src/app/services/http/settings/section.service';
 import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { SectionEditComponent } from './section-edit/section-edit.component';
 import { Section } from 'src/app/model/section';
