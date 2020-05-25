@@ -83,11 +83,10 @@ export class DetailsComponent implements OnInit {
 
   leave() {
     const norm = this.employeeLeave.normal;
-    const uz = this.employeeLeave.uz;
     const past = this.employeeLeave.pastYears;
     const addi = this.employeeLeave.additional;
 
-    return norm + uz + past + addi;
+    return norm  + past + addi;
   }
 
   openDialog(dataEmployeeType, formType) {

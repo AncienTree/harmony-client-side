@@ -1,0 +1,12 @@
+<div>
+  <h2>Edytuj umowę</h2>
+  <form [formGroup]="form" class="form_style" (ngSubmit)="submit()">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Nazwa linii" formControlName="name">
+      </mat-form-field>
+    </div>
+    <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit"
+      [disabled]="!form.valid">Wykonaj</button>
+  </form>
+</div>

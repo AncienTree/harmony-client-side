@@ -1,3 +1,4 @@
+import { ContractService } from './../../../services/http/settings/contract.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/http/employee/employee.service';
@@ -31,19 +32,20 @@ export const MY_FORMATS = {
 })
 export class HireComponent implements OnInit {
 
-  constructor(
-    private empl: EmployeeService,
-    private fb: FormBuilder,
-    private snackBarRef: MatSnackBar,
-  ) { }
-
   @ViewChild('stepper', { static: false }) stepper;
-
   isStepTwoCompleted = false;
   isLoading = true;
   checkDB = false;
   tempPesel: string;
+  contracts: [];
   startdate = moment();
+
+  constructor(
+    private empl: EmployeeService,
+    private ContractHtpp: ContractService,
+    private fb: FormBuilder,
+    private snackBarRef: MatSnackBar,
+  ) { }
 
   // Formatki
   hireForm = this.fb.group({
@@ -66,6 +68,9 @@ export class HireComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ContractHtpp.getAll().subscribe(result => {
+      this.contracts = result;
+    });
   }
 
   checkPesel() {

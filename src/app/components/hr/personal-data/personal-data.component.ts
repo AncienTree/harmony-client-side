@@ -13,8 +13,8 @@ import { Section } from 'src/app/model/section';
 })
 export class PersonalDataComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  displayedColumns: string[] = ['no', 'fullName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'sex', 'birthday', 'contractType',
-    'startContractDate', 'endContractDate', 'crm', 'email', 'city', 'fte', 'leave', 'action'];
+  displayedColumns: string[] = ['no', 'fullName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'contractType',
+    'startContractDate', 'endContractDate', 'crm', 'email', 'leave', 'action'];
   dataSource;
   isLoadingResults = true;
   counter: Counter;

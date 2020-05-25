@@ -1,3 +1,4 @@
+import { ContractEditComponent } from './components/hr/hr/options/contracts/contract-edit/contract-edit.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -43,7 +44,8 @@ registerLocaleData(localePl);
     DialogEditComponent,
     EditDetailsComponent,
     SectionEditComponent,
-    LineEditComponent
+    LineEditComponent,
+    ContractEditComponent
   ],
   imports: [
     BrowserModule,

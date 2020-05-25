@@ -1,3 +1,5 @@
+import { ContractService } from './../../../../../services/http/settings/contract.service';
+import { LineService } from './../../../../../services/http/settings/line.service';
 import { EmployeeLeaveService } from './../../../../../services/http/employee/employee-leave.service';
 import { EmployeeDetailsService } from './../../../../../services/http/employee/employee-details.service';
 import { EmployeeContactService } from './../../../../../services/http/employee/employee-contact.service';
@@ -17,12 +19,16 @@ import { Section } from 'src/app/model/section';
 export class EditDetailsComponent implements OnInit {
 
   sections: Section[];
+  lines: [];
+  contracts: [];
   formatka;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder,
     private sectionHttp: SectionService,
+    private lineHttp: LineService,
+    private contractHttp: ContractService,
     private employeeHttp: EmployeeService,
     private employeeInfoHttp: EmployeeInfoService,
     private employeeContactHttp: EmployeeContactService,
@@ -96,7 +102,7 @@ export class EditDetailsComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.getSections();
+    this.getOtherSelectors();
     // Init forms
     switch (this.data.formatka) {
       case 'employee':
@@ -258,9 +264,15 @@ export class EditDetailsComponent implements OnInit {
     });
   }
 
-  private getSections() {
-    this.sectionHttp.showAll().subscribe( result => {
+  private getOtherSelectors() {
+    this.sectionHttp.showAll().subscribe(result => {
       this.sections = result;
+    });
+    this.lineHttp.getAll().subscribe(result => {
+      this.lines = result;
+    });
+    this.contractHttp.getAll().subscribe(result => {
+      this.contracts = result;
     });
   }
 }
