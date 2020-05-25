@@ -1,9 +1,10 @@
 import { Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material';
 import { EmployeeService } from 'src/app/services/http/employee/employee.service';
 import { MatMultiSort } from 'ngx-mat-multi-sort';
 import { Router } from '@angular/router';
+import { SectionService } from 'src/app/services/http/section.service';
+import { Section } from 'src/app/model/section';
 
 @Component({
   selector: 'app-personal-data',
@@ -13,16 +14,18 @@ import { Router } from '@angular/router';
 export class PersonalDataComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
   displayedColumns: string[] = ['no', 'fullName', 'position', 'userSection', 'userLine', 'lider', 'workStatus', 'sex', 'birthday', 'contractType',
-   'startContractDate', 'endContractDate', 'crm', 'email', 'city', 'fte', 'leave', 'action'];
+    'startContractDate', 'endContractDate', 'crm', 'email', 'city', 'fte', 'leave', 'action'];
   dataSource;
   isLoadingResults = true;
   counter: Counter;
+  sections: Section[];
 
   // @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatMultiSort, { static: false }) sort: MatMultiSort;
 
   constructor(
     private emplHttp: EmployeeService,
+    private sectionHttp: SectionService,
     private change: ChangeDetectorRef,
     private router: Router
   ) {
@@ -33,10 +36,10 @@ export class PersonalDataComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
-
   }
 
   private refresh() {
+    this.getSection();
     this.emplHttp.getPersnoalDate().subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
@@ -46,8 +49,24 @@ export class PersonalDataComponent implements OnInit {
     });
   }
 
+  private getSection() {
+    this.sectionHttp.getAllExpired().subscribe(result => {
+      this.sections = result;
+    });
+  }
+
   public onSelect(user) {
     this.router.navigate(['/main/hr/dane/', user.id]);
+  }
+
+  public searchLider(name: string) {
+    const section = this.sections.find(x => x.name === name);
+
+    if (typeof(section) !== 'undefined') {
+      return section.lider;
+    } else {
+      return 'error';
+    }
   }
 }
 

@@ -12,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeContact } from 'src/app/model/employee-contact';
 import { MatDialog } from '@angular/material';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
+import { SectionService } from 'src/app/services/http/section.service';
+import { Section } from 'src/app/model/section';
 
 @Component({
   selector: 'app-details',
@@ -29,6 +31,7 @@ export class DetailsComponent implements OnInit {
     private employeeContactHttp: EmployeeContactService,
     private employeeDeatilsHttp: EmployeeDetailsService,
     private employeeLeaveHttp: EmployeeLeaveService,
+    private sectionHttp: SectionService
   ) { }
 
   employeeId;
@@ -38,6 +41,7 @@ export class DetailsComponent implements OnInit {
   employeeInfo: EmployeeInfo;
   employeeLeave: EmployeeLeave;
   employeeContact: EmployeeContact;
+  sections: Section[];
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -48,6 +52,7 @@ export class DetailsComponent implements OnInit {
   }
 
   refresh() {
+    this.getSection();
     this.employeeHttp.getEmployee(this.employeeId).subscribe(result => {
       this.employee = result;
       this.isLoadingResults = false;
@@ -63,6 +68,12 @@ export class DetailsComponent implements OnInit {
     });
     this.employeeLeaveHttp.getLeave(this.employeeId).subscribe(result => {
       this.employeeLeave = result;
+    });
+  }
+
+  private getSection() {
+    this.sectionHttp.getAllExpired().subscribe(result => {
+      this.sections = result;
     });
   }
 
@@ -112,4 +123,13 @@ export class DetailsComponent implements OnInit {
     this.openDialog(this.employeeLeave, 'employeeLeave');
   }
 
+  public searchLider(name: string) {
+    const section = this.sections.find(x => x.name === name);
+
+    if (typeof(section) !== 'undefined') {
+      return section.lider;
+    } else {
+      return 'error';
+    }
+  }
 }

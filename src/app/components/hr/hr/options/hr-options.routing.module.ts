@@ -4,7 +4,11 @@ import {
   ScheduleListComponent,
   CreateScheduleComponent,
   AddUsersScheduleComponent,
-  SectionsComponent
+  SectionsComponent,
+  LinesComponent,
+  ContractsComponent,
+  DayoffComponent,
+  MonthHoursComponent
  } from './index';
 
 const hrOptionsRouting: Routes = [
@@ -12,6 +16,10 @@ const hrOptionsRouting: Routes = [
   { path: 'nowyGrafik', component: CreateScheduleComponent },
   { path: 'dodajDoGrafiku', component: AddUsersScheduleComponent },
   { path: 'sekcje', component: SectionsComponent },
+  { path: 'linie', component: LinesComponent },
+  { path: 'umowy', component: ContractsComponent },
+  { path: 'wolne', component: DayoffComponent },
+  { path: 'rbh', component: MonthHoursComponent },
 ];
 
 @NgModule({
