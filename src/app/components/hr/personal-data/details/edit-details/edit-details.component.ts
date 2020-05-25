@@ -6,6 +6,8 @@ import { EmployeeService } from './../../../../../services/http/employee/employe
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { SectionService } from 'src/app/services/http/section.service';
+import { Section } from 'src/app/model/section';
 
 @Component({
   selector: 'app-edit-details',
@@ -14,11 +16,13 @@ import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 })
 export class EditDetailsComponent implements OnInit {
 
+  sections: Section[];
   formatka;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder,
+    private sectionHttp: SectionService,
     private employeeHttp: EmployeeService,
     private employeeInfoHttp: EmployeeInfoService,
     private employeeContactHttp: EmployeeContactService,
@@ -92,6 +96,7 @@ export class EditDetailsComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.getSections();
     // Init forms
     switch (this.data.formatka) {
       case 'employee':
@@ -250,6 +255,12 @@ export class EditDetailsComponent implements OnInit {
       this.snackBarRef.open(response, 'close', {
         panelClass: ['green-snackbar']
       });
+    });
+  }
+
+  private getSections() {
+    this.sectionHttp.showAll().subscribe( result => {
+      this.sections = result;
     });
   }
 }
