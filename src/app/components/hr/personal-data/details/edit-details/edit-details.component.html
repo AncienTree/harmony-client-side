@@ -42,6 +42,11 @@
             <input matInput placeholder="Stawka" formControlName="unit">
           </mat-form-field>
         </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Etat" formControlName="etat" type="number">
+          </mat-form-field>
+        </div>
         <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit" [disabled]="!employeeForm.valid">Edytuj</button>
       </form>
     </div>

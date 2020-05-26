@@ -14,10 +14,6 @@
     <div class="loading" *ngIf="isLoadingResults">
       <mat-spinner></mat-spinner>
     </div>
-
-    ETET / pracuje do i od login_lt, <br>
-    Wywyalić: płeć, data urodzenia, fte, miasto
-
     <!-- Tabela -->
     <div class="example-table-container">
       <table mat-table [dataSource]="dataSource" matMultiSort atSortActive="lastName" matSortDirection="asc">
@@ -38,6 +34,12 @@
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef mat-multi-sort-header="position">Stanowisko</th>
           <td mat-cell *matCellDef="let data">{{data.position | titlecase}}</td>
+        </ng-container>
+
+        <!-- ltLogin Column -->
+        <ng-container matColumnDef="ltLogin">
+          <th mat-header-cell *matHeaderCellDef mat-multi-sort-header="ltLogin">Login LT</th>
+          <td mat-cell *matCellDef="let data">{{data.ltLogin}}</td>
         </ng-container>
 
         <!-- Section Column -->
@@ -64,29 +66,16 @@
           <td mat-cell *matCellDef="let data">{{searchLider(data.userSection)}}</td>
         </ng-container>
 
-        <!-- Sex Column -->
-        <ng-container matColumnDef="sex">
-          <th mat-header-cell *matHeaderCellDef mat-multi-sort-header="sex">Płeć</th>
-          <td mat-cell *matCellDef="let data">
-            <ng-container *ngIf="data.sex === 'k'; else elseTemplate">
-              Kobieta
-            </ng-container>
-            <ng-template #elseTemplate>
-              Mężczyzna
-            </ng-template>
-          </td>
-        </ng-container>
-
-        <!-- Birthday Column -->
-        <ng-container matColumnDef="birthday">
-          <th mat-header-cell *matHeaderCellDef>Data urodzenia</th>
-          <td mat-cell *matCellDef="let data">{{data.birthday | date}}</td>
-        </ng-container>
-
         <!-- Contract Column -->
         <ng-container matColumnDef="contractType">
           <th mat-header-cell *matHeaderCellDef>Umowa</th>
           <td mat-cell *matCellDef="let data">{{data.contractType}}</td>
+        </ng-container>
+
+        <!-- Contract Column -->
+        <ng-container matColumnDef="etat">
+          <th mat-header-cell *matHeaderCellDef>Etat</th>
+          <td mat-cell *matCellDef="let data">{{data.etat | number}}</td>
         </ng-container>
 
         <!-- Start Column -->
@@ -95,10 +84,22 @@
           <td mat-cell *matCellDef="let data">{{data.startContractDate | date}}</td>
         </ng-container>
 
+        <!-- Start Column -->
+        <ng-container matColumnDef="startWorkDate">
+          <th mat-header-cell *matHeaderCellDef>Pracuje od</th>
+          <td mat-cell *matCellDef="let data">{{data.startWorkDate | date}}</td>
+        </ng-container>
+
         <!-- End Column -->
         <ng-container matColumnDef="endContractDate">
           <th mat-header-cell *matHeaderCellDef>Umowa do</th>
           <td mat-cell *matCellDef="let data">{{data.endContractDate | date}}</td>
+        </ng-container>
+
+        <!-- End Column -->
+        <ng-container matColumnDef="endWorkDate">
+          <th mat-header-cell *matHeaderCellDef>Pracuje do</th>
+          <td mat-cell *matCellDef="let data">{{data.endWorkDate | date}}</td>
         </ng-container>
 
         <!-- Crm Column -->
@@ -113,18 +114,6 @@
           <td mat-cell *matCellDef="let data">{{data.email}}</td>
         </ng-container>
 
-        <!-- fte Column -->
-        <ng-container matColumnDef="fte">
-          <th mat-header-cell *matHeaderCellDef>FTE</th>
-          <td mat-cell *matCellDef="let data">{{data.fte}}</td>
-        </ng-container>
-
-        <!-- city Column -->
-        <ng-container matColumnDef="city">
-          <th mat-header-cell *matHeaderCellDef>Miasto zamieszkania</th>
-          <td mat-cell *matCellDef="let data">{{data.city}}</td>
-        </ng-container>
-
         <!-- leave Column -->
         <ng-container matColumnDef="leave">
           <th mat-header-cell *matHeaderCellDef>Ilość urlopu</th>
@@ -135,7 +124,9 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Akcja</th>
           <td mat-cell *matCellDef="let data">
-            <button mat-icon-button (click)="onSelect(data)" color="primary"> <mat-icon>edit</mat-icon> </button>
+            <button mat-icon-button (click)="onSelect(data)" color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
           </td>
         </ng-container>
 

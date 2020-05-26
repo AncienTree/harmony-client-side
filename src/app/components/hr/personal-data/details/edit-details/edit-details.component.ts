@@ -44,6 +44,7 @@ export class EditDetailsComponent implements OnInit {
   employeeForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     position: ['', Validators.required],
+    etat: ['', Validators.required],
     contractPosition: ['', Validators.required],
     contractType: ['', Validators.required],
     basicUnit: ['', Validators.required],
@@ -112,6 +113,7 @@ export class EditDetailsComponent implements OnInit {
         this.employeeForm.get('contractType').setValue(this.data.employee.contractType);
         this.employeeForm.get('basicUnit').setValue(this.data.employee.basicUnit);
         this.employeeForm.get('unit').setValue(this.data.employee.unit);
+        this.employeeForm.get('etat').setValue(this.data.employee.etat);
         break;
 
       case 'employeeDetails':
@@ -173,7 +175,8 @@ export class EditDetailsComponent implements OnInit {
       contractPosition: this.employeeForm.get('contractPosition').value,
       contractType: this.employeeForm.get('contractType').value,
       basicUnit: this.employeeForm.get('basicUnit').value,
-      unit: this.employeeForm.get('unit').value
+      unit: this.employeeForm.get('unit').value,
+      etat: this.employeeForm.get('etat').value
     };
 
     this.employeeHttp.update(employee).subscribe(response => {

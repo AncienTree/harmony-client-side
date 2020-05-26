@@ -8,6 +8,7 @@ export class Employee extends Resource {
   sex: string;
   birthday: Date;
   email: string;
+  etat: string;
   position: string;
   contractPosition: string;
   workStatus: string;

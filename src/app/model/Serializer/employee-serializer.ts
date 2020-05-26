@@ -11,6 +11,7 @@ export class EmployeeSerializer implements Serializer {
     employee.sex = json.sex;
     employee.birthday = json.birthday;
     employee.email = json.email;
+    employee.etat = json.etat;
     employee.position = json.position;
     employee.contractPosition = json.contractPosition;
     employee.workStatus = json.workStatus;
@@ -34,6 +35,7 @@ export class EmployeeSerializer implements Serializer {
       sex: employee.sex,
       birthday: employee.birthday,
       email: employee.email,
+      etat: employee.etat,
       position: employee.position,
       contractPosition: employee.contractPosition,
       workStatus: employee.workStatus,
