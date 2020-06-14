@@ -1,8 +1,3 @@
-.container {
-  margin-left: 50px;
-  width: 100%;
-  min-height: 200px;
-}
 
 table {
   width: 100%;
@@ -20,21 +15,7 @@ th, td {
   overflow: auto;
 }
 
-.loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 56px;
-  right: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 // Table Columns
-
 .mat-column-no {
   flex: 0 0 10% !important;
   width: 10% !important;
