@@ -25,7 +25,7 @@ export class LoginComponent {
   public authJWT() {
     this.cookie.removeAll();
 
-    this.auth.login(this.login, this.password)
+    this.auth.login(this.login.toLocaleLowerCase(), this.password)
       .subscribe(
         data => {
           this.cookie.put('authenticaterUser', this.login),

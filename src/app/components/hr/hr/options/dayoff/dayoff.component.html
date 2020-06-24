@@ -1,3 +1,20 @@
 <div class="hr_container">
-  <p>dayoff works!</p>
+  Pokaż dni wolne
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
+    <button (click)="switchCase('year')">W roku</button>
+    <button (click)="switchCase('month')">W miesiącu</button>
+  </div>
+  <ng-container [ngSwitch]="case">
+
+    <!-- Widok dla całego roku -->
+    <div *ngSwitchCase="'year'">
+
+    </div>
+
+    <!-- Widok dla jednego miesiąca -->
+    <div *ngSwitchCase="'month'">
+
+    </div>
+  </ng-container>
+
 </div>

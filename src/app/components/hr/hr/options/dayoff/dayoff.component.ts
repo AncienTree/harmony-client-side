@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DayoffComponent implements OnInit {
 
+  case;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  switchCase(arg) {
+    this.case = arg;
+  }
 }
