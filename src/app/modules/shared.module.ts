@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ActiveBooleanPipe } from '../pipe/active-boolean.pipe';
 import { RolesPipe } from '../pipe/roles.pipe';
 import { StatusPipe } from '../pipe/status.pipe';
+import { PrimengModule } from './primeng.module';
 
 
 
@@ -27,6 +28,7 @@ import { StatusPipe } from '../pipe/status.pipe';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    PrimengModule,
     FlexLayoutModule,
     ActiveBooleanPipe,
     RolesPipe,

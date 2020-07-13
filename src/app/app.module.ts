@@ -15,6 +15,7 @@ import { HrModule } from './components/hr/hr.module';
 import { EmplModule } from './components/employee/empl.module';
 import { AdminModule } from './components/admin/admin.module';
 import { SharedModule } from './modules/shared.module';
+import { PrimengModule } from './modules/primeng.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { NotFoundModule } from './components/not-found/not-found.module';
 import { HttpInterceptService } from './services/http/http-intercept.service';
@@ -61,6 +62,7 @@ registerLocaleData(localePl);
     NotFoundModule,
     HttpClientModule,
     SharedModule,
+    PrimengModule,
     MatSortModule,
   ],
   providers: [

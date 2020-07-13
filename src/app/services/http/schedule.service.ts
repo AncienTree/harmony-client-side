@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
 import { Schedule } from 'src/app/model/schedule';
+import { Employee } from 'src/app/model/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -76,4 +77,22 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
         catchError(super.errorHandl)
       );
   }
+
+  // Pobieranie listy pracowników nie przypisanych do harmonogamu o podanej dacie
+  public getEmployeeWithoutSchedule(date): Observable<any> {
+    return this.http
+      .get<Employee[]>(`${this.url}/schedule/employee/${date}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+    // Przypisanie pracowników do harmonogamu o podanej dacie
+    public addUsersToSchedule(date, ids: number[]): Observable<any> {
+      return this.http
+        .post(`${this.url}/schedule/employee/${date}`, ids, {responseType: 'text'})
+        .pipe(
+          catchError(super.errorHandl)
+        );
+    }
 }

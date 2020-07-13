@@ -1,3 +1,30 @@
 <div class="hr_container">
-  <p>add-users-schedule works!</p>
+  <h3>Dodaj pracownika do istniejącego harmonogramu</h3>
+  <mat-form-field>
+    <mat-label>Miesiąc</mat-label>
+    <mat-select [(ngModel)]="scheduleValue" (selectionChange)="changeSchedule($event.value)">
+      <mat-option *ngFor="let schedule of scheduleList" [value]="schedule">
+        {{schedule.scheduleDate | date:'LLLL yyyy'}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-flat-button [disabled]="disableButton"
+      matTooltip="Wybierz grafik z listy" color="primary" (click)="loadList()">Wczytaj
+  </button>
+
+  <div class="loading" *ngIf="isLoadingResults">
+    <mat-spinner></mat-spinner>
+  </div>
+  <!-- PickList pracownicy -->
+  <div *ngIf="!diasblePickList">
+    <p-pickList [source]="sourceEmployee" [target]="targetEmployee" sourceHeader="Pracownicy dostępni"
+      targetHeader="Pracownicy do dodania">
+      <ng-template let-employee pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <div style="font-size:12px;float:left;margin:10px 5px 0 0">{{employee.firstName}} {{employee.lastName}}</div>
+        </div>
+      </ng-template>
+    </p-pickList>
+    <button mat-flat-button color="primary" [disabled]="targetEmployee && targetEmployee.length === 0" (click)="submit()">Dodaj</button>
+  </div>
 </div>
