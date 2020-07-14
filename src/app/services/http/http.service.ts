@@ -20,8 +20,8 @@ export class HttpService<T extends Resource> {
 
   // POST methode
   public create(item: T): Observable<T> {
-    return this.httpClient.post<T>(`${this.url}/${this.endpoint}/`,
-      this.serializer.toJson(item))
+    return this.httpClient.post(`${this.url}/${this.endpoint}/`,
+      this.serializer.toJson(item), { responseType: 'text'})
       .pipe(
         map(data => this.serializer.fromJson(data) as T),
         catchError(this.errorHandl)
@@ -49,8 +49,8 @@ export class HttpService<T extends Resource> {
 
   // PUT methode
   public update(item: T): Observable<T> {
-    return this.httpClient.put<T>(`${this.url}/${this.endpoint}/${item.id}`,
-      this.serializer.toJson(item))
+    return this.httpClient.put(`${this.url}/${this.endpoint}/${item.id}`,
+      this.serializer.toJson(item), { responseType: 'text'})
       .pipe(
         map((data) => this.serializer.fromJson(data) as T),
         catchError(this.errorHandl)
@@ -60,7 +60,7 @@ export class HttpService<T extends Resource> {
   // DELETE methode
   public delete(id: number) {
     return this.httpClient
-      .delete(`${this.url}/${this.endpoint}/${id}`)
+      .delete(`${this.url}/${this.endpoint}/${id}`, { responseType: 'text'})
       .pipe(
         catchError(this.errorHandl)
       );
