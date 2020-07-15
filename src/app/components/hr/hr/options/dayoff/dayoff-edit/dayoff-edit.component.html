@@ -1,0 +1,17 @@
+<div>
+  <h2>Edytuj linię</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Data" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Opis dnia" formControlName="info">
+      </mat-form-field>
+    </div>
+    <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit"
+      [disabled]="!form.valid">Wykonaj</button>
+  </form>
+</div>

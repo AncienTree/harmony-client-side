@@ -31,6 +31,7 @@ import { SectionEditComponent } from './components/hr/hr/options/sections/sectio
 import localePl from '@angular/common/locales/pl';
 import { Status } from './utiles/status';
 import { LineEditComponent } from './components/hr/hr/options/lines/line-edit/line-edit.component';
+import { DayoffEditComponent } from './components/hr/hr/options/dayoff/dayoff-edit/dayoff-edit.component';
 
 registerLocaleData(localePl);
 
@@ -46,6 +47,7 @@ registerLocaleData(localePl);
     EditDetailsComponent,
     SectionEditComponent,
     LineEditComponent,
+    DayoffEditComponent,
     ContractEditComponent
   ],
   imports: [

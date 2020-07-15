@@ -15,6 +15,7 @@ import { HrRoutingModule } from './hr.routing.module';
 import { SectionEditComponent } from './hr/options/sections/section-edit/section-edit.component';
 import { LineEditComponent } from './hr/options/lines/line-edit/line-edit.component';
 import { ContractEditComponent } from './hr/options/contracts/contract-edit/contract-edit.component';
+import { DayoffEditComponent } from './hr/options/dayoff/dayoff-edit/dayoff-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ContractEditComponent } from './hr/options/contracts/contract-edit/cont
     EditDetailsComponent,
     SectionEditComponent,
     LineEditComponent,
+    DayoffEditComponent,
     ContractEditComponent
   ],
   imports: [
