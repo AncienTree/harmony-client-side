@@ -11,6 +11,8 @@ export class RolesPipe implements PipeTransform {
     } else if (value === 'ROLE_SPEC') {
       return 'Specjalista';
     } else if (value === 	'ROLE_MANAGER') {
+      return 'Lider';
+    } else if (value === 	'ROLE_SENIOR') {
       return 'Kierownik';
     } else if (value === 'ROLE_HR') {
       return 'HR';

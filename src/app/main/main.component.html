@@ -16,7 +16,7 @@
       </mat-list>
 
       <!-- Menu dla kierownika -->
-      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR' || userRole == 'ROLE_SPEC' || userRole == 'ROLE_MANAGER'">
+      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR' || userRole == 'ROLE_SPEC' || userRole == 'ROLE_MANAGER' || userRole == 'ROLE_SENIOR'">
         <!-- NgIf dla roli -->
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleManager()">Kierownik</a>
@@ -30,7 +30,7 @@
       </div>
 
       <!-- Menu dla działu HR -->
-      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR'">
+      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR' || userRole == 'ROLE_SENIOR'">
         <!-- NgIf dla roli -->
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleHR()">HR</a>
@@ -44,7 +44,7 @@
       </div>
 
       <!-- Menu dla raportów -->
-      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR'">
+      <div *ngIf="userRole == 'ROLE_ADMIN' || userRole == 'ROLE_HR' || userRole == 'ROLE_SENIOR'">
         <!-- NgIf dla roli -->
         <mat-divider></mat-divider>
         <a mat-list-item (click)="toggleRaports()">Raporty</a>
