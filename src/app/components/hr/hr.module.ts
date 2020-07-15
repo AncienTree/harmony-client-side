@@ -16,6 +16,7 @@ import { SectionEditComponent } from './hr/options/sections/section-edit/section
 import { LineEditComponent } from './hr/options/lines/line-edit/line-edit.component';
 import { ContractEditComponent } from './hr/options/contracts/contract-edit/contract-edit.component';
 import { DayoffEditComponent } from './hr/options/dayoff/dayoff-edit/dayoff-edit.component';
+import { MonthHoursEditComponent } from './hr/options/month-hours/month-hours-edit/month-hours-edit.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DayoffEditComponent } from './hr/options/dayoff/dayoff-edit/dayoff-edit
     SectionEditComponent,
     LineEditComponent,
     DayoffEditComponent,
-    ContractEditComponent
+    ContractEditComponent,
+    MonthHoursEditComponent
   ],
   imports: [
     SharedModule,
