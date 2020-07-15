@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+th, td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+  white-space: nowrap;
+}
+
+.table_container {
+  height: 400px;
+  overflow: auto;
+}
