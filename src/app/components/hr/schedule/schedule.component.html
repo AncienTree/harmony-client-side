@@ -18,6 +18,16 @@
   </mat-form-field>
 
   <button mat-button (click)="refresh(lista.value)">Załaduj</button>
+  <span *ngIf="hidden">Roboczogodziny:
+    <ng-container *ngIf="selectedSchedule.rbh === 0; then thenTemplate; else elseTemplate"></ng-container>
+    <ng-template #thenTemplate >
+      <b><span style="color: red;">Brak rbh!</span></b>
+    </ng-template>
+    <ng-template #elseTemplate>
+      {{selectedSchedule.rbh}}
+    </ng-template>
+
+  </span>
 </p>
 
 <div class="table-container mat-elevation-z8" *ngIf="hidden">

@@ -9,6 +9,8 @@ export class ScheduleSerializer implements Serializer {
     schedule.scheduleDate = json.scheduleDate;
     schedule.active = json.active;
     schedule.visible = json.visible;
+    schedule.dayOff = json.dayOff;
+    schedule.rbh = json.rbh;
     return schedule;
   }
 
@@ -17,7 +19,9 @@ export class ScheduleSerializer implements Serializer {
       id: schedule.id,
       scheduleDate: schedule.scheduleDate,
       active: schedule.active,
-      visible: schedule.visible
+      visible: schedule.visible,
+      dayOff: schedule.dayOff,
+      rbh: schedule.rbh
     };
   }
 }

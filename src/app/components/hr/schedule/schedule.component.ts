@@ -6,6 +6,7 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import * as moment from 'moment';
 import { ScheduleSummary } from 'src/app/model/schedule-summary';
 import { Status } from 'src/app/utiles/status';
+import { Schedule } from 'src/app/model/schedule';
 
 @Component({
   selector: 'app-schedule',
@@ -22,6 +23,7 @@ export class ScheduleComponent implements OnInit {
   selectedDate;
   dataSource;
   scheduleList;
+  selectedSchedule: Schedule;
   scheduleStatus = [];
   selectedStatus = 'OBEC';
 
@@ -52,6 +54,7 @@ export class ScheduleComponent implements OnInit {
       }
       this.selectedDate = date;
       this.hidden = true;
+      this.selectedSchedule = this.scheduleList.find(x => x.scheduleDate === date);
 
       // Pobieranie danych z serwera
       this.scheduleHttp.getScheduleSummaryByMonthAndStatus(date, this.selectedStatus)
