@@ -38,16 +38,15 @@ export class MonthHoursComponent implements OnInit {
   }
 
   load() {
-    console.log(this.form.get('year').value);
-
-
+    const specificYear = this.data.find(x => x.year === this.form.get('year').value);
+    this.hours = specificYear;
   }
 
-  openDialog(day, type) {
+  openDialog(hours, type) {
     const dialogRef = this.dialog.open(MonthHoursEditComponent, {
-      width: '250px',
+      width: '400px',
       data: {
-        day,
+        hours,
         type
       }
     });
@@ -56,6 +55,11 @@ export class MonthHoursComponent implements OnInit {
         this.refresh();
       }, 1500);
     });
+  }
+
+  countRbh() {
+    return this.hours.january + this.hours.february + this.hours.march + this.hours.april + this.hours.may + this.hours.june +
+    this.hours.july + this.hours.august  + this.hours.september  + this.hours.october + this.hours.november + this.hours.december;
   }
 
 }

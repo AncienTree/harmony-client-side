@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+  white-space: nowrap;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table_container {
+  height: 400px;
+  overflow: auto;
+}
+

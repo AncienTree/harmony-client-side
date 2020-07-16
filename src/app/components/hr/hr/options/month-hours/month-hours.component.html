@@ -6,47 +6,90 @@
       <mat-form-field>
         <mat-label>Wybierz rok</mat-label>
         <mat-select formControlName="year">
-          <mat-option *ngFor="let year of data" [value] = "year.year">
+          <mat-option *ngFor="let year of data" [value]="year.year">
             {{year.year}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </form>
-    <button (click)="load()" mat-flat-button color="primary">Wczytaj</button>
+    <div>
+      <button (click)="load()" mat-flat-button color="primary">Wczytaj</button>
+      <button mat-icon-button (click)="openDialog({}, 'new')" mat-flat-button color="primary" style="margin-left:30px;">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openDialog(hours, 'update')" mat-flat-button color="primary" style="margin-left:30px;" *ngIf="hours">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+
   </div>
+
   <div *ngIf="hours">
-     <!-- Tabela -->
+    <div>
+      <p>Liczba roboczogodzin do przepracownia wynosi: <b>{{countRbh()}}</b></p>
+    </div>
+    <!-- Tabela -->
     <div class="table_container">
-      <table>
-        <tr>
-          <th>Styczeń</th>
-          <th>Luty</th>
-          <th>Marzec</th>
-          <th>Kwiecień</th>
-          <th>Maj</th>
-          <th>Czerwiec</th>
-          <th>Lipiec</th>
-          <th>Sierpień</th>
-          <th>Wrzesień</th>
-          <th>Październik</th>
-          <th>Listopad</th>
-          <th>Grudzień</th>
-        </tr>
-        <tr>
-          <td>{{hours.january}}</td>
-          <td>{{hours.february}}</td>
-          <td>{{hours.march}}</td>
-          <td>{{hours.april}}</td>
-          <td>{{hours.may}}</td>
-          <td>{{hours.june}}</td>
-          <td>{{hours.july}}</td>
-          <td>{{hours.august}}</td>
-          <td>{{hours.september}}</td>
-          <td>{{hours.october}}</td>
-          <td>{{hours.november}}</td>
-          <td>{{hours.december}}</td>
-        </tr>
-      </table>
+      <mat-grid-list cols="2">
+        <!-- Kolumna 1 -->
+        <mat-grid-tile [rowspan]="4">
+          <table>
+            <tr>
+              <th>Styczeń</th>
+            </tr>
+            <td>{{hours.january}}</td>
+            <tr>
+              <th>Luty</th>
+            </tr>
+            <td>{{hours.february}}</td>
+            <tr>
+              <th>Marzec</th>
+            </tr>
+            <td>{{hours.march}}</td>
+            <tr>
+              <th>Kwiecień</th>
+            </tr>
+            <td>{{hours.april}}</td>
+            <tr>
+              <th>Maj</th>
+            </tr>
+            <td>{{hours.may}}</td>
+            <tr>
+              <th>Czerwiec</th>
+            </tr>
+            <td>{{hours.june}}</td>
+          </table>
+        </mat-grid-tile>
+        <!-- Kolumna 2 -->
+        <mat-grid-tile [rowspan]="4">
+          <table>
+            <tr>
+              <th>Lipiec</th>
+            </tr>
+            <td>{{hours.july}}</td>
+            <tr>
+              <th>Sierpień</th>
+            </tr>
+            <td>{{hours.august}}</td>
+            <tr>
+              <th>Wrzesień</th>
+            </tr>
+            <td>{{hours.september}}</td>
+            <tr>
+              <th>Październik</th>
+            </tr>
+            <td>{{hours.october}}</td>
+            <tr>
+              <th>Listopad</th>
+            </tr>
+            <td>{{hours.november}}</td>
+            <tr>
+              <th>Grudzień</th>
+            </tr>
+            <td>{{hours.december}}</td>
+          </table>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
   </div>
 </div>

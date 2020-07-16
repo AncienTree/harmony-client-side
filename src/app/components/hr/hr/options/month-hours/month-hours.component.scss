@@ -3,13 +3,17 @@ table {
 }
 
 th, td {
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 150px;
   white-space: nowrap;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .table_container {
-  height: 400px;
+  height: 800px;
   overflow: auto;
 }
+

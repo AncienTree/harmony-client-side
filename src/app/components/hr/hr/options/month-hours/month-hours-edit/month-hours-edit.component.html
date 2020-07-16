@@ -1,1 +1,104 @@
-<p>month-hours-edit works!</p>
+<div>
+  <h2>Roboczogodziny</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
+      <mat-form-field>
+        <input matInput placeholder="Podaj rok" formControlName="year">
+      </mat-form-field>
+    </div>
+    <mat-divider>
+    </mat-divider>
+    <div class="table_container">
+      <mat-grid-list cols="2">
+        <!-- Kolumna 1 -->
+        <mat-grid-tile [rowspan]="4">
+          <table>
+            <tr>
+              <th>Styczeń</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="january"></td>
+            <tr>
+              <th>Luty</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="february"></td>
+            <tr>
+              <th>Marzec</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="march"></td>
+            <tr>
+              <th>Kwiecień</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="april"></td>
+            <tr>
+              <th>Maj</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="may"></td>
+            <tr>
+              <th>Czerwiec</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="june"></td>
+          </table>
+        </mat-grid-tile>
+        <!-- Kolumna 2 -->
+        <mat-grid-tile [rowspan]="4">
+          <table>
+            <tr>
+              <th>Lipiec</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="july"></td>
+            <tr>
+              <th>Sierpień</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="august"></td>
+            <tr>
+              <th>Wrzesień</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="september"></td>
+            <tr>
+              <th>Październik</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="october"></td>
+            <tr>
+              <th>Listopad</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="november"></td>
+            <tr>
+              <th>Grudzień</th>
+            </tr>
+            <td><input matInput placeholder="Rbh" formControlName="december"></td>
+          </table>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <!-- <div>
+      <table>
+        <tr><th>Styczeń</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="january"></td>
+        <tr><th>Luty</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="february"></td>
+        <tr><th>Marzec</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="march"></td>
+        <tr><th>Kwiecień</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="april"></td>
+        <tr><th>Maj</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="may"></td>
+        <tr><th>Czerwiec</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="june"></td>
+        <tr><th>Lipiec</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="july"></td>
+        <tr><th>Sierpień</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="august"></td>
+        <tr><th>Wrzesień</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="september"></td>
+        <tr><th>Październik</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="october"></td>
+        <tr><th>Listopad</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="november"></td>
+        <tr><th>Grudzień</th></tr>
+        <td><input matInput placeholder="Rbh" formControlName="december"></td>
+      </table>
+    </div> -->
+    <button mat-raised-button mat-dialog-close mat-dialog-close="true" color="primary" type="submit"
+      [disabled]="!form.valid">Wykonaj</button>
+  </form>
+</div>
