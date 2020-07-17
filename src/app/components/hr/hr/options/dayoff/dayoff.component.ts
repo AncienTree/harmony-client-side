@@ -35,6 +35,7 @@ export class DayoffComponent implements OnInit {
   delete(day) {
     if (confirm('Czy na pewno chcesz usunąć linię ' + day.name + '?')) {
       this.dayOffHttp.remove(day.id).subscribe(() => {
+        this.refresh();
       });
     }
   }
@@ -81,7 +82,7 @@ export class DayoffComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       setTimeout(() => {
         this.refresh();
-      }, 1500);
+      }, 500);
     });
   }
 

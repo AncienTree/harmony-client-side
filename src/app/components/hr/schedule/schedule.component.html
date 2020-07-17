@@ -20,7 +20,7 @@
   <button mat-button (click)="refresh(lista.value)">Załaduj</button>
   <span *ngIf="hidden">Roboczogodziny:
     <ng-container *ngIf="selectedSchedule.rbh === 0; then thenTemplate; else elseTemplate"></ng-container>
-    <ng-template #thenTemplate >
+    <ng-template #thenTemplate>
       <b><span style="color: red;">Brak rbh!</span></b>
     </ng-template>
     <ng-template #elseTemplate>
@@ -30,7 +30,7 @@
   </span>
 </p>
 
-<div class="table-container mat-elevation-z8" *ngIf="hidden">
+<div class="table-container" *ngIf="hidden">
   <table mat-table [dataSource]="dataSource">
 
     <!-- FullName Column -->
@@ -43,6 +43,30 @@
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> Stanowisko </th>
       <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.position}} </td>
+    </ng-container>
+
+    <!-- User Line Column -->
+    <ng-container matColumnDef="userLine">
+      <th mat-header-cell *matHeaderCellDef> Linia </th>
+      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.userLine}} </td>
+    </ng-container>
+
+    <!-- User Section Column -->
+    <ng-container matColumnDef="userSection">
+      <th mat-header-cell *matHeaderCellDef> Sekcja </th>
+      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.userSection}} </td>
+    </ng-container>
+
+    <!-- fte Column -->
+    <ng-container matColumnDef="fte">
+      <th mat-header-cell *matHeaderCellDef> FTE </th>
+      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.fte}} </td>
+    </ng-container>
+
+    <!-- fte start Column -->
+    <ng-container matColumnDef="fteStart">
+      <th mat-header-cell *matHeaderCellDef> FTE na start </th>
+      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.fteStart}} </td>
     </ng-container>
 
     <!-- Day Column -->

@@ -18,7 +18,7 @@ export class ScheduleComponent implements OnInit {
   @ViewChild(MatSort, null) sort: MatSort;
 
   hidden = false;
-  displayedColumns = ['fullName', 'position'];
+  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte', 'fteStart'];
   months = [];
   selectedDate;
   dataSource;
@@ -43,7 +43,7 @@ export class ScheduleComponent implements OnInit {
 
   refresh(date) {
     // Restart kolumn
-    this.displayedColumns = ['fullName', 'position'];
+    this.displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte', 'fteStart'];
     this.months = [];
 
     if (!(typeof date === 'undefined')) {
@@ -53,7 +53,6 @@ export class ScheduleComponent implements OnInit {
         this.displayedColumns.push(index.toString());
       }
       this.selectedDate = date;
-      this.hidden = true;
       this.selectedSchedule = this.scheduleList.find(x => x.scheduleDate === date);
 
       // Pobieranie danych z serwera
@@ -61,6 +60,7 @@ export class ScheduleComponent implements OnInit {
         .subscribe(result => {
           this.dataSource = new MatTableDataSource(result);
           this.dataSource.sort = this.sort;
+          this.hidden = true;
         });
     }
   }
@@ -99,10 +99,10 @@ export class ScheduleComponent implements OnInit {
   // Zwaraca kolor dla soboty oraz niedzieli
   checkWeekend(day) {
     const date = this.createDayFromHeader(day);
-    if (date.getDay() === 6) {
-      return '#F0E68C';
-    } else if (date.getDay() === 0) {
+    if (this.isDayOff(date) || date.getDay() === 0) {
       return '#DC143C';
+    } else if (date.getDay() === 6) {
+      return '#F0E68C';
     } else {
       return '#FFFFFF';
     }
@@ -118,5 +118,21 @@ export class ScheduleComponent implements OnInit {
       return undefined;
     }
   }
+
+  isDayOff(date): boolean {
+    const dayOffDate = moment(date).format('YYYY-MM-DD').toString();
+    const arrayOfDayOff: DayOff[] = this.selectedSchedule.dayOffs;
+    const check = arrayOfDayOff.find(x => x.date === dayOffDate);
+    if (typeof(check) !== 'undefined') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
+interface DayOff {
+  id: number;
+  date: string;
+  info: string;
+}

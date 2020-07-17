@@ -4,14 +4,13 @@ export class Schedule extends Resource {
   scheduleDate: Date;
   active: boolean;
   visible: boolean;
-  dayOff: DayOff[];
+  dayOffs: DayOff[];
   rbh: number;
 }
 
 interface DayOff {
   id: number;
-  fullName: string;
-  position: string;
-  workStatus: string;
+  date: string;
+  info: string;
 }
 
