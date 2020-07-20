@@ -61,9 +61,9 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
   public updateSchedule(id, active, visible): Observable<any> {
     return this.http
     .patch(`${this.url}/schedule/changeStatus`, {
-      'id': id,
-      'active': active,
-      'visible': visible,
+      id,
+      active,
+      visible,
     }, {responseType: 'text'})
     .pipe(
       catchError(super.errorHandl)

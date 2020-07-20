@@ -33,7 +33,7 @@ export class ScheduleComponent implements OnInit {
     private stat: Status,
   ) {
     this.scheduleStatus = this.stat.getStatus();
-   }
+  }
 
   ngOnInit() {
     this.scheduleHttp.getScheduleList().subscribe(date => {
@@ -65,21 +65,27 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
-  scheduleDialog(employee, day ): void {
-    const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
-    const dialogRef = this.dialog.open(ScheduleEditComponent, {
-      disableClose: true,
-      // width: '500px',
-      data: {
-        simpleEmployee: employee,
-        recordDate: date
-      }
-    });
+  scheduleDialog(employee, day): void {
+    const startWork = new Date(employee.startWorkDate);
+    const dayFromHeader = this.createDayFromHeader(day);
+    const utcStartWork = new Date(startWork.getTime() + startWork.getTimezoneOffset() * 60000);
 
-    dialogRef.afterClosed().subscribe(() => {
-      // TODO zmienić
-      // this.refresh();
-    });
+    if (dayFromHeader >= utcStartWork) {
+      const date: string = moment(dayFromHeader).format('YYYY-MM-DD').toString();
+      const dialogRef = this.dialog.open(ScheduleEditComponent, {
+        disableClose: true,
+        // width: '500px',
+        data: {
+          simpleEmployee: employee,
+          recordDate: date
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(() => {
+        // TODO zmienić
+        // this.refresh();
+      });
+    }
   }
 
   getNumberDays(date): number {
@@ -112,7 +118,7 @@ export class ScheduleComponent implements OnInit {
     const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
     const record = records.scheduleRecords.find(x => x.workDate === date);
 
-    if (typeof(record) !== 'undefined') {
+    if (typeof (record) !== 'undefined') {
       return record;
     } else {
       return undefined;
@@ -123,7 +129,7 @@ export class ScheduleComponent implements OnInit {
     const dayOffDate = moment(date).format('YYYY-MM-DD').toString();
     const arrayOfDayOff: DayOff[] = this.selectedSchedule.dayOffs;
     const check = arrayOfDayOff.find(x => x.date === dayOffDate);
-    if (typeof(check) !== 'undefined') {
+    if (typeof (check) !== 'undefined') {
       return true;
     } else {
       return false;
