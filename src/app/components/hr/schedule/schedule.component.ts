@@ -18,7 +18,7 @@ export class ScheduleComponent implements OnInit {
   @ViewChild(MatSort, null) sort: MatSort;
 
   hidden = false;
-  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte', 'fteStart'];
+  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
   months = [];
   selectedDate;
   dataSource;
@@ -43,7 +43,7 @@ export class ScheduleComponent implements OnInit {
 
   refresh(date) {
     // Restart kolumn
-    this.displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte', 'fteStart'];
+    this.displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
     this.months = [];
 
     if (!(typeof date === 'undefined')) {

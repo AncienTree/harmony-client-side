@@ -42,7 +42,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> Stanowisko </th>
-      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.position}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.position | titlecase}} </td>
     </ng-container>
 
     <!-- User Line Column -->
@@ -61,12 +61,6 @@
     <ng-container matColumnDef="fte">
       <th mat-header-cell *matHeaderCellDef> FTE </th>
       <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.fte}} </td>
-    </ng-container>
-
-    <!-- fte start Column -->
-    <ng-container matColumnDef="fteStart">
-      <th mat-header-cell *matHeaderCellDef> FTE na start </th>
-      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.fteStart}} </td>
     </ng-container>
 
     <!-- Day Column -->
