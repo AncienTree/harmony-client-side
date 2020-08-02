@@ -8,15 +8,16 @@ import {
   ScheduleEditComponent,
   RecordComponent,
   DetailsComponent,
-  EditDetailsComponent
+  EditDetailsComponent,
+  PresenceComponent,
+  SectionEditComponent,
+  LineEditComponent,
+  ContractEditComponent,
+  DayoffEditComponent,
+  MonthHoursEditComponent
  } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
-import { SectionEditComponent } from './hr/options/sections/section-edit/section-edit.component';
-import { LineEditComponent } from './hr/options/lines/line-edit/line-edit.component';
-import { ContractEditComponent } from './hr/options/contracts/contract-edit/contract-edit.component';
-import { DayoffEditComponent } from './hr/options/dayoff/dayoff-edit/dayoff-edit.component';
-import { MonthHoursEditComponent } from './hr/options/month-hours/month-hours-edit/month-hours-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MonthHoursEditComponent } from './hr/options/month-hours/month-hours-ed
     LineEditComponent,
     DayoffEditComponent,
     ContractEditComponent,
-    MonthHoursEditComponent
+    MonthHoursEditComponent,
+    PresenceComponent
   ],
   imports: [
     SharedModule,

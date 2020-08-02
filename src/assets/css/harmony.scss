@@ -18,6 +18,14 @@
   min-height: 200px;
 }
 
+.normal_container {
+  position: relative;
+  min-height: 200px;
+  margin-left: 25px;
+  margin-top: 10px;
+  width: 100%;
+}
+
 // Snackbar color
 .green-snackbar {
   background:green;

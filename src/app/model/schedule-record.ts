@@ -7,5 +7,4 @@ export class ScheduleRecord extends Resource {
   endWork: string;
   status: string;
   types: string;
-  update: string;
 }

@@ -1,3 +1,4 @@
+import { PresenceComponent } from './presence/presence.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
@@ -22,6 +23,7 @@ const hrRouting: Routes = [
   { path: 'dane/:id', component: DetailsComponent },
   { path: 'zatrudnij', component: HireComponent },
   { path: 'wnioski', component: ApplicationComponent },
+  { path: 'obecnosc', component: PresenceComponent}
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ export class ScheduleComponent implements OnInit {
   @ViewChild(MatSort, null) sort: MatSort;
 
   hidden = false;
+  isLoadingResults = false;
   displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
   months = [];
   selectedDate;
@@ -43,6 +44,7 @@ export class ScheduleComponent implements OnInit {
 
   refresh(date) {
     // Restart kolumn
+    this.isLoadingResults = true;
     this.displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
     this.months = [];
 
@@ -61,6 +63,7 @@ export class ScheduleComponent implements OnInit {
           this.dataSource = new MatTableDataSource(result);
           this.dataSource.sort = this.sort;
           this.hidden = true;
+          this.isLoadingResults = false;
         });
     }
   }

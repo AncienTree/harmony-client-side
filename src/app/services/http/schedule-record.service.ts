@@ -26,4 +26,12 @@ export class ScheduleRecordService extends HttpService<ScheduleRecord> {
         catchError(super.errorHandl)
       );
   }
+
+  public getPresence(date): Observable<any[]> {
+    return this.http
+      .get<any[]>(`${this.url}/schedule/record/${date}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
 }

@@ -1,3 +1,8 @@
+<!-- Spinner -->
+<div class="loading" *ngIf="isLoadingResults">
+  <mat-spinner></mat-spinner>
+</div>
+
 <div class="container">
   <h1 mat-dialog-title>
     {{data.simpleEmployee.fullName}} <br>
@@ -33,7 +38,7 @@
   <!-- Gdy record nie istenije -->
   <ng-template #insertRecord>
 
-  </ng-template> 
+  </ng-template>
   <mat-dialog-actions>
     <button mat-button mat-dialog-close mat-dialog-close="true">Zatwierdź</button>
     <button mat-button mat-dialog-close mat-dialog-close="false">Anuluj</button>

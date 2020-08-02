@@ -12,15 +12,17 @@ import { ScheduleRecord } from 'src/app/model/schedule-record';
 export class ScheduleEditComponent {
   scheduleStatus = [];
   recordsData;
+  isLoadingResults = true;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private stat: Status,
     private httpRecords: ScheduleRecordService
   ) {
     this.scheduleStatus = this.stat.getRecordStatus();
     this.httpRecords.getRecors(this.data.simpleEmployee.id, this.data.recordDate).subscribe(p => {
       this.recordsData = p;
+      this.isLoadingResults = false;
     });
   }
 

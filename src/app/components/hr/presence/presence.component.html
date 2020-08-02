@@ -1,0 +1,22 @@
+
+<div class="normal_container">
+  <mat-form-field>
+    <mat-label>Miesiąc</mat-label>
+    <mat-select [(ngModel)]="scheduleValue">
+      <mat-option *ngFor="let schedule of scheduleList" [value]="schedule">
+        {{schedule.scheduleDate | date:'LLLL yyyy'}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="scheduleValue" style="margin-left: 40px;">
+      <input matInput [matDatepicker]="dpDay"
+        placeholder="Wybierz dzień"
+        [(ngModel)]="date"
+        disabled>
+      <mat-datepicker-toggle matSuffix [for]="dpDay"></mat-datepicker-toggle>
+      <mat-datepicker #dpDay disabled="false" [startAt]="scheduleValue.scheduleDate"></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-button (click)="load()" style="margin-left: 40px;" *ngIf="scheduleValue" >Wczytaj</button>
+</div>
