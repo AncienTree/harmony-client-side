@@ -18,6 +18,10 @@ export class PresenceComponent implements OnInit {
   scheduleList;
   scheduleValue;
   presence: PresenceData[];
+  hidden = true;
+  isLoadingResults = false;
+  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
+  dataSource;
 
   constructor(
     private scheduleHttp: ScheduleService,
@@ -36,6 +40,12 @@ export class PresenceComponent implements OnInit {
     this.recordHttp.getPresence(mDate).subscribe( response => {
       this.presence = response;
     });
+  }
+
+  maxDate() {
+    const selectedDate = new Date(this.scheduleValue.scheduleDate);
+
+    return new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0);
   }
 }
 

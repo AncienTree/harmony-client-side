@@ -1,5 +1,4 @@
-<p>
-  <br>
+<div class="container">
   <mat-form-field>
     <mat-select placeholder="Wybierz miesiąc" #lista>
       <mat-option *ngFor="let schedule of scheduleList" [value]="schedule.scheduleDate">
@@ -8,7 +7,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field style="margin-left: 15px;">
     <mat-label>Status</mat-label>
     <mat-select [(value)]="selectedStatus">
       <mat-option *ngFor="let stat of scheduleStatus" [value]="stat.key">
@@ -17,7 +16,7 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-button (click)="refresh(lista.value)">Załaduj</button>
+  <button mat-button (click)="refresh(lista.value)" style="margin-left: 15px;">Załaduj</button>
   <span *ngIf="hidden">Roboczogodziny:
     <ng-container *ngIf="selectedSchedule.rbh === 0; then thenTemplate; else elseTemplate"></ng-container>
     <ng-template #thenTemplate>
@@ -28,7 +27,7 @@
     </ng-template>
 
   </span>
-</p>
+</div>
 
 <!-- Spinner -->
 <div class="loading" *ngIf="isLoadingResults">
