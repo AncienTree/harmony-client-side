@@ -27,56 +27,75 @@
 </div>
 
 <div class="table-container" *ngIf="hidden">
-  <h2 style="text-align: center;">Obecność na dzień ...</h2>
-  <table mat-table [dataSource]="dataSource">
+  <h2 style="text-align: center;">Obecność na dzień {{date | date:'d MMMM yyyy' }}</h2>
+  <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- FullName Column -->
     <ng-container matColumnDef="fullName" sticky>
-      <th mat-header-cell *matHeaderCellDef> Imię i Nazwisko </th>
-      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.fullName}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Imię i Nazwisko </th>
+      <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
     </ng-container>
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> Stanowisko </th>
-      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.position | titlecase}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.position | titlecase}} </td>
     </ng-container>
 
     <!-- User Line Column -->
     <ng-container matColumnDef="userLine">
       <th mat-header-cell *matHeaderCellDef> Linia </th>
-      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.userLine}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.userLine}} </td>
     </ng-container>
 
     <!-- User Section Column -->
     <ng-container matColumnDef="userSection">
-      <th mat-header-cell *matHeaderCellDef> Sekcja </th>
-      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.userSection}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Sekcja </th>
+      <td mat-cell *matCellDef="let element"> {{element.userSection}} </td>
     </ng-container>
 
-    <!-- fte Column -->
-    <ng-container matColumnDef="fte">
-      <th mat-header-cell *matHeaderCellDef> FTE </th>
-      <td mat-cell *matCellDef="let element"> {{element.simpleEmployee.fte}} </td>
+    <!-- User Section Column -->
+    <ng-container matColumnDef="dyspo">
+      <th mat-header-cell *matHeaderCellDef> Dyspozycyjność </th>
+      <td mat-cell *matCellDef="let element"> Brak impl. </td>
     </ng-container>
 
-    <!-- Day Column -->
-    <div *ngFor="let month of months">
-      <ng-container matColumnDef="{{month}}">
-        <!-- Nagłówek -->
-        <th mat-header-cell *matHeaderCellDef [style.background-color]=checkWeekend(month)>
-          <div>
-            {{createDayFromHeader(month) | date: 'mediumDate'}} <br>
-            {{createDayFromHeader(month) | date: 'EEEE'}}
-          </div>
-        </th>
-        <!-- Komórka -->
-        <td mat-cell *matCellDef="let element" [style.background-color]=checkWeekend(month)
-          (click)="scheduleDialog(element.simpleEmployee, month)">
-          <app-record [record]="transformDate(month, element)"></app-record>
-        </td>
-      </ng-container>
-    </div>
+    <!-- User Section Column -->
+    <ng-container matColumnDef="dostp">
+      <th mat-header-cell *matHeaderCellDef> Dostęponość </th>
+      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+    </ng-container>
+
+    <!-- User Section Column -->
+    <ng-container matColumnDef="grafik">
+      <th mat-header-cell *matHeaderCellDef> Grafik </th>
+      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+    </ng-container>
+
+    <!-- User Section Column -->
+    <ng-container matColumnDef="login">
+      <th mat-header-cell *matHeaderCellDef> Zalogowanie </th>
+      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+    </ng-container>
+
+    <!-- User Section Column -->
+    <ng-container matColumnDef="jitsi">
+      <th mat-header-cell *matHeaderCellDef> Jitsi </th>
+      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+    </ng-container>
+
+    <!-- User Section Column -->
+    <ng-container matColumnDef="obec">
+      <th mat-header-cell *matHeaderCellDef> Obecność </th>
+      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+    </ng-container>
+
+    <!-- User Section Column -->
+    <ng-container matColumnDef="dzwon">
+      <th mat-header-cell *matHeaderCellDef > Dzwonienie </th>
+      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

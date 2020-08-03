@@ -78,6 +78,14 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       );
   }
 
+  public getListOfEmployee(date): Observable<any> {
+    return this.http
+      .get(`${this.url}/schedule/employeeList/${date}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
   // Pobieranie listy pracowników nie przypisanych do harmonogamu o podanej dacie
   public getEmployeeWithoutSchedule(date): Observable<any> {
     return this.http

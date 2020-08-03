@@ -1,11 +1,13 @@
+import { SimpleEmployee } from './../../../model/simple-employee';
 import { ScheduleRecordService } from 'src/app/services/http/schedule-record.service';
 import { ScheduleRecord } from './../../../model/schedule-record';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
 import { ScheduleService } from 'src/app/services/http/schedule.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { Employee } from 'src/app/model/employee';
 
 @Component({
   selector: 'app-presence',
@@ -14,13 +16,16 @@ import * as _ from 'lodash';
 })
 export class PresenceComponent implements OnInit {
 
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+
   date;
   scheduleList;
   scheduleValue;
   presence: PresenceData[];
-  hidden = true;
+  employeeList: EmployeeList;
+  hidden = false;
   isLoadingResults = false;
-  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
+  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'dyspo', 'dostp', 'grafik', 'login', 'jitsi', 'obec', 'dzwon'];
   dataSource;
 
   constructor(
@@ -35,10 +40,22 @@ export class PresenceComponent implements OnInit {
     });
   }
 
+  // Pobieranie danych
   load() {
+    this.isLoadingResults = true;
     const mDate: string = moment(this.date).format('YYYY-MM-DD').toString();
     this.recordHttp.getPresence(mDate).subscribe( response => {
       this.presence = response;
+    });
+
+    this.scheduleHttp.getListOfEmployee(this.scheduleValue.scheduleDate).subscribe(response => {
+      this.employeeList = response;
+      this.dataSource = new MatTableDataSource(response.employees);
+      this.dataSource.sort = this.sort;
+      this.hidden = true;
+      this.isLoadingResults = false;
+      console.log(response.employees);
+
     });
   }
 
@@ -53,4 +70,9 @@ export class PresenceComponent implements OnInit {
 export interface PresenceData {
   scheduleType: string;
   recordList: ScheduleRecord[];
+}
+
+export interface EmployeeList {
+  scheduleDate: string;
+  employees: SimpleEmployee[];
 }
