@@ -33,3 +33,11 @@
 .red-snackbar {
   background:red;
 }
+
+.mat-row:nth-child(even) {
+  background-color: #f2f2f2;
+  }
+
+.mat-row:hover {
+    background-color: #ddd;
+  }
