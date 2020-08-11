@@ -7,7 +7,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import { Employee } from 'src/app/model/employee';
 
 @Component({
   selector: 'app-presence',
@@ -25,7 +24,7 @@ export class PresenceComponent implements OnInit {
   employeeList: EmployeeList;
   hidden = false;
   isLoadingResults = false;
-  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'dyspo', 'dostp', 'grafik', 'login', 'jitsi', 'obec', 'dzwon'];
+  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'dyspo', 'dostp', 'grafik', 'obec', 'login', 'jitsi', 'dzwon'];
   dataSource;
 
   constructor(
@@ -54,8 +53,6 @@ export class PresenceComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.hidden = true;
       this.isLoadingResults = false;
-      console.log(response.employees);
-
     });
   }
 
@@ -63,6 +60,17 @@ export class PresenceComponent implements OnInit {
     const selectedDate = new Date(this.scheduleValue.scheduleDate);
 
     return new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0);
+  }
+
+  findRecord(type, employeeId: number) {
+    const data: PresenceData = _.find(this.presence, types => {
+      return types.scheduleType === type;
+    });
+
+    const record: ScheduleRecord = _.find(data.recordList, rec => {
+      return rec.employee === employeeId;
+    });
+    return record;
   }
 }
 

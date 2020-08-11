@@ -50,50 +50,50 @@
 
     <!-- User Section Column -->
     <ng-container matColumnDef="userSection">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header > Sekcja </th>
-      <td mat-cell *matCellDef="let element"> {{element.userSection}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 110px;" > Sekcja </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.userSection}} </td>
     </ng-container>
 
     <!-- Dyspozycyjność Column -->
     <ng-container matColumnDef="dyspo">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Dyspozycyjność </th>
-      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]=''></app-presence-record> </td>
     </ng-container>
 
     <!-- Dostęponość Column -->
     <ng-container matColumnDef="dostp">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Dostęponość </th>
-      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+      <td mat-cell *matCellDef="let element"><app-presence-record [record]='findRecord("DOSTEPNOSC", element.id)'></app-presence-record> </td>
     </ng-container>
 
     <!-- Grafik Column -->
     <ng-container matColumnDef="grafik">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Grafik </th>
-      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]=''></app-presence-record> </td>
     </ng-container>
 
     <!-- Zalogowanie Column -->
     <ng-container matColumnDef="login">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Zalogowanie </th>
-      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> Brak impl. </td>
     </ng-container>
 
     <!-- Jitsi Column -->
     <ng-container matColumnDef="jitsi">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Jitsi </th>
-      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> Brak impl. </td>
     </ng-container>
 
     <!-- Obecność Column -->
     <ng-container matColumnDef="obec">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Obecność </th>
-      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]=''></app-presence-record> </td>
     </ng-container>
 
     <!-- Dzwonienie Column -->
     <ng-container matColumnDef="dzwon">
       <th class="header_type" mat-header-cell *matHeaderCellDef > Dzwonienie </th>
-      <td mat-cell *matCellDef="let element"> Brak impl. </td>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> Brak impl. </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

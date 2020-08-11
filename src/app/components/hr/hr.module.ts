@@ -18,6 +18,7 @@ import {
  } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
+import { PresenceRecordComponent } from './presence/presence-record/presence-record.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HrRoutingModule } from './hr.routing.module';
     DayoffEditComponent,
     ContractEditComponent,
     MonthHoursEditComponent,
-    PresenceComponent
+    PresenceComponent,
+    PresenceRecordComponent
   ],
   imports: [
     SharedModule,

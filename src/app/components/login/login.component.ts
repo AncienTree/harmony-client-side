@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MatSnackBar } from '@angular/material';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-import { delay, delayWhen } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
 
+  @ViewChild('loginForm', {static: false}) loginFormRef: ElementRef;
   login: string;
   password: string;
 
@@ -21,6 +21,11 @@ export class LoginComponent {
     private snackBarRef: MatSnackBar,
     private cookie: CookieService
   ) { }
+
+  ngAfterViewInit() {
+    // Automatyczny focus na polu login
+    this.loginFormRef.nativeElement.focus();
+  }
 
   public authJWT() {
     this.cookie.removeAll();
@@ -49,7 +54,7 @@ export class LoginComponent {
               this.snackBarRef.open('Błędna nazwa użytkownika lub hasło.');
               break;
             case 500:
-              this.snackBarRef.open('Wystąpił problem serwerze apkiacji.', 'close', {
+              this.snackBarRef.open('Wystąpił problem na serwerze.', 'close', {
                 panelClass: ['red-snackbar']
               });
               break;
