@@ -2,7 +2,7 @@
 <div class="normal_container">
   <mat-form-field>
     <mat-label>Miesiąc</mat-label>
-    <mat-select [(ngModel)]="scheduleValue">
+    <mat-select [(ngModel)]="scheduleValue" #scheduleSelector>
       <mat-option *ngFor="let schedule of scheduleList" [value]="schedule">
         {{schedule.scheduleDate | date:'LLLL yyyy'}}
       </mat-option>
@@ -56,7 +56,7 @@
 
     <!-- Dyspozycyjność Column -->
     <ng-container matColumnDef="dyspo">
-      <th class="header_type" mat-header-cell *matHeaderCellDef> Dyspozycyjność </th>
+      <th class="header_type" mat-header-cell *matHeaderCellDef> Dyspozycyjność</th>
       <td mat-cell *matCellDef="let element"> <app-presence-record [record]=''></app-presence-record> </td>
     </ng-container>
 

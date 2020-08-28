@@ -1,7 +1,7 @@
 import { SimpleEmployee } from './../../../model/simple-employee';
 import { ScheduleRecordService } from 'src/app/services/http/schedule-record.service';
 import { ScheduleRecord } from './../../../model/schedule-record';
-import { MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
+import { MatSnackBar, MatSort, MatTableDataSource, MatSelect } from '@angular/material';
 import { ScheduleService } from 'src/app/services/http/schedule.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -16,6 +16,7 @@ import * as _ from 'lodash';
 export class PresenceComponent implements OnInit {
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatSelect, { static: false }) scheduleSelector: MatSelect;
 
   date;
   scheduleList;
@@ -41,6 +42,7 @@ export class PresenceComponent implements OnInit {
 
   // Pobieranie danych
   load() {
+    this.scheduleSelector.disabled = true;
     this.isLoadingResults = true;
     const mDate: string = moment(this.date).format('YYYY-MM-DD').toString();
     this.recordHttp.getPresence(mDate).subscribe( response => {

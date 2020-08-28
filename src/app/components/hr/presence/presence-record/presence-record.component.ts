@@ -10,6 +10,9 @@ export class PresenceRecordComponent implements OnInit {
   @Input() record: ScheduleRecord;
 
   test;
+  selectedStatus = 'P';
+  start;
+  end;
 
   constructor() { }
 

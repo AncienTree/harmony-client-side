@@ -1,1 +1,29 @@
-<p>{{test}}</p>
+<div class="record">
+  <div>
+    <div class="time">
+      <h4>Rozpoczęcie</h4>
+      <p-calendar [(ngModel)]="start" [timeOnly]="true" hourFormat="24"></p-calendar>
+    </div>
+    <div class="time" style="margin-bottom: 10px;">
+      <h4>Zakończenie</h4>
+      <p-calendar [(ngModel)]="end" [timeOnly]="true" hourFormat="24"></p-calendar>
+    </div>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label style="text-align: center">Status</mat-label>
+      <mat-select [(value)]="selectedStatus">
+        <mat-option value="P">Pracuje</mat-option>
+        <mat-option value="CN">L4 nie potwierdzone</mat-option>
+        <mat-option value="CH">Choroba</mat-option>
+        <mat-option value="UB">Urlop bezpłatny</mat-option>
+        <mat-option value="UK">Urlop okolicznościowy</mat-option>
+        <mat-option value="UW">Urlop wypoczynkowy</mat-option>
+        <mat-option value="UZ">Urlop na żądanie</mat-option>
+        <mat-option value="WP">Dzień ustawowo wolny</mat-option>
+        <mat-option value="OP">Opieka nad dzieckiem</mat-option>
+        <mat-option value="NN">Nieobecność nieusprawiedliwiona</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
