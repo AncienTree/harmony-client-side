@@ -18,7 +18,8 @@
       <mat-datepicker #dpDay disabled="false" [startAt]="scheduleValue.scheduleDate"></mat-datepicker>
     </mat-form-field>
 
-    <button mat-button (click)="load()" style="margin-left: 40px;" *ngIf="scheduleValue" >Wczytaj</button>
+    <button mat-button (click)="load()" style="margin-left: 40px;" *ngIf="scheduleValue" [disabled]="!date">Wczytaj</button>
+    <button mat-button (click)="reload()" style="margin-left: 40px;" *ngIf="hidden">Przeładuj</button>
 </div>
 
 <!-- Spinner -->
@@ -57,7 +58,7 @@
     <!-- Dyspozycyjność Column -->
     <ng-container matColumnDef="dyspo">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Dyspozycyjność</th>
-      <td mat-cell *matCellDef="let element"> <app-presence-record [record]=''></app-presence-record> </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("DYSPOZYCYJNOSC", element.id)'></app-presence-record> </td>
     </ng-container>
 
     <!-- Dostęponość Column -->
@@ -69,7 +70,7 @@
     <!-- Grafik Column -->
     <ng-container matColumnDef="grafik">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Grafik </th>
-      <td mat-cell *matCellDef="let element"> <app-presence-record [record]=''></app-presence-record> </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("GRAFIK", element.id)'></app-presence-record> </td>
     </ng-container>
 
     <!-- Zalogowanie Column -->
@@ -87,7 +88,7 @@
     <!-- Obecność Column -->
     <ng-container matColumnDef="obec">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Obecność </th>
-      <td mat-cell *matCellDef="let element"> <app-presence-record [record]=''></app-presence-record> </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("OBECNOSC", element.id)'></app-presence-record> </td>
     </ng-container>
 
     <!-- Dzwonienie Column -->

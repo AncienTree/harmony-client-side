@@ -18,7 +18,7 @@ export class PresenceComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatSelect, { static: false }) scheduleSelector: MatSelect;
 
-  date;
+  date = undefined;
   scheduleList;
   scheduleValue;
   presence: PresenceData[];
@@ -72,7 +72,22 @@ export class PresenceComponent implements OnInit {
     const record: ScheduleRecord = _.find(data.recordList, rec => {
       return rec.employee === employeeId;
     });
-    return record;
+
+    const date = {
+      scheduleRecord: record,
+      type,
+      id: employeeId,
+      date: moment(this.date).format('YYYY-MM-DD').toString()
+    };
+
+    return date;
+  }
+
+  reload() {
+    this.hidden = false;
+    this.scheduleValue = undefined;
+    this.date = undefined;
+    this.scheduleSelector.disabled = false;
   }
 }
 
@@ -85,4 +100,10 @@ export interface PresenceData {
 export interface EmployeeList {
   scheduleDate: string;
   employees: SimpleEmployee[];
+}
+
+export interface RecordData {
+  scheduleRecord: ScheduleRecord;
+  id: number;
+  type: string;
 }

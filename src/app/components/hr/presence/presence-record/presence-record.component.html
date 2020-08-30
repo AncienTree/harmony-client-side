@@ -1,18 +1,18 @@
 <div class="record">
   <div>
-    <div class="time">
+    <div>
       <h4>Rozpoczęcie</h4>
-      <p-calendar [(ngModel)]="start" [timeOnly]="true" hourFormat="24"></p-calendar>
+      <p-calendar [(ngModel)]="start" [timeOnly]="true" (onBlur)="startBlur()" showSeconds="true" [disabled]="timeDisabled"></p-calendar>
     </div>
-    <div class="time" style="margin-bottom: 10px;">
+    <div style="margin-bottom: 10px;">
       <h4>Zakończenie</h4>
-      <p-calendar [(ngModel)]="end" [timeOnly]="true" hourFormat="24"></p-calendar>
+      <p-calendar [(ngModel)]="end" [timeOnly]="true" (onBlur)="endBlur()" showSeconds="true" [disabled]="timeDisabled"></p-calendar>
     </div>
   </div>
   <div>
     <mat-form-field>
       <mat-label style="text-align: center">Status</mat-label>
-      <mat-select [(value)]="selectedStatus">
+      <mat-select [(value)]="selectedStatus" (selectionChange)="checkStatus()">
         <mat-option value="P">Pracuje</mat-option>
         <mat-option value="CN">L4 nie potwierdzone</mat-option>
         <mat-option value="CH">Choroba</mat-option>

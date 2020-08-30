@@ -34,4 +34,12 @@ export class ScheduleRecordService extends HttpService<ScheduleRecord> {
         catchError(super.errorHandl)
       );
   }
+
+  public updateRecord(date: ScheduleRecord): Observable<any> {
+    return this.http
+      .patch(`${this.url}/schedule/record/`, date, { responseType: 'text'})
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
 }
