@@ -28,6 +28,10 @@ export class PresenceRecordComponent implements OnInit {
       this.start = this.transformTime(this.record.scheduleRecord.startWork, 'js');
       this.end = this.transformTime(this.record.scheduleRecord.endWork, 'js');
       this.selectedStatus = this.record.scheduleRecord.status;
+
+      if (this.selectedStatus !== 'P') {
+        this.timeDisabled = true;
+      }
     }
   }
 
