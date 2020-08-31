@@ -38,7 +38,7 @@ export class PresenceRecordComponent implements OnInit {
     } else if (type === 'js') {
       const convTime: Date = new Date();
       convTime.setHours(time.substring(0, 2));
-      convTime.setMinutes(time.substring(5, 5));
+      convTime.setMinutes(time.substring(3, 5));
       convTime.setSeconds(time.substring(6, 8));
       return convTime;
     } else {
@@ -99,7 +99,7 @@ export class PresenceRecordComponent implements OnInit {
 
       // zapis do bazy
       if (updatedRecord.id !== 0) {
-        this.recordHttp.update(updatedRecord).subscribe();
+        this.recordHttp.updateRecord(updatedRecord).subscribe();
       } else {
         this.recordHttp.create(updatedRecord).subscribe();
       }
