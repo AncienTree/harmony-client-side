@@ -25,7 +25,8 @@ export class PresenceComponent implements OnInit {
   employeeList: EmployeeList;
   hidden = false;
   isLoadingResults = false;
-  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'dyspo', 'dostp', 'grafik', 'obec', 'login', 'jitsi', 'dzwon'];
+  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'obec', 'dostp', 'grafik', 'dyspo', 'login', 'jitsi', 'dzwon'];
+  titleDate;
   dataSource;
 
   constructor(
@@ -56,6 +57,7 @@ export class PresenceComponent implements OnInit {
       this.hidden = true;
       this.isLoadingResults = false;
     });
+    this.titleDate = this.date;
   }
 
   maxDate() {

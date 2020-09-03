@@ -38,12 +38,14 @@ export class PresenceRecordComponent implements OnInit {
   // Zmiana czasu na format JS lub do bazy danych
   transformTime(time, type) {
     if (type === 'db') {
-      return moment(time).format('HH:mm:ss');
+      const tempTime: Date = time;
+      tempTime.setSeconds(0);
+      return moment(tempTime).format('HH:mm:ss');
     } else if (type === 'js') {
       const convTime: Date = new Date();
       convTime.setHours(time.substring(0, 2));
       convTime.setMinutes(time.substring(3, 5));
-      convTime.setSeconds(time.substring(6, 8));
+      convTime.setSeconds(0);
       return convTime;
     } else {
       return undefined;

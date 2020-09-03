@@ -28,7 +28,7 @@
 </div>
 
 <div class="table-container" *ngIf="hidden">
-  <h2 style="text-align: center;">Obecność na dzień {{date | date:'d MMMM yyyy' }}</h2>
+  <h2 style="text-align: center;">Obecność na dzień {{titleDate | date:'d MMMM yyyy' }}</h2>
   <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- FullName Column -->
