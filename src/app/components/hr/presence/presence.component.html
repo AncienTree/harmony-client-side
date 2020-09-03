@@ -58,19 +58,23 @@
     <!-- Dyspozycyjność Column -->
     <ng-container matColumnDef="dyspo">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Dyspozycyjność</th>
-      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("DYSPOZYCYJNOSC", element.id)'></app-presence-record> </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("DYSPOZYCYJNOSC", element.id)' [presentation]="true"></app-presence-record> </td>
     </ng-container>
 
     <!-- Dostęponość Column -->
     <ng-container matColumnDef="dostp">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Dostęponość </th>
-      <td mat-cell *matCellDef="let element"><app-presence-record [record]='findRecord("DOSTEPNOSC", element.id)'></app-presence-record> </td>
+      <td mat-cell *matCellDef="let element">
+        <app-presence-record [record]='findRecord("DOSTEPNOSC", element.id)' [presentation]="contractDependent(element.contractType, 'dostepnosc')"></app-presence-record>
+       </td>
     </ng-container>
 
     <!-- Grafik Column -->
     <ng-container matColumnDef="grafik">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Grafik </th>
-      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("GRAFIK", element.id)'></app-presence-record> </td>
+      <td mat-cell *matCellDef="let element">
+        <app-presence-record [record]='findRecord("GRAFIK", element.id)' [presentation]="contractDependent(element.contractType, 'grafik')"></app-presence-record>
+      </td>
     </ng-container>
 
     <!-- Zalogowanie Column -->
@@ -88,7 +92,7 @@
     <!-- Obecność Column -->
     <ng-container matColumnDef="obec">
       <th class="header_type" mat-header-cell *matHeaderCellDef> Obecność </th>
-      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("OBECNOSC", element.id)'></app-presence-record> </td>
+      <td mat-cell *matCellDef="let element"> <app-presence-record [record]='findRecord("OBECNOSC", element.id)' [presentation]="true"></app-presence-record> </td>
     </ng-container>
 
     <!-- Dzwonienie Column -->

@@ -60,6 +60,13 @@ export class PresenceComponent implements OnInit {
     this.titleDate = this.date;
   }
 
+  reload() {
+    this.hidden = false;
+    this.scheduleValue = undefined;
+    this.date = undefined;
+    this.scheduleSelector.disabled = false;
+  }
+
   maxDate() {
     const selectedDate = new Date(this.scheduleValue.scheduleDate);
 
@@ -85,14 +92,24 @@ export class PresenceComponent implements OnInit {
     return date;
   }
 
-  reload() {
-    this.hidden = false;
-    this.scheduleValue = undefined;
-    this.date = undefined;
-    this.scheduleSelector.disabled = false;
+  contractDependent(contract: string, type: string): boolean {
+    if (type === 'dostepnosc') {
+     if (contract.startsWith('UoP')) {
+       return false;
+     } else {
+       return true;
+     }
+    } else if (type === 'grafik') {
+      if (contract.startsWith('UoP')) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 }
-
 
 export interface PresenceData {
   scheduleType: string;

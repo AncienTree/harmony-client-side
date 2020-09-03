@@ -5,6 +5,7 @@ export class SimpleEmployee extends Resource {
   position: string;
   workStatus: string;
   etat: number;
+  contractType: string;
   startWorkDate: string;
   endWorkDate: string;
   userSection: string;

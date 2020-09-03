@@ -10,7 +10,9 @@ import * as moment from 'moment';
   styleUrls: ['./presence-record.component.scss']
 })
 export class PresenceRecordComponent implements OnInit {
+
   @Input() record: RecordData;
+  @Input() presentation: boolean;
 
   timeDisabled = false;
   startTime = false;

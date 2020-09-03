@@ -1,29 +1,34 @@
-<div class="record">
-  <div>
+<ng-container *ngIf="presentation; else elseTemplate">
+  <div class="record">
     <div>
-      <h4>Rozpoczęcie</h4>
-      <p-calendar [(ngModel)]="start" [timeOnly]="true" (onBlur)="startBlur()" [disabled]="timeDisabled"></p-calendar>
+      <div>
+        <h4>Rozpoczęcie</h4>
+        <p-calendar [(ngModel)]="start" [timeOnly]="true" (onBlur)="startBlur()" [disabled]="timeDisabled"></p-calendar>
+      </div>
+      <div style="margin-bottom: 10px;">
+        <h4>Zakończenie</h4>
+        <p-calendar [(ngModel)]="end" [timeOnly]="true" (onBlur)="endBlur()" [disabled]="timeDisabled"></p-calendar>
+      </div>
     </div>
-    <div style="margin-bottom: 10px;">
-      <h4>Zakończenie</h4>
-      <p-calendar [(ngModel)]="end" [timeOnly]="true" (onBlur)="endBlur()" [disabled]="timeDisabled"></p-calendar>
+    <div>
+      <mat-form-field>
+        <mat-label style="text-align: center">Status</mat-label>
+        <mat-select [(value)]="selectedStatus" (selectionChange)="checkStatus()">
+          <mat-option value="P">Pracuje</mat-option>
+          <mat-option value="CN">L4 nie potwierdzone</mat-option>
+          <mat-option value="CH">Choroba</mat-option>
+          <mat-option value="UB">Urlop bezpłatny</mat-option>
+          <mat-option value="UK">Urlop okolicznościowy</mat-option>
+          <mat-option value="UW">Urlop wypoczynkowy</mat-option>
+          <mat-option value="UZ">Urlop na żądanie</mat-option>
+          <mat-option value="WP">Dzień ustawowo wolny</mat-option>
+          <mat-option value="OP">Opieka nad dzieckiem</mat-option>
+          <mat-option value="NN">Nieobecność nieusprawiedliwiona</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
-  <div>
-    <mat-form-field>
-      <mat-label style="text-align: center">Status</mat-label>
-      <mat-select [(value)]="selectedStatus" (selectionChange)="checkStatus()">
-        <mat-option value="P">Pracuje</mat-option>
-        <mat-option value="CN">L4 nie potwierdzone</mat-option>
-        <mat-option value="CH">Choroba</mat-option>
-        <mat-option value="UB">Urlop bezpłatny</mat-option>
-        <mat-option value="UK">Urlop okolicznościowy</mat-option>
-        <mat-option value="UW">Urlop wypoczynkowy</mat-option>
-        <mat-option value="UZ">Urlop na żądanie</mat-option>
-        <mat-option value="WP">Dzień ustawowo wolny</mat-option>
-        <mat-option value="OP">Opieka nad dzieckiem</mat-option>
-        <mat-option value="NN">Nieobecność nieusprawiedliwiona</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-</div>
+</ng-container>
+<ng-template #elseTemplate>
+  <h3 style="text-align: center;">Nie dotyczy</h3>
+</ng-template>
