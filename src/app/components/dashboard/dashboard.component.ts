@@ -9,6 +9,7 @@ import * as moment from 'moment';
 export class DashboardComponent implements OnInit {
   date;
   interval;
+  stats: Stats;
 
   constructor() { }
 
@@ -17,9 +18,20 @@ export class DashboardComponent implements OnInit {
     this.interval = setInterval(() => {
       this.timer();
     }, 1000);
+
+
   }
 
   timer() {
     this.date = moment().format('YYYY-MM-DD HH:mm:ss');
  }
+}
+
+export class Stats {
+    currentMonthWorkedHours: number;
+    currentMonthHours: number;
+    leaves: number;
+    currentMonthLeaves: number;
+    absences: number;
+    currentMonthAbsences: number;
 }
