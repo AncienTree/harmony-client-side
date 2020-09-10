@@ -1,3 +1,4 @@
+import { StatsService } from './../../services/http/stats.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
@@ -11,7 +12,9 @@ export class DashboardComponent implements OnInit {
   interval;
   stats: Stats;
 
-  constructor() { }
+  constructor(
+    private statsHttp: StatsService
+  ) { }
 
   ngOnInit() {
     this.timer();
@@ -19,7 +22,9 @@ export class DashboardComponent implements OnInit {
       this.timer();
     }, 1000);
 
-
+    this.statsHttp.getMyStats().subscribe(result => {
+      this.stats = result;
+    });
   }
 
   timer() {
