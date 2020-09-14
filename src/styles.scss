@@ -4,6 +4,9 @@
 @import '../node_modules/primeng-lts/resources/themes/nova-light/theme.css';
 @import '../node_modules/primeng-lts/resources/primeng.min.css';
 
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
 html, body {
   height: 100%;
 }

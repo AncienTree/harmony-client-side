@@ -49,6 +49,24 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       );
   }
 
+  // Lista grafików pracownika
+  public getMyScheduleList(): Observable<any> {
+    return this.http
+      .get<Schedule[]>(`${this.url}/schedule/listMySchedule`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  // Pobranie harmonogramu
+  public getMyScheduleSummary(date): Observable<any> {
+    return this.http
+      .get<ScheduleSummary>(`${this.url}/schedule/date/${date}/my`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
   public getScheduleSummaryByMonthAndStatus(date, status): Observable<any> {
     return this.http
       .get<ScheduleSummary>(`${this.url}/schedule/${date}/${status}`)
@@ -60,19 +78,19 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
   // Aktualizacja statusow grafiku
   public updateSchedule(id, active, visible): Observable<any> {
     return this.http
-    .patch(`${this.url}/schedule/changeStatus`, {
-      id,
-      active,
-      visible,
-    }, {responseType: 'text'})
-    .pipe(
-      catchError(super.errorHandl)
-    );
+      .patch(`${this.url}/schedule/changeStatus`, {
+        id,
+        active,
+        visible,
+      }, { responseType: 'text' })
+      .pipe(
+        catchError(super.errorHandl)
+      );
   }
 
-  public createSchedule( date ): Observable<any> {
+  public createSchedule(date): Observable<any> {
     return this.http
-      .post(`${this.url}/schedule/create`, date, {responseType: 'text'})
+      .post(`${this.url}/schedule/create`, date, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );
@@ -95,12 +113,12 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       );
   }
 
-    // Przypisanie pracowników do harmonogamu o podanej dacie
-    public addUsersToSchedule(date, ids: number[]): Observable<any> {
-      return this.http
-        .post(`${this.url}/schedule/employee/${date}`, ids, {responseType: 'text'})
-        .pipe(
-          catchError(super.errorHandl)
-        );
-    }
+  // Przypisanie pracowników do harmonogamu o podanej dacie
+  public addUsersToSchedule(date, ids: number[]): Observable<any> {
+    return this.http
+      .post(`${this.url}/schedule/employee/${date}`, ids, { responseType: 'text' })
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
 }

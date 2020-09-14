@@ -1,1 +1,28 @@
 <p>Kalednarz / lista z czasem pracy za dany miesiąć</p>
+
+<div class="container">
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Wybierz miesiąc" #lista>
+        <mat-option *ngFor="let schedule of scheduleList" [value]="schedule.scheduleDate">
+          {{schedule.scheduleDate | date:'LLLL yyyy'}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="load(lista.value)" style="margin-left: 15px;">Załaduj</button>
+  </div>
+  <!-- Spinner -->
+  <div class="loading" *ngIf="isLoadingResults">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="hidden">
+    <!-- https://fullcalendar.io/docs/v4/angular -->
+    <p-fullCalendar
+      [events]="events"
+      [options]="options"
+      defaultView="dayGridMonth">
+    </p-fullCalendar>
+  </div>
+
+</div>
