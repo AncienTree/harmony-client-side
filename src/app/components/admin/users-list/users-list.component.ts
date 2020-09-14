@@ -70,7 +70,6 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   // Edycja danych
   editDialog(id: number) {
     this.userHttp.read(id).subscribe(result => {
-      console.log('result: ' + result.login);
       this.change.detectChanges();
       this.user = result;
     });
