@@ -1,9 +1,12 @@
+import { element } from 'protractor';
+import { AbsenceRecord } from './../../../model/absence-record';
 import { Component, OnInit } from '@angular/core';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
 import * as _ from 'lodash';
+import { AbsenceRecordService } from 'src/app/services/http/absence-record.service';
 
 @Component({
   selector: 'app-absence',
@@ -15,7 +18,9 @@ export class AbsenceComponent implements OnInit {
   hidden = true;
   options;
   events: any[] = [];
-  constructor() { }
+  constructor(
+    private absenceHttp: AbsenceRecordService
+  ) { }
 
   ngOnInit() {
   }
@@ -55,6 +60,20 @@ export class AbsenceComponent implements OnInit {
         }
       }
     };
+  }
+
+  public submit() {
+    const request: AbsenceRecord[] = [];
+    this.events.forEach(arr => {
+      const tempRecord: AbsenceRecord = new AbsenceRecord();
+      tempRecord.workDate = arr.start;
+      request.push(tempRecord);
+    });
+
+    this.absenceHttp.submitAbsence(request).subscribe( response => {
+      console.log(response);
+    });
+
   }
 
   private findDate(date): boolean {

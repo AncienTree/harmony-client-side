@@ -3,6 +3,8 @@
 <div>
   <button mat-raised-button (click)="load()">Zgłoś nieobecność</button>
   <div *ngIf="!hidden">
+    <p><b>Wnioski urlopowe można składać tylko za bieżacy miesiąc. W innych przpydakch należy zgłosić się do działu HR.</b></p>
+    <button mat-raised-button (click)="submit()" [disabled]="events.length<1">Wyślij wniosek</button>
     <p-fullCalendar
       [events]="events"
       [options]="options"
