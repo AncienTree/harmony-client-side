@@ -1,1 +1,12 @@
 <p>ilośc nie obecności ogółem / za dany miesiąć oraz kiedy on był</p>
+
+<div>
+  <button mat-raised-button (click)="load()">Zgłoś nieobecność</button>
+  <div *ngIf="!hidden">
+    <p-fullCalendar
+      [events]="events"
+      [options]="options"
+      defaultView="dayGridMonth">
+    </p-fullCalendar>
+  </div>
+</div>

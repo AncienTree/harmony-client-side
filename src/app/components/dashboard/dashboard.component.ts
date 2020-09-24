@@ -11,20 +11,22 @@ export class DashboardComponent implements OnInit {
   date;
   interval;
   stats: Stats;
+  ready = false;
 
   constructor(
     private statsHttp: StatsService
   ) { }
 
   ngOnInit() {
+    this.statsHttp.getMyStats().subscribe(result => {
+      this.stats = result;
+      this.ready = true;
+    });
+
     this.timer();
     this.interval = setInterval(() => {
       this.timer();
     }, 1000);
-
-    this.statsHttp.getMyStats().subscribe(result => {
-      this.stats = result;
-    });
   }
 
   timer() {

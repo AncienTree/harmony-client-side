@@ -4,77 +4,80 @@
     <h4>{{date | date:'EEEE, MMMM d, y HH:mm:ss'}}</h4>
   </div>
 
-  <!-- Pierwszy wiersz kart -->
-  <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
-    <mat-card class="card">
-      <mat-card-header class="card-header">
-        Przepracowane godziny w bieżącym miesiącu
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        {{stats.currentMonthWorkedHours}}
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="card">
-      <mat-card-header class="card-header">
-        Roboczogodziny w miesiącu
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        {{stats.currentMonthHours}}
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="card">
-      <mat-card-header class="card-header">
-        Pozostało godzin
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        {{stats.currentMonthHours - stats.currentMonthWorkedHours}}
-      </mat-card-content>
-    </mat-card>
+  <div *ngIf=ready>
+    <!-- Pierwszy wiersz kart -->
+    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+      <mat-card class="card">
+        <mat-card-header class="card-header">
+          Przepracowane godziny w bieżącym miesiącu
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          {{stats.currentMonthWorkedHours}}
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card">
+        <mat-card-header class="card-header">
+          Roboczogodziny w miesiącu
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          {{stats.currentMonthHours}}
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card">
+        <mat-card-header class="card-header">
+          Pozostało godzin
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          {{stats.currentMonthHours - stats.currentMonthWorkedHours}}
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- Drugi wiersz kart -->
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+      <mat-card class="card">
+        <mat-card-header class="card-header">
+          Licba urlopów
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          {{stats.leaves}}
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card">
+        <mat-card-header class="card-header">
+          Urlopy w bieżącym miesiącu
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          {{stats.currentMonthLeaves}}
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- Trzeci wiersz kart -->
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <div>
+      <mat-card class="card">
+        <mat-card-header class="card-header">
+          Nieobecności
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          {{stats.absences}}
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card">
+        <mat-card-header class="card-header">
+          Nieobecności w bieżącym miesiącu
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          {{stats.currentMonthAbsences}}
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <!-- Drugi wiersz kart -->
-  <br>
-  <mat-divider></mat-divider>
-  <br>
-  <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
-    <mat-card class="card">
-      <mat-card-header class="card-header">
-        Licba urlopów
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        {{stats.leaves}}
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="card">
-      <mat-card-header class="card-header">
-        Urlopy w bieżącym miesiącu
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        {{stats.currentMonthLeaves}}
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <!-- Trzeci wiersz kart -->
-  <br>
-  <mat-divider></mat-divider>
-  <br>
-  <div>
-    <mat-card class="card">
-      <mat-card-header class="card-header">
-        Nieobecności
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        {{stats.absences}}
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="card">
-      <mat-card-header class="card-header">
-        Nieobecności w bieżącym miesiącu
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        {{stats.currentMonthAbsences}}
-      </mat-card-content>
-    </mat-card>
-  </div>
+
   <!-- Wiadomości -->
   <br>
   <mat-divider></mat-divider>
