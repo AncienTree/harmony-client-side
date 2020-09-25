@@ -27,9 +27,9 @@ export class AbsenceRecordService extends HttpService<AbsenceRecord> {
       );
   }
 
-  public getMy(employeeId): Observable<AbsenceRecord[]> {
+  public getMy(): Observable<AbsenceRecord[]> {
     return this.http
-      .get<AbsenceRecord[]>(`${this.url}/schedule/absence/${employeeId}`)
+      .get<AbsenceRecord[]>(`${this.url}/schedule/absence/my`)
       .pipe(
         catchError(super.errorHandl)
       );

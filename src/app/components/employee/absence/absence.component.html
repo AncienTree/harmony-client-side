@@ -1,14 +1,59 @@
-<p>ilośc nie obecności ogółem / za dany miesiąć oraz kiedy on był</p>
-
 <div>
-  <button mat-raised-button (click)="load()">Zgłoś nieobecność</button>
-  <div *ngIf="!hidden">
-    <p><b>Wnioski urlopowe można składać tylko za bieżacy miesiąc. W innych przpydakch należy zgłosić się do działu HR.</b></p>
-    <button mat-raised-button (click)="submit()" [disabled]="events.length<1">Wyślij wniosek</button>
-    <p-fullCalendar
-      [events]="events"
-      [options]="options"
-      defaultView="dayGridMonth">
-    </p-fullCalendar>
+  <div style="margin: 30px;">
+    <button mat-raised-button (click)="menu('request')">Zgłoś nieobecność</button>
+    <button mat-raised-button (click)="menu('check')" style="margin-left: 10px;">Wnioski urlopowe</button>
+    <button mat-raised-button (click)="menu('absence')" style="margin-left: 10px; margin-bottom: 10px;">Sprawdź nieobecności</button>
+  </div>
+  <div [ngSwitch]="switchMenu">
+    <!-- Kalendarz -->
+    <ng-template [ngSwitchCase]="'request'">
+      <div>
+        <p><b>Wnioski urlopowe można składać tylko za bieżacy miesiąc. W innych przpydakch należy zgłosić się do działu
+            HR.</b></p>
+        <button mat-raised-button (click)="submit()" [disabled]="events.length<1">Wyślij wniosek</button>
+        <p-fullCalendar [events]="events" [options]="options" defaultView="dayGridMonth">
+        </p-fullCalendar>
+      </div>
+    </ng-template>
+
+    <!-- Wnioski -->
+    <ng-template [ngSwitchCase]="'check'">
+      <button mat-icon-button (click)="loadMyRequests()" mat-flat-button color="primary">
+        <mat-icon>autorenew</mat-icon>
+      </button>
+      <div *ngIf="displayTable">
+        <!-- Spinner -->
+        <div class="loading" *ngIf="isLoadingResults">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <!-- Tabela -->
+        <div class="table_container">
+          <table mat-table [dataSource]="requestSource" matSort>
+
+            <!-- No. Column -->
+            <ng-container matColumnDef="no">
+              <th mat-header-cell *matHeaderCellDef>#</th>
+              <td mat-cell *matCellDef="let day; let i = index">{{i+1}}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+              <td mat-cell *matCellDef="let day">{{day.workDate | date:'yyyy LLLL dd'}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Nieobecność -->
+    <ng-template [ngSwitchCase]="'absence'">
+      <p>ilośc nie obecności ogółem / za dany miesiąć oraz kiedy on był</p>
+
+    </ng-template>
   </div>
 </div>

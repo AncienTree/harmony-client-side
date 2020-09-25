@@ -1,12 +1,14 @@
-import { element } from 'protractor';
 import { AbsenceRecord } from './../../../model/absence-record';
 import { Component, OnInit } from '@angular/core';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { AbsenceRecordService } from 'src/app/services/http/absence-record.service';
 
 import * as _ from 'lodash';
-import { AbsenceRecordService } from 'src/app/services/http/absence-record.service';
+import * as moment from 'moment';
+import { MatSnackBar, MatTableDataSource } from '@angular/material';
+
 
 @Component({
   selector: 'app-absence',
@@ -15,19 +17,36 @@ import { AbsenceRecordService } from 'src/app/services/http/absence-record.servi
 })
 export class AbsenceComponent implements OnInit {
 
-  hidden = true;
+  switchMenu = 'none';
   options;
   events: any[] = [];
+  displayedColumns: string[] = ['no', 'date'];
+  requestSource; // Wnioski
+  absenceSource;  // Nieobecności
+  isLoadingResults = false;
+  displayTable = false;
+
   constructor(
-    private absenceHttp: AbsenceRecordService
+    private absenceHttp: AbsenceRecordService,
+    private snackBarRef: MatSnackBar
   ) { }
 
   ngOnInit() {
+    this.calOption();
   }
 
-  load() {
-    this.calOption();
-    this.hidden = false;
+  menu(option) {
+    this.displayTable = false;
+    this.switchMenu = option;
+  }
+
+  loadMyRequests() {
+    this.isLoadingResults = true;
+    this.absenceHttp.getMy().subscribe(respone => {
+      this.requestSource = new MatTableDataSource(respone);
+      this.displayTable = true;
+      this.isLoadingResults = false;
+    });
   }
 
   private calOption() {
@@ -44,10 +63,17 @@ export class AbsenceComponent implements OnInit {
         right: ''
       },
       selectAllow(e) {
+        const date = new Date();
+        const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+
         if (e.end.getTime() / 1000 - e.start.getTime() / 1000 <= 86400) {
-            return true;
+            if (e.start >= firstDay && e.start <= lastDay) {
+              return true;
+            }
+            return false;
         }
-     },
+      },
       select: ( selectionInfo ) => {
         if (!this.findDate(selectionInfo.start)) {
           this.events = [...this.events, {
@@ -66,14 +92,16 @@ export class AbsenceComponent implements OnInit {
     const request: AbsenceRecord[] = [];
     this.events.forEach(arr => {
       const tempRecord: AbsenceRecord = new AbsenceRecord();
-      tempRecord.workDate = arr.start;
+      tempRecord.workDate = moment(arr.start).format('YYYY-MM-DD').toString();
       request.push(tempRecord);
     });
 
     this.absenceHttp.submitAbsence(request).subscribe( response => {
-      console.log(response);
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+      this.events = [];
     });
-
   }
 
   private findDate(date): boolean {

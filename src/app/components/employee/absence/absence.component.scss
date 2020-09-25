@@ -1,0 +1,23 @@
+table {
+  width: 300px;
+}
+
+th, td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+  white-space: nowrap;
+}
+
+.table_container {
+  height: 400px;
+  overflow: auto;
+}
+
+// Table Columns
+.mat-column-no {
+  flex: 0 0 15% !important;
+  width: 15% !important;
+}
+
+
