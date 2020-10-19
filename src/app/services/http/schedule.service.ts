@@ -40,19 +40,10 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       );
   }
 
-  // Lista tylko widocznych grafików
-  public getScheduleList(): Observable<any> {
-    return this.http
-      .get<Schedule[]>(`${this.url}/schedule/listSchedule`)
-      .pipe(
-        catchError(super.errorHandl)
-      );
-  }
-
   // Lista grafików pracownika
   public getMyScheduleList(): Observable<any> {
     return this.http
-      .get<Schedule[]>(`${this.url}/schedule/listMySchedule`)
+      .get<Schedule[]>(`${this.url}/schedule/my`)
       .pipe(
         catchError(super.errorHandl)
       );
@@ -78,7 +69,7 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
   // Aktualizacja statusow grafiku
   public updateSchedule(id, active, visible): Observable<any> {
     return this.http
-      .patch(`${this.url}/schedule/changeStatus`, {
+      .patch(`${this.url}/schedule/`, {
         id,
         active,
         visible,
@@ -90,7 +81,7 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
 
   public createSchedule(date): Observable<any> {
     return this.http
-      .post(`${this.url}/schedule/create`, date, { responseType: 'text' })
+      .post(`${this.url}/schedule/`, date, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );
@@ -98,7 +89,7 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
 
   public getListOfEmployee(date): Observable<any> {
     return this.http
-      .get(`${this.url}/schedule/employeeList/${date}`)
+      .get(`${this.url}/schedule/employee-list/${date}`)
       .pipe(
         catchError(super.errorHandl)
       );

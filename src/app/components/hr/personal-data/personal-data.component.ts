@@ -29,9 +29,6 @@ export class PersonalDataComponent implements OnInit {
     private change: ChangeDetectorRef,
     private router: Router
   ) {
-    this.emplHttp.counter().subscribe(result => {
-      this.counter = result;
-    });
   }
 
   ngOnInit() {
@@ -43,6 +40,8 @@ export class PersonalDataComponent implements OnInit {
     this.emplHttp.getPersnoalDate().subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
+
+      this.emplHttp.counter().subscribe(count =>  this.counter = count);
 
       this.isLoadingResults = false;
       this.change.detectChanges();

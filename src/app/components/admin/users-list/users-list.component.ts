@@ -85,7 +85,11 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   }
 
   isLoggedUser(user) {
-    return(this.authServ.getAuthenticatedUser() === user);
+    if (user === 'administrator') {
+      return true;
+    } else {
+      return(this.authServ.getAuthenticatedUser() === user);
+    }
   }
 
   statusColor(user: Users) {

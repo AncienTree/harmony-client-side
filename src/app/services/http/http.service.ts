@@ -68,14 +68,25 @@ export class HttpService<T extends Resource> {
 
   // Error handling
   protected errorHandl(error) {
+    const err: ErrorJSON = JSON.parse(error.error);
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {
       // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nInfo: ${error.error.message}`;
+      errorMessage = `Error Code: ${error.status}\nInfo: ${err.message}`;
     }
     return throwError(errorMessage);
   }
+}
+
+interface ErrorJSON {
+  error: string;
+  message: string;
+  path: string;
+  status: number;
+  timestamp: Date;
+  trace: string;
+  version: string;
 }
