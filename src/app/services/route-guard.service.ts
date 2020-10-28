@@ -15,8 +15,8 @@ export class RouteGuardService implements CanActivate, CanActivateChild {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.auth.isUserLoggedIn()) {
       const allowedRoles = route.data.allowedRoles;
-      const isAuthorized = this.auth.isAuthorized(allowedRoles);   
-      
+      const isAuthorized = this.auth.isAuthorized(allowedRoles);
+
       if (!isAuthorized) {
         this.router.navigate(['/accessdenied']);
       } else if (route.data.roles === -1) {
@@ -32,8 +32,8 @@ export class RouteGuardService implements CanActivate, CanActivateChild {
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
     if (this.auth.isUserLoggedIn()) {
       const allowedRoles = childRoute.data.allowedRoles;
-      const isAuthorized = this.auth.isAuthorized(allowedRoles);   
-      
+      const isAuthorized = this.auth.isAuthorized(allowedRoles);
+
       if (!isAuthorized) {
         this.router.navigate(['/accessdenied']);
       } else if (childRoute.data.roles === -1) {

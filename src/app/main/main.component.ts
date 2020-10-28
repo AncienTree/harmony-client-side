@@ -24,8 +24,8 @@ export class MainComponent implements OnInit {
               ) {}
 
   ngOnInit() {
-    this.user = this.cookie.get('name');
-    this.userRole = jwt_decode(this.cookie.get('token')).authorities[0];
+    this.user = jwt_decode(this.cookie.get('token')).name;
+    this.userRole = jwt_decode(this.cookie.get('token')).authorities;
   }
 
   toggleEmpl() {

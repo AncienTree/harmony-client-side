@@ -34,10 +34,7 @@ export class LoginComponent implements AfterViewInit {
       .subscribe(
         data => {
           this.cookie.put('authenticaterUser', this.login),
-          this.cookie.put('token', data.access_token),
-          this.cookie.put('jti', data.jti),
-          this.cookie.put('name', data.name),
-          this.cookie.put('org', data.organization),
+          this.cookie.put('token', data.token),
 
           this.route.navigate(['main']);
         },

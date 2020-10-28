@@ -11,13 +11,9 @@ import * as jwt_decode from "jwt-decode";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  clientId = environment.jwtClientid;
-  clientSecret = environment.jwtClientSecret;
-
   constructor(
     private http: HttpClient,
     private cookie: CookieService,
-
   ) { }
 
   getAuthenticatedUser() {
@@ -35,16 +31,16 @@ export class AuthenticationService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + btoa(this.clientId + ':' + this.clientSecret)
+        'Content-Type': 'application/json'
       })
     };
 
-    const body = 'grant_type=password&username={0}&password={1}'
-      .replace('{0}', username)
-      .replace('{1}', password);
+    const body = {
+      login: username,
+      password
+    };
 
-    return this.http.post<AuthToken>('http://localhost:8080/oauth/token', body, httpOptions);
+    return this.http.post<AuthToken>('http://localhost:8080/login', body, httpOptions);
   }
 
   logout() {
@@ -67,6 +63,6 @@ export class AuthenticationService {
       console.log('Invalid token');
       return false;
     }
-    return allowedRoles.includes(decodeToken['authorities'][0]);
+    return allowedRoles.includes(decodeToken['authorities']);
   }
 }

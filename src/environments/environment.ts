@@ -3,9 +3,7 @@ export const environment = {
 
   // Rest Api
   url: 'http://localhost:8080/api',
-  // url: 'http://77.55.210.113:8080/harmony/api',
-  jwtClientid: 'harmonyClientId',
-  jwtClientSecret: 'secret'
+  // url: 'http://77.55.210.113:8080/harmony/api'
 
 };
 
