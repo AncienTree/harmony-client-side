@@ -13,9 +13,11 @@ export class DayoffService {
 
   public getDays(start, end): Observable<any> {
     return this.http
-      .post(`${this.url}/setting/dayoff/between/`, {
-        start,
-        end
+      .get(`${this.url}/setting/dayoff/between/`, {
+        params:{
+          start,
+          end
+        }
       });
   }
 

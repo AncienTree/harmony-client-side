@@ -37,7 +37,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.scheduleHttp.getScheduleList().subscribe(date => {
+    this.scheduleHttp.showAll().subscribe(date => {
       this.scheduleList = date;
     });
   }

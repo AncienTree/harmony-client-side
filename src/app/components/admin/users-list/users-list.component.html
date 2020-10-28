@@ -51,7 +51,7 @@
       <ng-container matColumnDef="edytuj">
         <th mat-header-cell *matHeaderCellDef fxFlex="6%">Edytuj</th>
         <td mat-cell *matCellDef="let element" fxFlex="6%">
-          <button mat-icon-button color="primary" (click)="editDialog(element.id)">
+          <button mat-icon-button color="primary" (click)="editDialog(element.id)" [disabled]="element.login === 'administrator'">
             <mat-icon class="mat-18">system_update</mat-icon>
           </button>
         </td>

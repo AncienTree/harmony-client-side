@@ -2,7 +2,7 @@
   <h2>Stan osobowy pracowników</h2>
 
   <!-- Licznik pracowników -->
-  <div class="counter" *ngIf="!isLoadingResults">
+  <div class="counter" *ngIf="counter">
     <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="center">
       <div>Pracujących: <b>{{counter.working}}</b></div>
       <div>Na chorobie: <b>{{counter.l4}}</b></div>
