@@ -19,6 +19,7 @@ import {
 import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
 import { PresenceRecordComponent } from './presence/presence-record/presence-record.component';
+import { FireDialogComponent } from './hr/options/fire-employee/fire-dialog/fire-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PresenceRecordComponent } from './presence/presence-record/presence-rec
     ContractEditComponent,
     MonthHoursEditComponent,
     PresenceComponent,
-    PresenceRecordComponent
+    PresenceRecordComponent,
+    FireDialogComponent
   ],
   imports: [
     SharedModule,

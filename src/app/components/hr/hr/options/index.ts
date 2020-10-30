@@ -6,3 +6,4 @@ export * from './lines/lines.component';
 export * from './dayoff/dayoff.component';
 export * from './month-hours/month-hours.component';
 export * from './contracts/contracts.component';
+export * from './fire-employee/fire-employee.component';

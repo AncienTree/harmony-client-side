@@ -1,3 +1,4 @@
+import { FireDialogComponent } from './components/hr/hr/options/fire-employee/fire-dialog/fire-dialog.component';
 import { ContractEditComponent } from './components/hr/hr/options/contracts/contract-edit/contract-edit.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -50,7 +51,8 @@ registerLocaleData(localePl);
     LineEditComponent,
     DayoffEditComponent,
     ContractEditComponent,
-    MonthHoursEditComponent
+    MonthHoursEditComponent,
+    FireDialogComponent
   ],
   imports: [
     BrowserModule,

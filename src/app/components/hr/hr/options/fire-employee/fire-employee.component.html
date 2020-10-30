@@ -1,0 +1,17 @@
+<div class="hr_container">
+  <h2>Wybierz pracownika do zwolnienia</h2>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Wybierz pracownika</mat-label>
+      <mat-select [(ngModel)]="fireEmployee">
+        <mat-option *ngFor="let employee of employees" [value]="employee">
+          {{employee.lastName + ' ' + employee.firstName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="margin-top: 15px;">
+    <button mat-raised-button color="primary" (click)="confirm()">Zwolnij</button>
+  </div>
+</div>

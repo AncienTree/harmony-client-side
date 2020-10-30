@@ -58,13 +58,16 @@ export class PersonalDataComponent implements OnInit {
     this.router.navigate(['/main/hr/dane/', user.id]);
   }
 
-  public searchLider(name: string) {
-    const section = this.sections.find(x => x.name === name);
+  public searchLider(name) {
+    if (name.position !== 'doradca') {
+      return 'N/D';
+    }
+    const section = this.sections.find(x => x.name === name.userSection);
 
     if (typeof(section) !== 'undefined') {
       return section.lider;
     } else {
-      return 'error';
+      return 'Brak sekcji';
     }
   }
 }

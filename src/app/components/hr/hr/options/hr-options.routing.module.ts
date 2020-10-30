@@ -8,7 +8,8 @@ import {
   LinesComponent,
   ContractsComponent,
   DayoffComponent,
-  MonthHoursComponent
+  MonthHoursComponent,
+  FireEmployeeComponent
  } from './index';
 
 const hrOptionsRouting: Routes = [
@@ -20,6 +21,7 @@ const hrOptionsRouting: Routes = [
   { path: 'umowy', component: ContractsComponent },
   { path: 'wolne', component: DayoffComponent },
   { path: 'rbh', component: MonthHoursComponent },
+  { path: 'zwolnij', component: FireEmployeeComponent },
 ];
 
 @NgModule({

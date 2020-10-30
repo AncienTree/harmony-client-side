@@ -5,13 +5,14 @@ import { HrOptionsRoutingModule } from './hr-options.routing.module';
 import {
   ScheduleListComponent,
   CreateScheduleComponent,
-  AddUsersScheduleComponent
+  AddUsersScheduleComponent,
+  SectionsComponent,
+  LinesComponent,
+  DayoffComponent,
+  ContractsComponent,
+  MonthHoursComponent,
+  FireEmployeeComponent
 } from './index';
-import { SectionsComponent } from './sections/sections.component';
-import { LinesComponent } from './lines/lines.component';
-import { DayoffComponent } from './dayoff/dayoff.component';
-import { ContractsComponent } from './contracts/contracts.component';
-import { MonthHoursComponent } from './month-hours/month-hours.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MonthHoursComponent } from './month-hours/month-hours.component';
     LinesComponent,
     DayoffComponent,
     ContractsComponent,
-    MonthHoursComponent
+    MonthHoursComponent,
+    FireEmployeeComponent
   ],
   imports: [
     SharedModule,

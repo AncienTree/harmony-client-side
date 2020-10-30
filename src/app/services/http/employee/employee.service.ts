@@ -19,30 +19,30 @@ export class EmployeeService extends HttpService<Employee> {
       http,
       'employee',
       new EmployeeSerializer());
-   }
+  }
 
-   public update(employee): Observable<any> {
+  public update(employee): Observable<any> {
     return this.http
-      .patch(`${this.url}/employee/`, employee, { responseType: 'text'})
+      .patch(`${this.url}/employee/`, employee, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );
-   }
+  }
 
-   public checkInDB(pesel): Observable<any> {
-     return this.http
+  public checkInDB(pesel): Observable<any> {
+    return this.http
       .get<boolean>(`${this.url}/employee/hr/${pesel}/isAvailable`)
       .pipe(
         catchError(super.errorHandl)
       );
-   }
+  }
 
-   public counter(): Observable<any> {
-     return this.http.get<any>(`${this.url}/employee/counter`)
+  public counter(): Observable<any> {
+    return this.http.get<any>(`${this.url}/employee/counter`)
       .pipe(
         catchError(super.errorHandl)
       );
-   }
+  }
 
   public getEmployee(id): Observable<any> {
     return this.http
@@ -62,6 +62,13 @@ export class EmployeeService extends HttpService<Employee> {
 
   public getSimpleEmployeesByPosition(position): Observable<any> {
     return this.http.get<any>(`${this.url}/employee/position/${position}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  public fireEmployee(id): Observable<any> {
+    return this.http.post(`${this.url}/employee/fire`, id, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );
