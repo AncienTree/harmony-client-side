@@ -1,3 +1,4 @@
+import { SimpleEmployee } from './../../../model/simple-employee';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Employee } from 'src/app/model/employee';
@@ -69,6 +70,20 @@ export class EmployeeService extends HttpService<Employee> {
 
   public fireEmployee(id): Observable<any> {
     return this.http.post(`${this.url}/employee/fire`, id, { responseType: 'text' })
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  public getSimpleEmployeesByPesel(pesel): Observable<any> {
+    return this.http.get<SimpleEmployee>(`${this.url}/employee/hr/${pesel}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  public restoreEmployee(id): Observable<any> {
+    return this.http.post(`${this.url}/employee/restore`, id, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );

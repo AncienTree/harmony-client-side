@@ -33,13 +33,32 @@
       </div>
       <!-- Warunki czy istnieje w bazie -->
       <div *ngIf="!isLoading">
-        <div *ngIf="checkDB" fxLayout="column">
-          Podany pesel już istnieje w bazie danych.
-          Bla bla bla
-          <!-- TODO -->
-          <!-- Czy użytkownik aktywny czy nie oraz podanie pełnej nazwy użytkownika!  -->
+        <div *ngIf="checkDB && simpleEmployee" fxLayout="column">
+
+          <!-- Pracownik istnieje w bazie ale nie pracuje -->
+          <ng-container *ngIf="simpleEmployee.workStatus === 'NOT_WORK'; else work">
+            Pracownik o takim peselu istnieje już w bazie danych, ale został zwolniony. <br>
+            <div>
+              <h3>Dane pracownika:</h3>
+              <b>Imię: </b> {{simpleEmployee.fullName}} <br>
+              <b>Pracował/a od </b> {{simpleEmployee.startWorkDate}} <b> do </b> {{simpleEmployee.endWorkDate}} <br>
+              <b>Rodzaj umowy: </b> {{simpleEmployee.contractType}} <br>
+              <b>Ostatnie sekcja: </b> {{simpleEmployee.userSection}} <br>
+              <b>Ostatnie linia: </b> {{simpleEmployee.userLine}}
+            </div>
+            <p>Czy chcesz przywrócić pracownika?</p>
+            <button mat-button (click)="restore()">Przywróć</button>
+          </ng-container>
+
+          <!-- Pracownik istnieje w bazie i pracuje -->
+          <ng-template #work>
+            Pracownik o takim peselu istnieje już w bazie danych. <br>
+            <b>{{simpleEmployee.fullName}}</b>
+          </ng-template>
 
         </div>
+
+        <!-- Nie znaleziono w DB. Nowy pracownik -->
         <div ng *ngIf="!checkDB">
           Podany pesel nie istnieje w bazie danych. Aby utworzyć nowego pracownika kliknij dalej.
         </div>
@@ -47,7 +66,7 @@
     </div>
     <div>
       <button mat-button matStepperPrevious>Wstecz</button>
-      <button mat-button matStepperNext (click)="create()" [disabled]="isLoading">Dalej</button>
+      <button mat-button matStepperNext (click)="create()" [disabled]="!simpleEmployee">Dalej</button>
     </div>
   </mat-step>
 

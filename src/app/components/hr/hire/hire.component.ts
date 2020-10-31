@@ -1,3 +1,4 @@
+import { SimpleEmployee } from './../../../model/simple-employee';
 import { ContractService } from './../../../services/http/settings/contract.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -39,6 +40,7 @@ export class HireComponent implements OnInit {
   tempPesel: string;
   contracts: [];
   startdate = moment();
+  simpleEmployee: SimpleEmployee;
 
   constructor(
     private empl: EmployeeService,
@@ -79,8 +81,14 @@ export class HireComponent implements OnInit {
       // Sprawdzanie czy istnieje w bazie
       this.empl.checkInDB(this.pesel.value).subscribe(x => {
         this.checkDB = x;
+        if (x) {
+          this.empl.getSimpleEmployeesByPesel(this.pesel.value).subscribe(simple => {
+            this.simpleEmployee = simple;
+          });
+        } else {
+          this.tempPesel = this.pesel.value;
+        }
         this.isLoading = false;
-        this.tempPesel = this.pesel.value;
       });
     }
   }
@@ -100,11 +108,21 @@ export class HireComponent implements OnInit {
     this.hireForm.get('birthday').setValue(testDate);
     this.hireForm.get('startWorkDate').setValue(startWorkDate);
 
-    this.empl.create(this.hireForm.value).subscribe(x => {
+    this.empl.create(this.hireForm.value).subscribe(() => {
       this.snackBarRef.open('Utworzono nowy login', 'close', {
         panelClass: ['green-snackbar']
       });
       setTimeout(() => window.location.reload(), 1500);
     });
+  }
+
+  public restore() {
+    this.empl.restoreEmployee(this.simpleEmployee.id).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+      setTimeout(() => window.location.reload(), 1500);
+    });
+
   }
 }
