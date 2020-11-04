@@ -1,0 +1,10 @@
+<div>
+  <mat-form-field>
+    <textarea matInput placeholder="Powód odmowy" [(ngModel)]="text"></textarea>
+  </mat-form-field>
+
+  <div>
+    <button (click)="save()" mat-raised-button color="primary" style="margin-right: 20px;">Wyślij</button>
+    <button (click)="cancel()" mat-raised-button color="warn">Anuluj</button>
+  </div>
+</div>

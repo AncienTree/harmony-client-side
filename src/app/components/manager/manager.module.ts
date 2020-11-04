@@ -3,7 +3,9 @@ import { CheckAbsenceComponent,
   CheckAvailabilityComponent,
   ManagerComponent,
   ScheduleEmployeeComponent,
-  ScheduleGroupComponent } from './index';
+  ScheduleGroupComponent,
+  DeclineRequestComponent
+ } from './index';
 import { SharedModule } from 'src/app/modules/shared.module';
 import { ManagerRoutingModule } from './manager.routing.module';
 
@@ -14,6 +16,7 @@ import { ManagerRoutingModule } from './manager.routing.module';
     ManagerComponent,
     ScheduleEmployeeComponent,
     ScheduleGroupComponent,
+    DeclineRequestComponent,
   ],
   imports: [
     SharedModule,

@@ -1,0 +1,28 @@
+.buttons button {
+  margin: 5px;
+}
+
+.options {
+  margin: 15px;
+}
+
+table {
+  width: 800px;
+}
+
+th, td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+  white-space: nowrap;
+}
+
+.table_container {
+  height: 700px;
+  overflow: auto;
+}
+
+.mat-column-no {
+  flex: 0 0 15% !important;
+  width: 10% !important;
+}

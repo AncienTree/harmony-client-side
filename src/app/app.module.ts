@@ -34,6 +34,7 @@ import { Status } from './utiles/status';
 import { LineEditComponent } from './components/hr/hr/options/lines/line-edit/line-edit.component';
 import { DayoffEditComponent } from './components/hr/hr/options/dayoff/dayoff-edit/dayoff-edit.component';
 import { MonthHoursEditComponent } from './components/hr/hr/options/month-hours/month-hours-edit/month-hours-edit.component';
+import { DeclineRequestComponent } from './components/manager/check-absence/decline-request/decline-request.component';
 
 registerLocaleData(localePl);
 
@@ -52,7 +53,8 @@ registerLocaleData(localePl);
     DayoffEditComponent,
     ContractEditComponent,
     MonthHoursEditComponent,
-    FireDialogComponent
+    FireDialogComponent,
+    DeclineRequestComponent
   ],
   imports: [
     BrowserModule,

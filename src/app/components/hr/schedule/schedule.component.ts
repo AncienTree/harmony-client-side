@@ -30,7 +30,7 @@ export class ScheduleComponent implements OnInit {
 
   constructor(
     private scheduleHttp: ScheduleService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private stat: Status,
   ) {
     this.scheduleStatus = this.stat.getStatus();

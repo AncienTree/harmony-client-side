@@ -21,15 +21,23 @@ export class AbsenceRecordService extends HttpService<AbsenceRecord> {
 
    public getEmployeeAbsencesRequest(employeeId): Observable<AbsenceRecord[]> {
     return this.http
-      .get<AbsenceRecord[]>(`${this.url}/schedule/absence/${employeeId}`)
+      .get<AbsenceRecord[]>(`${this.url}/schedule/absence/employee/${employeeId}`)
       .pipe(
         catchError(super.errorHandl)
       );
   }
 
-  public getMy(): Observable<AbsenceRecord[]> {
+  public getSectionAbsencesRequest(sectionId): Observable<AbsenceRecord[]> {
     return this.http
-      .get<AbsenceRecord[]>(`${this.url}/schedule/absence/my`)
+      .get<AbsenceRecord[]>(`${this.url}/schedule/absence/section/${sectionId}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
+  public getMy(opt, year): Observable<AbsenceRecord[]> {
+    return this.http
+      .get<AbsenceRecord[]>(`${this.url}/schedule/absence/my?opt=${opt}&year=${year}`)
       .pipe(
         catchError(super.errorHandl)
       );
@@ -51,9 +59,9 @@ export class AbsenceRecordService extends HttpService<AbsenceRecord> {
       );
   }
 
-  public declineAbsence(id): Observable<any> {
+  public declineAbsence(record: AbsenceRecord): Observable<any> {
     return this.http
-      .delete(`${this.url}/schedule/absence/decline`, id)
+      .post(`${this.url}/schedule/absence/decline`, record, { responseType: 'text'})
       .pipe(
         catchError(super.errorHandl)
       );

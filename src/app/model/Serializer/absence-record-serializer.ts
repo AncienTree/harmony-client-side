@@ -7,6 +7,9 @@ export class AbsenceRecordSerializer implements Serializer {
     record.id = json.id;
     record.employee = json.employee;
     record.workDate = json.workDate;
+    record.status = json.status;
+    record.text = json.text;
+    record.lastModifiedBy = json.lastModifiedBy;
     return record;
   }
 
@@ -14,7 +17,10 @@ export class AbsenceRecordSerializer implements Serializer {
     return {
       id: record.id,
       employee: record.employee,
-      workDate: record.workDate
+      workDate: record.workDate,
+      status: record.status,
+      text: record.text,
+      lastModifiedBy: record.lastModifiedBy
     };
   }
 }

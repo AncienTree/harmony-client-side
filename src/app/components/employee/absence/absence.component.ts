@@ -4,10 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { AbsenceRecordService } from 'src/app/services/http/absence-record.service';
-
+import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { MatSnackBar, MatTableDataSource } from '@angular/material';
 
 
 @Component({
@@ -17,10 +16,11 @@ import { MatSnackBar, MatTableDataSource } from '@angular/material';
 })
 export class AbsenceComponent implements OnInit {
 
+  date = new Date();
   switchMenu = 'none';
   options;
   events: any[] = [];
-  displayedColumns: string[] = ['no', 'date'];
+  displayedColumns: string[] = ['no', 'date', 'status'];
   requestSource; // Wnioski
   absenceSource;  // Nieobecności
   isLoadingResults = false;
@@ -40,13 +40,44 @@ export class AbsenceComponent implements OnInit {
     this.switchMenu = option;
   }
 
-  loadMyRequests() {
+  loadMyRequests(option) {
+    this.displayedColumns = ['no', 'date', 'status'];
     this.isLoadingResults = true;
-    this.absenceHttp.getMy().subscribe(respone => {
-      this.requestSource = new MatTableDataSource(respone);
-      this.displayTable = true;
-      this.isLoadingResults = false;
-    });
+    switch (option) {
+      case 'all':
+        this.absenceHttp.getMy(option, this.date.getFullYear()).subscribe(response => {
+          this.requestSource = new MatTableDataSource(response);
+          this.displayedColumns.push('text', 'lastModifiedBy');
+          this.displayTable = true;
+          this.isLoadingResults = false;
+        });
+        break;
+      case 'accepted':
+        this.absenceHttp.getMy(option, this.date.getFullYear()).subscribe(response => {
+          this.requestSource = new MatTableDataSource(response);
+          this.displayTable = true;
+          this.isLoadingResults = false;
+        });
+        break;
+      case 'declined':
+        this.absenceHttp.getMy(option, this.date.getFullYear()).subscribe(response => {
+          this.requestSource = new MatTableDataSource(response);
+          this.displayedColumns.push('text', 'lastModifiedBy');
+          this.displayTable = true;
+          this.isLoadingResults = false;
+        });
+        break;
+      case 'new':
+        this.absenceHttp.getMy(option, this.date.getFullYear()).subscribe(response => {
+          this.requestSource = new MatTableDataSource(response);
+          this.displayedColumns.push('action');
+          this.displayTable = true;
+          this.isLoadingResults = false;
+        });
+        break;
+      default:
+        break;
+    }
   }
 
   private calOption() {
@@ -68,13 +99,13 @@ export class AbsenceComponent implements OnInit {
         const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
 
         if (e.end.getTime() / 1000 - e.start.getTime() / 1000 <= 86400) {
-            if (e.start >= firstDay && e.start <= lastDay) {
-              return true;
-            }
-            return false;
+          if (e.start >= firstDay && e.start <= lastDay) {
+            return true;
+          }
+          return false;
         }
       },
-      select: ( selectionInfo ) => {
+      select: (selectionInfo) => {
         if (!this.findDate(selectionInfo.start)) {
           this.events = [...this.events, {
             title: 'Urlop',
@@ -96,11 +127,20 @@ export class AbsenceComponent implements OnInit {
       request.push(tempRecord);
     });
 
-    this.absenceHttp.submitAbsence(request).subscribe( response => {
+    this.absenceHttp.submitAbsence(request).subscribe(response => {
       this.snackBarRef.open(response, 'close', {
         panelClass: ['green-snackbar']
       });
       this.events = [];
+    });
+  }
+
+  public cancel(id) {
+    this.absenceHttp.delete(id).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+      this.loadMyRequests('new');
     });
   }
 
