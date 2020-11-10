@@ -1,0 +1,65 @@
+<div class="normal_container">
+  <button mat-button [routerLink]="'/main/hr/wnioski'">
+    <mat-icon>arrow_back</mat-icon> Powrót
+  </button>
+  <h2>Sprawdź wnioski urlopowe pracowników</h2>
+
+  <div>
+    <button mat-raised-button (click)="load('accepted')" style="margin-right: 5px;">Wnioski zaakceptowane</button>
+    <button mat-raised-button (click)="load('declined')" style="margin-right: 5px;">Wnioski odrzucone</button>
+    <button mat-raised-button (click)="load('new')">Wnioski nowe</button>
+  </div>
+
+  <!-- Tabela -->
+  <div class="table_container" *ngIf="displayTable">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- No. Column -->
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let record; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+
+      <!-- Employee Column -->
+      <ng-container matColumnDef="employee">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Pracownik</th>
+        <td mat-cell *matCellDef="let record">
+          {{ fullEmployee(record.employee) }}
+        </td>
+      </ng-container>
+
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let record">
+          {{ record.workDate | date: "yyyy LLLL dd" }}
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let record">{{record.status | titlecase}}</td>
+      </ng-container>
+
+      <!-- Last modification Column -->
+      <ng-container matColumnDef="lastModifiedBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Login</th>
+        <td mat-cell *matCellDef="let record">
+          <div *ngIf="record.status === 'ODRZUCONY'">
+            {{record.lastModifiedBy}}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Information Column -->
+      <ng-container matColumnDef="text">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Info</th>
+        <td mat-cell *matCellDef="let record">{{record.text}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
+

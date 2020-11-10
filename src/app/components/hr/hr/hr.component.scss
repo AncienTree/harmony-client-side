@@ -12,6 +12,9 @@ mat-grid-tile {
 .container {
   flex-direction: column;
 }
+.container button{
+  margin: 3px;
+}
 
 mat-grid-tile.mat-grid-tile {
   height: 750px;

@@ -16,7 +16,6 @@ import * as _ from 'lodash';
   styleUrls: ['./check-absence.component.scss']
 })
 export class CheckAbsenceComponent implements OnInit {
-
   displayedColumns: string[] = ['no', 'employee', 'date', 'action'];
   requestSource;
 
@@ -54,7 +53,7 @@ export class CheckAbsenceComponent implements OnInit {
 
     switch (opt) {
       case 'all':
-        this.absenceHttp.showAll().subscribe(response => {
+        this.absenceHttp.getAbsencesRequest('new', this.date.getFullYear()).subscribe(response => {
           this.requestSource = new MatTableDataSource(response);
           this.isLoadingResults = false;
           this.displayTable = true;

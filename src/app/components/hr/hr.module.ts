@@ -1,3 +1,4 @@
+import { LeavesApplicationComponent } from './application/options/leaves-application/leaves-application.component';
 import { NgModule } from '@angular/core';
 import {
   ApplicationComponent,
@@ -39,7 +40,8 @@ import { FireDialogComponent } from './hr/options/fire-employee/fire-dialog/fire
     MonthHoursEditComponent,
     PresenceComponent,
     PresenceRecordComponent,
-    FireDialogComponent
+    FireDialogComponent,
+    LeavesApplicationComponent
   ],
   imports: [
     SharedModule,
