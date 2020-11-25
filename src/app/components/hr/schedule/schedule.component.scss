@@ -5,7 +5,9 @@
 
 .table-container {
   overflow-x: scroll;
-  height: 720px;
+  max-height: calc(100vh - 155px);
+  overflow: auto;
+  font-size: small;
 }
 
 th.mat-column-position,

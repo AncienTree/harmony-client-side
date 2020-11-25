@@ -21,6 +21,7 @@ import { SharedModule } from 'src/app/modules/shared.module';
 import { HrRoutingModule } from './hr.routing.module';
 import { PresenceRecordComponent } from './presence/presence-record/presence-record.component';
 import { FireDialogComponent } from './hr/options/fire-employee/fire-dialog/fire-dialog.component';
+import { DisplayHoursComponent } from './schedule/display-hours/display-hours.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { FireDialogComponent } from './hr/options/fire-employee/fire-dialog/fire
     PresenceComponent,
     PresenceRecordComponent,
     FireDialogComponent,
-    LeavesApplicationComponent
+    LeavesApplicationComponent,
+    DisplayHoursComponent
   ],
   imports: [
     SharedModule,

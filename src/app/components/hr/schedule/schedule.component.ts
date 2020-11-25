@@ -54,6 +54,7 @@ export class ScheduleComponent implements OnInit {
       for (let index = 1; index <= this.months.length; index++) {
         this.displayedColumns.push(index.toString());
       }
+      this.displayedColumns.push('displayHours');
       this.selectedDate = date;
       this.selectedSchedule = this.scheduleList.find(x => x.scheduleDate === date);
 

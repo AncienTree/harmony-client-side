@@ -1,0 +1,14 @@
+<div class="normal_container">
+  <b>RBH:</b> {{przepracowane()}} <b>| P: </b> <span [ngStyle]="{'color': statusColor(pozostalo()) }">{{pozostalo()}}</span> <br>
+  <b>U:</b> {{urlopy()}} <b>| CH:</b> {{choroby()}} <br>
+  <b>Inne:</b> {{inne()}} <br>
+  <b>NN:</b>
+  <ng-container *ngIf="nieobecnosc() > 0; else elseTemplate">
+    <span style="color: red; font-weight: 500;">
+      {{nieobecnosc()}}
+    </span>
+  </ng-container>
+  <ng-template #elseTemplate>
+    {{nieobecnosc()}}
+  </ng-template>
+</div>
