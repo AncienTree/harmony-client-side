@@ -1,3 +1,4 @@
+import { SimpleEmployee } from './../../../model/simple-employee';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScheduleService } from 'src/app/services/http/schedule.service';
 import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
@@ -5,7 +6,6 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 
 import * as moment from 'moment';
 import { ScheduleSummary } from 'src/app/model/schedule-summary';
-import { Status } from 'src/app/utiles/status';
 import { Schedule } from 'src/app/model/schedule';
 
 @Component({
@@ -19,22 +19,17 @@ export class ScheduleComponent implements OnInit {
 
   hidden = false;
   isLoadingResults = false;
-  displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
+  displayedColumns;
   months = [];
   selectedDate;
   dataSource;
   scheduleList;
   selectedSchedule: Schedule;
-  scheduleStatus = [];
-  selectedStatus = 'OBEC';
 
   constructor(
     private scheduleHttp: ScheduleService,
-    private dialog: MatDialog,
-    private stat: Status,
-  ) {
-    this.scheduleStatus = this.stat.getStatus();
-  }
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.scheduleHttp.showAll().subscribe(date => {
@@ -45,7 +40,7 @@ export class ScheduleComponent implements OnInit {
   refresh(date) {
     // Restart kolumn
     this.isLoadingResults = true;
-    this.displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'fte'];
+    this.displayedColumns = ['fullName', 'position', 'userLine', 'userSection', 'etat', 'type'];
     this.months = [];
 
     if (!(typeof date === 'undefined')) {
@@ -59,7 +54,7 @@ export class ScheduleComponent implements OnInit {
       this.selectedSchedule = this.scheduleList.find(x => x.scheduleDate === date);
 
       // Pobieranie danych z serwera
-      this.scheduleHttp.getScheduleSummaryByMonthAndStatus(date, this.selectedStatus)
+      this.scheduleHttp.getScheduleSummaryV2(date)
         .subscribe(result => {
           this.dataSource = new MatTableDataSource(result);
           this.dataSource.sort = this.sort;
@@ -118,9 +113,9 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
-  transformDate(day, records: ScheduleSummary) {
+  transformDate(day, records) {
     const date: string = moment(this.createDayFromHeader(day)).format('YYYY-MM-DD').toString();
-    const record = records.scheduleRecords.find(x => x.workDate === date);
+    const record = records.scheduleRecord.find(x => x.workDate === date);
 
     if (typeof (record) !== 'undefined') {
       return record;
@@ -138,6 +133,10 @@ export class ScheduleComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  checkUoP(employee: SimpleEmployee): boolean {
+    return employee.contractType.startsWith('UoP');
   }
 }
 

@@ -66,6 +66,14 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
       );
   }
 
+  public getScheduleSummaryV2(date): Observable<any> {
+    return this.http
+      .get<ScheduleSummary>(`${this.url}/schedule/date/v2/${date}`)
+      .pipe(
+        catchError(super.errorHandl)
+      );
+  }
+
   // Aktualizacja statusow grafiku
   public updateSchedule(id, active, visible): Observable<any> {
     return this.http
