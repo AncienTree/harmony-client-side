@@ -1,3 +1,4 @@
+import { AvailabilityDashboardComponent } from './availability-dashboard/availability-dashboard.component';
 import { LeavesApplicationComponent } from './application/options/leaves-application/leaves-application.component';
 import { PresenceComponent } from './presence/presence.component';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,9 @@ const hrRouting: Routes = [
   { path: 'obecnosc', component: PresenceComponent},
   { path: 'wnioski', component: ApplicationComponent },
   { path: 'wnioski/urlopy', component: LeavesApplicationComponent },
+  { path: 'dyspozycyjnosc', component: AvailabilityDashboardComponent, children: [
+    { path: '', loadChildren: () => import('./availability-dashboard/modules/availability.module').then(m => m.AvailabilityModule) },
+  ] },
 ];
 
 @NgModule({

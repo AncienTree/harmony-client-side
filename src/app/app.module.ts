@@ -54,7 +54,7 @@ registerLocaleData(localePl);
     ContractEditComponent,
     MonthHoursEditComponent,
     FireDialogComponent,
-    DeclineRequestComponent
+    DeclineRequestComponent,
   ],
   imports: [
     BrowserModule,
