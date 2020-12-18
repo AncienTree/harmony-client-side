@@ -9,7 +9,7 @@ mat-sidenav, mat-sidenav-content {
 
 mat-sidenav {
   width: 220px;
-  background-color: #efefef;
+  background-color: #f1f1f1;
 }
 
 .sub-menu a {
@@ -19,6 +19,7 @@ mat-sidenav {
 
 .navbar {
   justify-content: space-between;
+  background-color: #8bc34a;
 }
 .navbar-right {
   font-size: medium;
@@ -44,14 +45,4 @@ span {
 
 mat-toolbar {
   border-radius: 5px;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  font-size: small;
-  height: 40px;
-  background-color: #6e6e6e;
-  color: white;
-  width: 87%;
 }

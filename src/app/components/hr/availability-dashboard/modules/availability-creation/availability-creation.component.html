@@ -1,6 +1,37 @@
 <p>
   <mat-divider></mat-divider>
 </p>
-<div>
-  Testowe utworzenie
+<div class="inner_container">
+  <h3>Utwórz nową dyspozycyjność</h3>
+  <div>
+    <mat-form-field>
+      <input matInput required [matDatepicker]="dpMonth" placeholder="Wybierz miesiąc" [(ngModel)]="date" disabled (ngModelChange)="changeDate()"/>
+      <mat-datepicker-toggle matSuffix [for]="dpMonth"></mat-datepicker-toggle>
+      <mat-datepicker #dpMonth startView="multi-year" (monthSelected)="closeDatePicker($event, dpMonth)"
+        disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="load()" [disabled]="isDisabled()" style="margin-left: 15px">
+      Wybierz
+    </button>
+  </div>
+  <div *ngIf="show">
+    <div>
+      <div *ngIf="!isActive; else elseTemplate">
+        <b>Liczba roboczogodzin w miesiącu:</b> {{ availability.rbh }} <br>
+        <b>Liczba pracowników: </b> {{ availability.numbersOfEmployees }}
+        <div>
+          TABELKA Z DNIAMI WOLNYMI + MOŻLIWOŚĆ DODANIA NOWEGO DNIA WOLNEGO
+        </div>
+      </div>
+      <ng-template #elseTemplate>
+        <h2 style="color: #f44336">
+          Dyspozycyjność na miesiąć {{ date | date: "LLLL yyyy" }} już istnieje.
+        </h2>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<!-- Spinner -->
+<div class="loading" *ngIf="isLoadingResults">
+  <mat-spinner></mat-spinner>
 </div>
