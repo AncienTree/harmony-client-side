@@ -5,7 +5,7 @@
   <h3>Utwórz nową dyspozycyjność</h3>
   <div>
     <mat-form-field>
-      <input matInput required [matDatepicker]="dpMonth" placeholder="Wybierz miesiąc" [(ngModel)]="date" disabled (ngModelChange)="changeDate()"/>
+      <input matInput required [matDatepicker]="dpMonth" placeholder="Wybierz miesiąc" [(ngModel)]="date" disabled/>
       <mat-datepicker-toggle matSuffix [for]="dpMonth"></mat-datepicker-toggle>
       <mat-datepicker #dpMonth startView="multi-year" (monthSelected)="closeDatePicker($event, dpMonth)"
         disabled="false"></mat-datepicker>
@@ -18,11 +18,20 @@
     <div>
       <div *ngIf="!isActive; else elseTemplate">
         <b>Liczba roboczogodzin w miesiącu:</b> {{ availability.rbh }} <br>
-        <b>Liczba pracowników: </b> {{ availability.numbersOfEmployees }}
-        <div>
-          TABELKA Z DNIAMI WOLNYMI + MOŻLIWOŚĆ DODANIA NOWEGO DNIA WOLNEGO
+        <b>Liczba pracowników: </b> {{ availability.numbersOfEmployees }} <br>
+
+        <b>Dni wolne w miesiącu:</b>
+        <div *ngFor="let day of availability.dayOffs" style="margin: 5px;">
+            <p>{{day.date | date: "dd LL yy"}} - {{day.info}}</p>
         </div>
       </div>
+      <button (click)="newDayOff({}, 'new')" mat-flat-button color="primary">
+        Nowy wolny dzień
+      </button>
+      <br>
+      <button mat-raised-button color="primary" (click)="submit()" style="margin-top: 15px;">
+        Utwórz nową dyspozycyjność
+      </button>
       <ng-template #elseTemplate>
         <h2 style="color: #f44336">
           Dyspozycyjność na miesiąć {{ date | date: "LLLL yyyy" }} już istnieje.

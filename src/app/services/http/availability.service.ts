@@ -32,7 +32,7 @@ export class AvailabilityService extends HttpService<Availability> {
 
   public createAvailability(availability): Observable<any> {
     return this.http
-      .post(`${this.url}/schedule/create`, availability, { responseType: 'text' })
+      .post(`${this.url}/availability/create`, availability, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );

@@ -1,9 +1,10 @@
+import { Router } from '@angular/router';
+import { DayoffEditComponent } from './../../../hr/options/dayoff/dayoff-edit/dayoff-edit.component';
 import { AvailabilityService } from './../../../../../services/http/availability.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { Component } from '@angular/core';
 
 import * as moment from 'moment';
-import { first, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class AvailabilityCreationComponent {
   constructor(
     private availHttp: AvailabilityService,
     private snackBarRef: MatSnackBar,
+    private dialog: MatDialog,
+    private router: Router
   ) { }
 
   isDisabled() {
@@ -45,8 +48,33 @@ export class AvailabilityCreationComponent {
     });
   }
 
-  changeDate() {
-    this.show = false;
+  newDayOff(day, type) {
+    const dialogRef = this.dialog.open(DayoffEditComponent, {
+      width: '250px',
+      data: {
+        day,
+        type
+      }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      setTimeout(() => {
+        this.snackBarRef.open('Dodano dzień wolny od pracy.', 'close', {
+          panelClass: ['green-snackbar']
+        });
+        this.load();
+      }, 500);
+    });
+  }
+
+  submit() {
+    this.availHttp.createAvailability(this.date).subscribe(response => {
+      this.snackBarRef.open(response, 'close', {
+        panelClass: ['green-snackbar']
+      });
+      this.router.navigateByUrl('/main/hr/dyspozycyjnosc');
+    });
+
+
   }
 
 }
