@@ -1,1 +1,19 @@
-<p>Zgłoszenie dyspozycyjności oraz czy został zaakaceptowny / zmieniony</p>
+<div class="normal_container">
+  <div>
+    <mat-form-field>
+      <mat-label>Miesiąc</mat-label>
+      <mat-select [(ngModel)]="availabilityValue" (selectionChange)="changeSchedule($event.value)">
+        <mat-option *ngFor="let availability of availabilityList" [value]="availability">
+          {{availability.availabilityDate | date:'LLLL yyyy'}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="load()" style="margin-left: 10px;" color="primary" [disabled]="buttonDisabled">Załaduj</button>
+  </div>
+  <!-- Kalendarz -->
+
+  <div *ngIf="calendar">
+    <p-fullCalendar [events]="events" [options]="options" defaultView="dayGridMonth">
+    </p-fullCalendar>
+  </div>
+</div>

@@ -5,7 +5,6 @@ import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 
 import * as moment from 'moment';
-import { ScheduleSummary } from 'src/app/model/schedule-summary';
 import { Schedule } from 'src/app/model/schedule';
 
 @Component({

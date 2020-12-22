@@ -87,6 +87,7 @@ export class AbsenceComponent implements OnInit {
       firstDay: 1,
       selectable: true,
       unselectAuto: false,
+      displayEventTime: false,
       height: 800,
       header: {
         left: '',
