@@ -21,7 +21,7 @@ export class DayoffService {
       });
   }
 
-    public getDaysByYear(year): Observable<any> {
+  public getDaysByYear(year): Observable<any> {
     return this.http
       .get(`${this.url}/setting/dayoff/${year}`);
   }

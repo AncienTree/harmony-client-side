@@ -19,6 +19,11 @@ export class MonthHoursService extends HttpService<MonthHours> {
     );
   }
 
+  public getHoursByYear(year: string): Observable<any> {
+    return this.http
+      .get(`${this.url}/setting/monthhours/${year}`);
+  }
+
   public updates(hours): Observable<any> {
     return this.http
       .patch(`${this.url}/setting/monthhours/`, hours, { responseType: 'text'})
