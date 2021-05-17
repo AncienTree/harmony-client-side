@@ -77,7 +77,7 @@ export class ScheduleService extends HttpService<ScheduleSummary> {
   // Aktualizacja statusow grafiku
   public updateSchedule(id, active, visible): Observable<any> {
     return this.http
-      .patch(`${this.url}/schedule/`, {
+      .put(`${this.url}/schedule/`, {
         id,
         active,
         visible,

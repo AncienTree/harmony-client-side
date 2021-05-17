@@ -20,7 +20,7 @@ export class EmployeeInfoService extends HttpService<EmployeeInfo>{
 
   public update(data): Observable<any> {
     return this.http
-      .patch(`${this.url}/employee/info/`, data, { responseType: 'text' })
+      .put(`${this.url}/employee/info/`, data, { responseType: 'text' })
       .pipe(
         catchError(super.errorHandl)
       );

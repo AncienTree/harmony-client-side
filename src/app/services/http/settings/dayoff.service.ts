@@ -38,6 +38,6 @@ export class DayoffService {
 
   public update(dayoff): Observable<any> {
     return this.http
-      .patch(`${this.url}/setting/dayoff/`, dayoff, { responseType: 'text' });
+      .put(`${this.url}/setting/dayoff/`, dayoff, { responseType: 'text' });
   }
 }

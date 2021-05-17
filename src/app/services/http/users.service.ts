@@ -24,7 +24,7 @@ export class UsersService extends HttpService<Users> {
   // Zmiana statusu aktywności użytkownika
   public changeStatus(id: number, status: boolean): Observable<any> {
     return this.http
-    .patch(`${this.url}/users/${id}/status`, JSON.stringify(!status))
+    .put(`${this.url}/users/${id}/status`, JSON.stringify(!status))
     .pipe(
       retryWhen(error => error.pipe(delay(2000))),
       catchError(super.errorHandl)
@@ -34,7 +34,7 @@ export class UsersService extends HttpService<Users> {
   // Aktualizacja danych
   public updateUser(id: number, password?: string, status?: boolean, role?: string): Observable<any> {
     return this.http
-    .patch(`${this.url}/users/change/`, {
+    .put(`${this.url}/users/change/`, {
       id,
       password,
       status,

@@ -26,7 +26,7 @@ export class MonthHoursService extends HttpService<MonthHours> {
 
   public updates(hours): Observable<any> {
     return this.http
-      .patch(`${this.url}/setting/monthhours/`, hours, { responseType: 'text'})
+      .put(`${this.url}/setting/monthhours/`, hours, { responseType: 'text'})
       .pipe(
         catchError(super.errorHandl)
       );

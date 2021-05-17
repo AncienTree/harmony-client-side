@@ -23,7 +23,7 @@ export class LineService {
 
   public update(line): Observable<any> {
     return this.http
-      .patch(`${this.url}/setting/userline/`, line, { responseType: 'text' });
+      .put(`${this.url}/setting/userline/`, line, { responseType: 'text' });
   }
 
   public create(line): Observable<any> {

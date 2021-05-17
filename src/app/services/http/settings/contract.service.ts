@@ -23,7 +23,7 @@ export class ContractService {
 
   public update(line): Observable<any> {
     return this.http
-      .patch(`${this.url}/setting/contract/`, line, { responseType: 'text' });
+      .put(`${this.url}/setting/contract/`, line, { responseType: 'text' });
   }
 
   public create(line): Observable<any> {

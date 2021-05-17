@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ScheduleRecordSerializer } from 'src/app/model/Serializer/schedule-record-serializer';
 import { Observable } from 'rxjs';
 import { ScheduleRecord } from 'src/app/model/schedule-record';
-import { map, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class ScheduleRecordService extends HttpService<ScheduleRecord> {
 
   public updateRecord(date: ScheduleRecord): Observable<any> {
     return this.http
-      .patch(`${this.url}/schedule/record/`, date, { responseType: 'text'})
+      .put(`${this.url}/schedule/record/`, date, { responseType: 'text'})
       .pipe(
         catchError(super.errorHandl)
       );
